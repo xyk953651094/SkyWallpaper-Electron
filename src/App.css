@@ -1,0 +1,17 @@
+@import '~@douyinfe/semi-ui/dist/css/semi.min.css';
+
+.semi-layout {
+  height: 100vh;
+}
+
+.semi-layout-sider {
+  background-color: var(--semi-color-bg-1)
+}
+
+.semi-layout-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  color: var(--semi-color-text-2);
+  background-color: rgba(var(--semi-grey-0), 1)
+}
