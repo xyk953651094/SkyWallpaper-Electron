@@ -15,10 +15,10 @@
 * 正在开发中。
 
 ## 效果展示（正在开发中，不代表最终效果）
-<img width="1370" alt="截屏2023-03-15 17 42 09" src="https://user-images.githubusercontent.com/28004442/225270259-7c7d1574-caed-42e1-a4d6-27f372c3cfa5.png">
+<img width="1087" alt="截屏2023-03-15 19 16 57" src="https://user-images.githubusercontent.com/28004442/225293555-d7d74404-298c-4afa-b14d-68f48b550c3e.png">
 
-<img width="1371" alt="截屏2023-03-15 17 42 57" src="https://user-images.githubusercontent.com/28004442/225270466-72c4c057-3c9f-47c7-a39a-296cdfbb3843.png">
+<img width="1087" alt="截屏2023-03-15 19 17 19" src="https://user-images.githubusercontent.com/28004442/225293638-1a9cec8f-0123-4100-b1c1-034e4086c5ab.png">
 
-<img width="1371" alt="截屏2023-03-15 17 43 24" src="https://user-images.githubusercontent.com/28004442/225270591-6bf122c4-75cb-42c0-8ab0-5c99db025b14.png">
+<img width="1087" alt="截屏2023-03-15 19 17 36" src="https://user-images.githubusercontent.com/28004442/225293716-7edc93e8-4402-4609-9af3-c872601a542e.png">
 
-<img width="1369" alt="截屏2023-03-15 17 44 11" src="https://user-images.githubusercontent.com/28004442/225270815-3e25cb10-0b5d-48e7-a7d5-dcc904257d90.png">
+<img width="1081" alt="截屏2023-03-15 19 18 20" src="https://user-images.githubusercontent.com/28004442/225293864-c046a5a1-d879-451e-bc79-032dcc29d9b3.png">
