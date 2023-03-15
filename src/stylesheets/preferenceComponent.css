@@ -1,0 +1,15 @@
+.listItemIcon {
+    vertical-align: middle;
+    color: rgba(var(--semi-grey-9), 1)
+}
+
+.listItemText {
+    line-height: 20px;
+    height: 20px;
+    color: var(--semi-color-text-0);
+    font-weight: 500;
+}
+
+.preferenceSelect {
+    width: 120px;
+}

@@ -1,0 +1,11 @@
+.historyTitleP, .historyDescriptionP {
+    margin: 2px;
+}
+
+.historyTitleP {
+    color: var(--semi-color-text-0);
+}
+
+.historyDescriptionP {
+    color: var(--semi-color-text-2);
+}
