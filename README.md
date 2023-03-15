@@ -1,46 +1,25 @@
-# Getting Started with Create React App
+# SkyWallpaper based React Electron
+## 声明
+* 图片由第三方网站提供，图片内容不代表作者任何观点。  
+* 本作品由作者个人出于学习目的开发，由于成本原因，难以保证不同型号设备下的最终品质，后续尽量完善。
+* <img width="40" src="https://resources.jetbrains.com/storage/products/company/brand/logos/WebStorm_icon.png" alt="WebStorm logo.">
+* [JetBrains Open Source Support](https://jb.gg/OpenSourceSupport "跳转至 JetBrains Open Source Support")
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 简介
+适用于 Mac、~~Windows~~ 的新标签页插件。  
+基于 Html + Typescript + CSS + React + Webpack + Electron + Semi Design。   
+支持语言：中文  
+* 图片来源：https://unsplash.com
 
-## Available Scripts
+## 安装
+* 正在开发中。
 
-In the project directory, you can run:
+## 效果展示（正在开发中，不代表最终效果）
+<img width="1087" alt="截屏2023-03-15 19 16 57" src="https://user-images.githubusercontent.com/28004442/225293555-d7d74404-298c-4afa-b14d-68f48b550c3e.png">
 
-### `npm start`
+<img width="1087" alt="截屏2023-03-15 19 17 19" src="https://user-images.githubusercontent.com/28004442/225293638-1a9cec8f-0123-4100-b1c1-034e4086c5ab.png">
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<img width="1087" alt="截屏2023-03-15 19 17 36" src="https://user-images.githubusercontent.com/28004442/225293716-7edc93e8-4402-4609-9af3-c872601a542e.png">
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img width="1081" alt="截屏2023-03-15 19 18 20" src="https://user-images.githubusercontent.com/28004442/225293864-c046a5a1-d879-451e-bc79-032dcc29d9b3.png">
+>>>>>>> 36ca7c1bb2318f34a98c209add73f7e88415752b
