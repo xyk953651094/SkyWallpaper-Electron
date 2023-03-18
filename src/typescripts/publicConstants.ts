@@ -1,14 +1,38 @@
-import {Preference} from "./publicInterface";
+import {ImageData, Preference} from "./publicInterface";
 
-export let unsplashClientId = "ntHZZmwZUkhiLBMvwqqzmOG29nyXSCXlX7x_i-qhVHM";
-export let unsplashUrl = "?utm_source=SkyNewTab&utm_medium=referral";  // Unsplash API规范
+export const unsplashTodayRequestUrl: string = "https://api.unsplash.com/photos";
+export const unsplashTopicRequestUrl: string = "https://api.unsplash.com/photos/random";
+export const unsplashSearchRequestUrl: string = "https://api.unsplash.com/search/photos";
+export const unsplashClientId: string = "ntHZZmwZUkhiLBMvwqqzmOG29nyXSCXlX7x_i-qhVHM";
+export const unsplashVisitUrl: string = "?utm_source=SkyNewTab&utm_medium=referral";  // Unsplash API规范
+export const pexelsCurateRequestUrl:string = "https://api.pexels.com/v1/curated";
+export const pexelsSearchRequestUrl: string = "https://api.pexels.com/v1/search"
+export const pexelsAuth: string = "sbJpn7uRC2FAknG1nefeRAYquBuMxyP68BaJ2joKCr6MtxAjqwBvth6h";
+export const pixabayRequestUrl:string = "https://pixabay.com/api/";
+export const pixabayKey: string = "34466426-b21174c2eaa64ee76ce599e3b";
 
-export let defaultPreference: Preference = {
+export const wallpaperPageSize: number = 6;
+export const searchPageSize: number = 5;
+
+export const defaultPreference: Preference = {
     displayMode: "lightMode",
     themeColor: "amber",
 }
 
-export let imageTopics = {
+export const defaultImageData: ImageData = {
+    displayUrl: "",
+    previewUrl: "",
+    imageUrl: "",
+    userName: "暂无摄影师信息",
+    userUrl: "",
+    createTime: "暂无拍摄时间",
+    description: "暂无描述",
+    color: "",
+}
+
+export const unsplashImageTopics = {
+    "popular": "热门",
+    "latest": "最新",
     "": "随机",
     "Fzo3zuOHN6w": "旅游",
     "bo8jQKTaE0Y": "壁纸",
@@ -30,4 +54,27 @@ export let imageTopics = {
     "bDo48cUhwnY": "文化",
     "dijpbw99kQQ": "历史",
     "Bn-DjrcBrwo": "体育",
+}
+
+export const pixabayImageCategories= {
+    "": "随机",
+    "backgrounds": "背景",
+    "fashion": "时尚",
+    "nature": "自然",
+    "science": "科技",
+    "education": "教育",
+    "feelings": "感受",
+    "health": "健康",
+    "religion": "宗教",
+    "places": "地点",
+    "animals": "动物",
+    "industry": "工业",
+    "computer": "计算机",
+    "food": "食物",
+    "sports": "运动",
+    "transportation": "交通",
+    "travel": "旅行",
+    "buildings": "建筑",
+    "business": "商业",
+    "music": "音乐",
 }

@@ -10,13 +10,14 @@ const path = require('path')
 function createWindow () {
     // Create the browser window.
     const mainWindow = new BrowserWindow({
-        width: 1085,
+        width: 1065,
         height: 600,
-        minWidth: 1100,
+        minWidth: 1065,
         minHeight: 600,
-        maxWidth: 1100,
+        maxWidth: 1065,
         maxHeight: 600,
         resizable: false,
+        fullscreenable: false,
         // useContentSize: true,
         title: "SkyWallpaper", // 窗口标题,如果由loadURL()加载的HTML文件中含有标签<title>，该属性可忽略
         icon: nativeImage.createFromPath('public/favicon.ico'), // "string" || nativeImage.createFromPath('public/favicon.ico')从位于 path 的文件创建新的 NativeImage 实例

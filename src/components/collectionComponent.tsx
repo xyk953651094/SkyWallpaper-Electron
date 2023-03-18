@@ -1,9 +1,9 @@
 import React from "react";
-import {Row, Space, List, Image, ButtonGroup, Button, Typography, Col, Toast, Divider} from '@douyinfe/semi-ui';
+import {Row, Space, List, Image, ButtonGroup, Button, Typography, Col, Toast} from '@douyinfe/semi-ui';
 import {IconRefresh} from "@douyinfe/semi-icons";
 import "../stylesheets/collectionComponent.css"
 import {getFontColor, httpRequest, isEmptyString} from "../typescripts/publicFunctions";
-import {unsplashClientId, unsplashUrl} from "../typescripts/publicConstants";
+import {unsplashClientId, unsplashVisitUrl} from "../typescripts/publicConstants";
 import Text from "@douyinfe/semi-ui/lib/es/typography/text";
 
 const {Title} = Typography;
@@ -40,7 +40,7 @@ class collectionComponent extends React.Component {
 
     homeButtonClick(item: any) {
         if ( item.user.links.html ) {
-            window.open(item.user.links.html + unsplashUrl);
+            window.open(item.user.links.html + unsplashVisitUrl);
         } else {
             Toast.error("无跳转链接");
         }
@@ -54,9 +54,9 @@ class collectionComponent extends React.Component {
             let data = {
                 "client_id": unsplashClientId,
             }
-            httpRequest(url, data, "GET")
+            httpRequest({}, url, data, "GET")
                 .then(function(resultData: any){
-                    window.open(resultData.url + unsplashUrl);
+                    window.open(resultData.url + unsplashVisitUrl);
                 })
                 .catch(function(){
                     Toast.error("下载 Unsplash 图片失败");
