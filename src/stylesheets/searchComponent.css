@@ -1,4 +1,4 @@
-.collectionTitleP, .collectionDescriptionP {
+.searchTitleP, .searchDescriptionP {
     max-width: 440px;
     word-break: keep-all;
     white-space: nowrap;
@@ -6,10 +6,17 @@
     text-overflow: ellipsis;
 }
 
-.collectionTitleP {
+.searchTitleP {
     color: var(--semi-color-text-0);
 }
 
-.collectionDescriptionP {
+.searchDescriptionP {
     color: var(--semi-color-text-2);
+}
+
+.searchPagination {
+    width: 100%;
+    flex-basis: 100%;
+    justify-content: center;
+    margin-top: 10px;
 }

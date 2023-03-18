@@ -127,7 +127,6 @@ class App extends React.Component {
                         <CollectionComponent display={this.state.navigationItemDisplay[2]}/>
                         <PreferenceComponent display={this.state.navigationItemDisplay[3]} getPreference={this.getPreference.bind(this)}/>
                     </Content>
-                    <Footer></Footer>
                 </Layout>
             </Layout>
         );

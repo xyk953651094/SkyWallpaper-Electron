@@ -1,9 +1,10 @@
 const $ = require("jquery");
 
 // 网络请求
-export function httpRequest(url: string, data: object, method: "GET" | "POST") {
+export function httpRequest(headers: object, url: string, data: object, method: "GET" | "POST") {
     return new Promise(function(resolve,reject){
         $.ajax({
+            headers: headers,
             url: url,
             type: method,
             data: data,
@@ -72,20 +73,25 @@ export function getGreetIcon() {
 
 // 根据图片背景颜色改变字体颜色效果
 export function getFontColor(color: string) {
-    let rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
-    if (rgb) {
-        let r = parseInt(rgb[1], 16);
-        let g = parseInt(rgb[2], 16);
-        let b = parseInt(rgb[3], 16);
-        let gray = Math.round(r * 0.299 + g * 0.587 + b * 0.114);
-        if (gray > 128) {
-            return "#000000";
-        } else {
-            return "#ffffff";
-        }
+    if(color === "rgba(var(--semi-grey-0), 1)") {
+        return "rgba(var(--semi-grey-9), 1)"
     }
     else {
-        return "#ffffff";
+        let rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
+        if (rgb) {
+            let r = parseInt(rgb[1], 16);
+            let g = parseInt(rgb[2], 16);
+            let b = parseInt(rgb[3], 16);
+            let gray = Math.round(r * 0.299 + g * 0.587 + b * 0.114);
+            if (gray > 128) {
+                return "#000000";
+            } else {
+                return "#ffffff";
+            }
+        }
+        else {
+            return "#ffffff";
+        }
     }
 }
 
