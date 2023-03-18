@@ -24,4 +24,3 @@
 <img width="1066" alt="截屏2023-03-18 11 25 10" src="https://user-images.githubusercontent.com/28004442/226082096-95c62584-e725-4a0d-9327-58d8a0bf30f0.png">
 
 <img width="1065" alt="截屏2023-03-18 11 25 41" src="https://user-images.githubusercontent.com/28004442/226082116-6d835768-d7d8-4b4e-8897-d30291f593f6.png">
->>>>>>> 36ca7c1bb2318f34a98c209add73f7e88415752b
