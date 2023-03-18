@@ -2,7 +2,7 @@ import React from "react";
 import {List, Toast, Typography} from '@douyinfe/semi-ui';
 import "../stylesheets/wallpaperComponent.css"
 import WallpaperCardComponent from "./wallpaperCardComponent";
-import {pexelsCurateRequestUrl, pexelsAuth, wallpaperPageSize, defaultImageData} from "../typescripts/publicConstants";
+import {pexelsCurateRequestUrl, pexelsAuth, wallpaperPageSize} from "../typescripts/publicConstants";
 import {ImageData} from "../typescripts/publicInterface"
 import {httpRequest} from "../typescripts/publicFunctions";
 const {Title} = Typography;
@@ -23,7 +23,7 @@ class PexelsComponent extends React.Component {
     constructor(props: any) {
         super(props);
         this.state = {
-            imageData: new Array(wallpaperPageSize).fill(defaultImageData),
+            imageData: [],
             requestData: {
                 "per_page":  wallpaperPageSize,
             },
@@ -54,7 +54,11 @@ class PexelsComponent extends React.Component {
                 });
             })
             .catch(function(){
-                Toast.error("获取 Pexels 图片失败");
+                tempThis.setState({
+                    imageData: []
+                },()=>{
+                    Toast.error("获取 Pexels 图片失败");
+                });
             })
     }
 
@@ -76,7 +80,7 @@ class PexelsComponent extends React.Component {
     render() {
         return (
             <List
-                style={{width: "790px"}}
+                style={{width: "660px"}}
                 header={<Title heading={3}>Pexels</Title>}
                 size="small"
                 bordered

@@ -125,14 +125,14 @@ class PreferenceComponent extends React.Component {
                     }
                 />
                 <List.Item
-                    header={ <IconInfoCircle className={"listItemIcon"}/> }
-                    main={ <Text className="listItemText">关于作者</Text> }
+                    header={ <IconLink className={"listItemIcon"}/> }
+                    main={ <Text className="listItemText">产品主页</Text> }
                     extra={ <Text link={{ href: "https://github.com/xyk953651094" }}>Github.com</Text> }
                 />
                 <List.Item
-                    header={ <IconLink className={"listItemIcon"}/> }
-                    main={ <Text className="listItemText">图片来源</Text> }
-                    extra={ <Text link={{ href: "https://unsplash.com" }}>Unsplash.com</Text> }
+                    header={ <IconInfoCircle className={"listItemIcon"}/> }
+                    main={ <Text className="listItemText">使用声明</Text> }
+                    extra={ <Text style={{color: "rgba(var(--semi-red-6), 1)"}}>图片来源于第三方网站，内容不代表开发者任何观点</Text> }
                 />
             </List>
         );

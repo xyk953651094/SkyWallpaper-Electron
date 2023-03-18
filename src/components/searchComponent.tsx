@@ -84,7 +84,7 @@ class SearchComponent extends React.Component {
                         Toast.info("搜索结果数量为 0");
                         tempThis.setState({
                             loading: false,
-                            searchResult: {},
+                            searchResult: [],
                             paginationDisplay: "none",
                         });
                     }
@@ -116,7 +116,7 @@ class SearchComponent extends React.Component {
                     Toast.error("搜索失败");
                     tempThis.setState({
                         loading: false,
-                        searchResult: {},
+                        searchResult: [],
                         paginationDisplay: "none",
                     });
                 })
@@ -142,7 +142,7 @@ class SearchComponent extends React.Component {
                         Toast.info("搜索结果数量为 0");
                         tempThis.setState({
                             loading: false,
-                            searchResult: {},
+                            searchResult: [],
                             paginationDisplay: "none",
                         });
                     }
@@ -174,7 +174,7 @@ class SearchComponent extends React.Component {
                     Toast.error("搜索失败");
                     tempThis.setState({
                         loading: false,
-                        searchResult: {},
+                        searchResult: [],
                         paginationDisplay: "none",
                     });
                 })
@@ -204,7 +204,7 @@ class SearchComponent extends React.Component {
                         Toast.info("搜索结果数量为 0");
                         tempThis.setState({
                             loading: false,
-                            searchResult: {},
+                            searchResult: [],
                             paginationDisplay: "none",
                         });
                     }
@@ -236,7 +236,7 @@ class SearchComponent extends React.Component {
                     Toast.error("搜索失败");
                     tempThis.setState({
                         loading: false,
-                        searchResult: {},
+                        searchResult: [],
                         paginationDisplay: "none",
                     });
                 })
@@ -246,6 +246,7 @@ class SearchComponent extends React.Component {
     inputOnEnterPress(e: any) {
         this.setState({
             searchValue: e.target.value,        // 保存搜索内容，用于搜索和分页请求
+            searchResult: [],
             currentPage: 1,
         }, ()=>{
             switch (this.state.searchSource) {
@@ -288,6 +289,7 @@ class SearchComponent extends React.Component {
 
     onPageChange( currentPage: number ) {
         this.setState({
+            searchResult: [],
             currentPage: currentPage,   // 设置分页
         }, ()=>{
             switch (this.state.searchSource) {
@@ -316,72 +318,72 @@ class SearchComponent extends React.Component {
 
     render() {
         return (
-            <Space align={"center"} style={{display: this.props.display}}>
-                <List
-                    style={{width: "790px"}}
-                    loading={this.state.loading}
-                    size="large"
-                    bordered
-                    header={
-                        <Row>
-                            <Col span={4} style={{textAlign: "left"}}>
-                                <Title heading={3}>搜索</Title>
-                            </Col>
-                            <Col span={16} style={{textAlign: "center"}}>
-                                <Input prefix={<IconSearch/>} placeholder="按下回车键进行搜索" showClear
-                                       onEnterPress={this.inputOnEnterPress.bind(this)}></Input>
-                            </Col>
-                            <Col span={4} style={{textAlign: "right"}}>
-                                <Select className="todaySelect" defaultValue="popular" value={this.state.searchSource} onChange={this.selectOnChange.bind(this)}>
-                                    <Select.Option value="Unspalsh">Unspalsh</Select.Option>
-                                    <Select.Option value="Pexels">Pexels</Select.Option>
-                                    <Select.Option value="Pixabay">Pixabay</Select.Option>
-                                </Select>
-                            </Col>
-                        </Row>
-                    }
-                    dataSource={this.state.searchResult}
-                    renderItem={item => (
-                        <List.Item
-                            style={{backgroundColor: item.color}}
-                            header={
-                                <Image width={92} height={92} src={item.displayUrl} preview={true}
-                                       placeholder={<Image src={item.previewUrl} preview={false}/>}
-                                       className={"wallpaperFadeIn"}
-                                />
-                            }
-                            main={
-                                <Space align='start' vertical>
-                                    <Title heading={5} className="searchTitleP"
-                                           style={{color: getFontColor(item.color)}}>
-                                        {"摄影师：" + item.userName}
-                                    </Title>
-                                    <Text className="searchDescriptionP" style={{color: getFontColor(item.color)}}>
-                                        {"拍摄于：" + item.createTime}
-                                    </Text>
-                                    <Text className="searchDescriptionP" style={{color: getFontColor(item.color)}}>
-                                        {item.description == null ? "暂无图片描述" : "图片描述：" + item.description}
-                                    </Text>
-                                </Space>
-                            }
-                            extra={
-                                <ButtonGroup>
-                                    <Button theme={'borderless'} icon={<IconHomeStroked/>}
-                                            style={{color: getFontColor(item.color)}}
-                                            onClick={this.homeButtonClick.bind(this, item)}>主页</Button>
-                                    <Button theme={'borderless'} icon={<IconDownloadStroked/>}
-                                            style={{color: getFontColor(item.color)}}
-                                            onClick={this.downloadButtonClick.bind(this, item)}>下载</Button>
-                                </ButtonGroup>
-                            }
-                        />
-                    )}
-                />
-                <Pagination size="default" className={"searchPagination"} style={{display: this.state.paginationDisplay}}
-                            pageSize={searchPageSize} total={this.state.totalCounts} currentPage={this.state.currentPage}
-                            onChange={currentPage => this.onPageChange(currentPage)}
-                />
-            </Space>
+            <List
+                style={{width: "660px", display: this.props.display}}
+                loading={this.state.loading}
+                size="small"
+                bordered
+                header={
+                    <Row>
+                        <Col span={5} style={{textAlign: "left"}}>
+                            <Title heading={3}>搜索</Title>
+                        </Col>
+                        <Col span={14} style={{textAlign: "center"}}>
+                            <Input prefix={<IconSearch/>} placeholder="按下回车键进行搜索" showClear
+                                   onEnterPress={this.inputOnEnterPress.bind(this)}></Input>
+                        </Col>
+                        <Col span={5} style={{textAlign: "right"}}>
+                            <Select className="todaySelect" defaultValue="popular" value={this.state.searchSource} onChange={this.selectOnChange.bind(this)}>
+                                <Select.Option value="Unspalsh">Unspalsh</Select.Option>
+                                <Select.Option value="Pexels">Pexels</Select.Option>
+                                <Select.Option value="Pixabay">Pixabay</Select.Option>
+                            </Select>
+                        </Col>
+                    </Row>
+                }
+                dataSource={this.state.searchResult}
+                renderItem={item => (
+                    <List.Item
+                        style={{backgroundColor: item.color, padding: "10px 10px 5px 10px"}}
+                        header={
+                            <Image width={80} height={80} src={item.displayUrl} preview={true}
+                                   placeholder={<Image src={item.previewUrl} preview={false}/>}
+                                   className={"wallpaperFadeIn"}
+                            />
+                        }
+                        main={
+                            <Space align='start' vertical>
+                                <Title heading={5} className="searchTitleP"
+                                       style={{color: getFontColor(item.color)}}>
+                                    {"摄影师：" + item.userName}
+                                </Title>
+                                {/*<Text className="searchDescriptionP" style={{color: getFontColor(item.color)}}>*/}
+                                {/*    {"拍摄于：" + item.createTime}*/}
+                                {/*</Text>*/}
+                                <Text className="searchDescriptionP" style={{color: getFontColor(item.color)}}>
+                                    {item.description == null ? "暂无图片描述" : "图片描述：" + item.description}
+                                </Text>
+                            </Space>
+                        }
+                        extra={
+                            <ButtonGroup>
+                                <Button theme={'borderless'} icon={<IconHomeStroked/>}
+                                        style={{color: getFontColor(item.color)}}
+                                        onClick={this.homeButtonClick.bind(this, item)}>主页</Button>
+                                <Button theme={'borderless'} icon={<IconDownloadStroked/>}
+                                        style={{color: getFontColor(item.color)}}
+                                        onClick={this.downloadButtonClick.bind(this, item)}>下载</Button>
+                            </ButtonGroup>
+                        }
+                    />
+                )}
+                footer={
+                    <Pagination size="default" className={"searchPagination"} style={{display: this.state.paginationDisplay}}
+                                pageSize={searchPageSize} total={this.state.totalCounts} currentPage={this.state.currentPage}
+                                onChange={currentPage => this.onPageChange(currentPage)}
+                    />
+                }
+            />
         )
     }
 }

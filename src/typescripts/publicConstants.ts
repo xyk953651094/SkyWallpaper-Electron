@@ -12,7 +12,7 @@ export const pixabayRequestUrl:string = "https://pixabay.com/api/";
 export const pixabayKey: string = "34466426-b21174c2eaa64ee76ce599e3b";
 
 export const wallpaperPageSize: number = 6;
-export const searchPageSize: number = 5;
+export const searchPageSize: number = 10;
 
 export const defaultPreference: Preference = {
     displayMode: "lightMode",

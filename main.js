@@ -9,17 +9,17 @@ const path = require('path')
 
 function createWindow () {
     // Create the browser window.
-    const mainWindow = new BrowserWindow({
-        width: 1065,
-        height: 600,
-        minWidth: 1065,
-        minHeight: 600,
-        maxWidth: 1065,
-        maxHeight: 600,
+    let mainWindow = new BrowserWindow({
+        width: 930,
+        height: 650,
+        minWidth: 930,
+        minHeight: 650,
+        maxWidth: 930,
+        maxHeight: 650,
         resizable: false,
         fullscreenable: false,
         // useContentSize: true,
-        title: "SkyWallpaper", // 窗口标题,如果由loadURL()加载的HTML文件中含有标签<title>，该属性可忽略
+        title: "Sky每日壁纸", // 窗口标题,如果由loadURL()加载的HTML文件中含有标签<title>，该属性可忽略
         icon: nativeImage.createFromPath('public/favicon.ico'), // "string" || nativeImage.createFromPath('public/favicon.ico')从位于 path 的文件创建新的 NativeImage 实例
         webPreferences: { // 网页功能设置
             webviewTag: true, // 是否使用<webview>标签 在一个独立的 frame 和进程里显示外部 web 内容

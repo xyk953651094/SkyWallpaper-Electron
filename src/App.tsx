@@ -4,14 +4,13 @@ import {matchMode} from "./typescripts/publicFunctions"
 
 import WallpaperComponent from "./components/wallpaperComponent";
 import SearchComponent from "./components/searchComponent";
-import CollectionComponent from './components/collectionComponent';
 import PreferenceComponent from "./components/preferenceComponent";
 
 import {Layout, Nav} from '@douyinfe/semi-ui';
-import {IconImage, IconSearch, IconLikeHeart, IconSetting} from '@douyinfe/semi-icons';
+import {IconImage, IconSearch, IconSetting} from '@douyinfe/semi-icons';
 import {Preference} from "./typescripts/publicInterface";
 import {defaultPreference} from "./typescripts/publicConstants";
-const {Footer, Sider, Content} = Layout;
+const {Sider, Content} = Layout;
 
 type propType = {}
 
@@ -29,7 +28,7 @@ class App extends React.Component {
     constructor(props: any) {
         super(props)
         this.state = {
-            navigationItemDisplay: ["block", "none", "none", "none"],
+            navigationItemDisplay: ["block", "none", "none"],
             preference: defaultPreference,
         }
     }
@@ -84,7 +83,6 @@ class App extends React.Component {
                         items={[
                             { itemKey: 'Wallpaper', text: '每日壁纸', icon: <IconImage size="large" /> },
                             { itemKey: 'Search', text: '搜索图片', icon: <IconSearch size="large" /> },
-                            { itemKey: 'Collection', text: '我的收藏', icon: <IconLikeHeart size="large" /> },
                             { itemKey: 'Preference', text: '偏好设置', icon: <IconSetting size="large" /> },
                         ]}
                         onClick={data => {
@@ -101,15 +99,9 @@ class App extends React.Component {
                                     });
                                     break;
                                 }
-                                case "Collection": {
-                                    this.setState({
-                                        navigationItemDisplay: ["none", "none", "block", "none"]
-                                    });
-                                    break;
-                                }
                                 case "Preference": {
                                     this.setState({
-                                        navigationItemDisplay: ["none", "none", "none", "block"]
+                                        navigationItemDisplay: ["none", "none", "block", "none"]
                                     });
                                     break;
                                 }
@@ -124,8 +116,7 @@ class App extends React.Component {
                     <Content style={{ padding: '24px', backgroundColor: 'var(--semi-color-bg-0)',}}>
                         <WallpaperComponent display={this.state.navigationItemDisplay[0]}/>
                         <SearchComponent display={this.state.navigationItemDisplay[1]}/>
-                        <CollectionComponent display={this.state.navigationItemDisplay[2]}/>
-                        <PreferenceComponent display={this.state.navigationItemDisplay[3]} getPreference={this.getPreference.bind(this)}/>
+                        <PreferenceComponent display={this.state.navigationItemDisplay[2]} getPreference={this.getPreference.bind(this)}/>
                     </Content>
                 </Layout>
             </Layout>

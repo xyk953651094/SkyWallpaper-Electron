@@ -1,5 +1,5 @@
 .searchTitleP, .searchDescriptionP {
-    max-width: 440px;
+    max-width: 350px;
     word-break: keep-all;
     white-space: nowrap;
     overflow: hidden;
@@ -16,7 +16,6 @@
 
 .searchPagination {
     width: 100%;
-    flex-basis: 100%;
+    /*flex-basis: 100%;*/
     justify-content: center;
-    margin-top: 10px;
 }
