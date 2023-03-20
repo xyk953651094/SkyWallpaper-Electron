@@ -4,6 +4,7 @@ import "../stylesheets/wallpaperComponent.css"
 import UnsplashComponent from "./unsplashComponent";
 import PixabayComponent from "./pixabayComponent";
 import PexelsComponent from "./pexelsComponent";
+import BingComponent from "./bingComponent";
 
 type propType = {
     display: string,
@@ -37,6 +38,7 @@ class WallpaperComponent extends React.Component {
                     <UnsplashComponent />
                     <PexelsComponent />
                     <PixabayComponent />
+                    <BingComponent />
                 </Space>
             </Row>
         )

@@ -11,6 +11,9 @@ export const pexelsAuth: string = "sbJpn7uRC2FAknG1nefeRAYquBuMxyP68BaJ2joKCr6Mt
 export const pixabayRequestUrl:string = "https://pixabay.com/api/";
 export const pixabayKey: string = "34466426-b21174c2eaa64ee76ce599e3b";
 
+// export const bingRequestUrl:string = "https://cn.bing.com/HPImageArchive.aspx";
+export const bingRequestUrl:string = "http://bing.ioliu.cn/v1"; // https://github.com/xCss/bing
+
 export const wallpaperPageSize: number = 6;
 export const searchPageSize: number = 10;
 

@@ -1,5 +1,5 @@
 import React from "react";
-import {Row, Empty, CardGroup, Card, Image, ButtonGroup, Button, Toast} from "@douyinfe/semi-ui";
+import {Row, Empty, CardGroup, Card, ImagePreview, Image, ButtonGroup, Button, Toast} from "@douyinfe/semi-ui";
 import {IconHomeStroked, IconDownloadStroked} from "@douyinfe/semi-icons";
 import "../stylesheets/wallpaperComponent.css"
 import {getFontColor, getJsonLength, isEmptyString} from "../typescripts/publicFunctions"
@@ -71,12 +71,14 @@ class WallpaperCardComponent extends React.Component {
                                     display: "display: inline-block"
                                 }}
                                 cover={
-                                    <Image width={this.state.imageSideLength} height={this.state.imageSideLength}
-                                           src={value[index].displayUrl} preview={true}
-                                           placeholder={<Image width={this.state.imageSideLength} height={this.state.imageSideLength}
-                                                               src={value[index].previewUrl} preview={false}/>}
-                                           className={"wallpaperFadeIn"}
-                                    />
+                                    <ImagePreview>
+                                        <Image width={this.state.imageSideLength} height={this.state.imageSideLength}
+                                               src={value[index].displayUrl} preview={true}
+                                               placeholder={<Image width={this.state.imageSideLength} height={this.state.imageSideLength}
+                                                                   src={value[index].previewUrl} preview={false}/>}
+                                               className={"wallpaperFadeIn"}
+                                        />
+                                    </ImagePreview>
                                 }
                                 actions={[
                                     <ButtonGroup size="small" theme={"borderless"}>

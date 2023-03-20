@@ -4,8 +4,7 @@
 // Electron参考文档 https://www.electronjs.org/docs
 const {app, BrowserWindow, nativeImage } = require('electron')
 const path = require('path')
-// const url = require('url');
-
+const url = require('url');
 
 function createWindow () {
     // Create the browser window.
@@ -29,19 +28,15 @@ function createWindow () {
         }
     })
 
+    // 加载应用 --打包阶段
+    mainWindow.loadURL(url.format({
+      pathname: path.join(__dirname, './build/index.html'),
+      protocol: 'file:',
+      slashes: true
+    }));
 
-    // 加载应用 --打包react应用后，__dirname为当前文件路径
-    // mainWindow.loadURL(url.format({
-    //   pathname: path.join(__dirname, './build/index.html'),
-    //   protocol: 'file:',
-    //   slashes: true
-    // }));
-
-
-    // 因为我们是加载的react生成的页面，并不是静态页面
-    // 所以loadFile换成loadURL。
-    // 加载应用 --开发阶段  需要运行 yarn start
-    mainWindow.loadURL('http://localhost:3000');
+    // 加载应用 --开发阶段  需要运行 npm run start
+    // mainWindow.loadURL('http://localhost:3000');
 
     // 解决应用启动白屏问题
     mainWindow.on('ready-to-show', () => {
@@ -64,14 +59,12 @@ app.allowRendererProcessReuse =true;
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() =>{
-    console.log('qpp---whenready');
     createWindow();})
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
     // On macOS it is common for applications and their menu bar
     // to stay active until the user quits explicitly with Cmd + Q
-    console.log('window-all-closed');
     if (process.platform !== 'darwin') app.quit()
 })
 

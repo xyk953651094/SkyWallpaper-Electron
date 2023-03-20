@@ -7,6 +7,7 @@ import {
     Input,
     Typography,
     Toast,
+    ImagePreview,
     Image,
     ButtonGroup,
     Button,
@@ -346,10 +347,12 @@ class SearchComponent extends React.Component {
                     <List.Item
                         style={{backgroundColor: item.color, padding: "10px 10px 5px 10px"}}
                         header={
-                            <Image width={80} height={80} src={item.displayUrl} preview={true}
-                                   placeholder={<Image src={item.previewUrl} preview={false}/>}
-                                   className={"wallpaperFadeIn"}
-                            />
+                            <ImagePreview>
+                                <Image width={80} height={80} src={item.displayUrl} preview={true}
+                                       placeholder={<Image src={item.previewUrl} preview={false}/>}
+                                       className={"wallpaperFadeIn"}
+                                />
+                            </ImagePreview>
                         }
                         main={
                             <Space align='start' vertical>
@@ -357,9 +360,6 @@ class SearchComponent extends React.Component {
                                        style={{color: getFontColor(item.color)}}>
                                     {"摄影师：" + item.userName}
                                 </Title>
-                                {/*<Text className="searchDescriptionP" style={{color: getFontColor(item.color)}}>*/}
-                                {/*    {"拍摄于：" + item.createTime}*/}
-                                {/*</Text>*/}
                                 <Text className="searchDescriptionP" style={{color: getFontColor(item.color)}}>
                                     {item.description == null ? "暂无图片描述" : "图片描述：" + item.description}
                                 </Text>
