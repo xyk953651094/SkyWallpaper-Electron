@@ -7,7 +7,6 @@ import {
     pixabayKey,
     pixabayImageCategories,
     wallpaperPageSize,
-    defaultImageData
 } from "../typescripts/publicConstants";
 import {getJsonLength, httpRequest} from "../typescripts/publicFunctions";
 import {ImageData} from "../typescripts/publicInterface"
@@ -31,7 +30,7 @@ class PixabayComponent extends React.Component {
     constructor(props: any) {
         super(props);
         this.state = {
-            imageData: new Array(wallpaperPageSize).fill(defaultImageData),
+            imageData: [],
             categories: pixabayImageCategories,
             requestData: {
                 "key": pixabayKey,
@@ -70,7 +69,11 @@ class PixabayComponent extends React.Component {
                 });
             })
             .catch(function(){
-                Toast.error("获取 Pixabay 图片失败");
+                tempThis.setState({
+                    imageData: []
+                },()=>{
+                    Toast.error("获取 Pixabay 图片失败");
+                });
             })
     }
 
@@ -78,6 +81,7 @@ class PixabayComponent extends React.Component {
         let data = Object.assign({}, this.state.requestData, {category: value});
         this.setState({
             requestData: data,
+            imageData: [], // 重置图片数据为空
         }, () => {
             this.getImages(pixabayRequestUrl, this.state.requestData);
         })
@@ -87,6 +91,7 @@ class PixabayComponent extends React.Component {
         let data = Object.assign({}, this.state.requestData, {order: value});
         this.setState({
             requestData: data,
+            imageData: [], // 重置图片数据为空
         }, ()=>{
             this.getImages(pixabayRequestUrl, this.state.requestData);
         })
@@ -108,13 +113,13 @@ class PixabayComponent extends React.Component {
     render() {
         return (
             <List
-                style={{width: "790px"}}
+                style={{width: "660px"}}
                 header={
                     <Space>
                         <div className={"listHeaderTitle"}>
                             <Title heading={3}>Pixabay</Title>
                         </div>
-                        <ButtonGroup theme={"borderless"} className={"listHeaderButtonGroup overflowScroll"} style={{width: "565px"}}>
+                        <ButtonGroup theme={"borderless"} className={"listHeaderButtonGroup overflowScroll"} style={{width: "430px"}}>
                             {
                                 new Array(getJsonLength(this.state.categories)).fill(this.state.categories).map((value, index) => (
                                     <Button key={index}

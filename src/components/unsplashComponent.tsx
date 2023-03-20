@@ -8,7 +8,6 @@ import {
     unsplashClientId,
     unsplashImageTopics,
     wallpaperPageSize,
-    defaultImageData,
 } from "../typescripts/publicConstants";
 import {getJsonLength, httpRequest} from "../typescripts/publicFunctions";
 import {ImageData} from "../typescripts/publicInterface"
@@ -33,7 +32,7 @@ class UnsplashComponent extends React.Component {
     constructor(props: any) {
         super(props);
         this.state = {
-            imageData: new Array(wallpaperPageSize).fill(defaultImageData),
+            imageData: [],
             imageTopics: unsplashImageTopics,
             todayRequestData: {
                 "client_id": unsplashClientId,
@@ -55,7 +54,7 @@ class UnsplashComponent extends React.Component {
         let tempThis = this;
         httpRequest({}, url, data, "GET")
             .then(function (resultData: any) {
-                let tempImageData = [];
+                let tempImageData: ImageData[] = [];
                 for (let i in resultData) {
                     let tempData: ImageData = {
                         displayUrl: resultData[i].urls.regular,
@@ -71,19 +70,24 @@ class UnsplashComponent extends React.Component {
                 }
 
                 tempThis.setState({
-                    imageData: tempImageData
+                    imageData: tempImageData,
                 });
             })
             .catch(function () {
-                Toast.error("获取 Unsplash 图片失败");
+                tempThis.setState({
+                    imageData: [],
+                },()=>{
+                    Toast.error("获取 Unsplash 图片失败");
+                });
             })
     }
 
-    topicButtonClick(value: string) {
+    topicButtonClick(index: number, value: string) {
         if(value === "popular" || value === "latest") {
             let data = Object.assign({}, this.state.todayRequestData, {order_by: value});
             this.setState({
                 todayRequestData: data,
+                imageData: [], // 重置图片数据为空
             }, () => {
                 this.getImages(unsplashTodayRequestUrl, this.state.todayRequestData);
             })
@@ -92,10 +96,13 @@ class UnsplashComponent extends React.Component {
             let data = Object.assign({}, this.state.topicRequestData, {topics: value});
             this.setState({
                 topicRequestData: data,
+                imageData: [], // 重置图片数据为空
             }, () => {
                 this.getImages(unsplashTopicRequestUrl, this.state.topicRequestData);
             })
         }
+
+
     }
 
     componentWillReceiveProps(nextProps: any, prevProps: any) {
@@ -113,17 +120,18 @@ class UnsplashComponent extends React.Component {
     render() {
         return (
             <List
-                style={{width: "790px"}}
+                emptyContent = "图片加载中，请稍后"
+                style={{width: "660px"}}
                 header={
                     <Space>
                         <div className={"listHeaderTitle"}>
                             <Title heading={3}>Unsplash</Title>
                         </div>
-                        <ButtonGroup theme={"borderless"} className={"listHeaderButtonGroup overflowScroll"} style={{width: "645px"}}>
+                        <ButtonGroup theme={"borderless"} className={"listHeaderButtonGroup overflowScroll"} style={{width: "530px"}}>
                             {
                                 new Array(getJsonLength(this.state.imageTopics)).fill(this.state.imageTopics).map((value, index) => (
                                     <Button key={index}
-                                            onClick={this.topicButtonClick.bind(this, Object.keys(value)[index])}>
+                                            onClick={this.topicButtonClick.bind(this, index, Object.keys(value)[index])}>
                                         {value[Object.keys(value)[index]]}
                                     </Button>
                                 ))
