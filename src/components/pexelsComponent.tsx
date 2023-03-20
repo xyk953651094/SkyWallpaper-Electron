@@ -1,5 +1,5 @@
 import React from "react";
-import {List, Toast, Typography} from '@douyinfe/semi-ui';
+import {List, Toast, Typography} from "@douyinfe/semi-ui";
 import "../stylesheets/wallpaperComponent.css"
 import WallpaperCardComponent from "./wallpaperCardComponent";
 import {pexelsCurateRequestUrl, pexelsAuth, wallpaperPageSize} from "../typescripts/publicConstants";

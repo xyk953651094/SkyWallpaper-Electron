@@ -123,8 +123,8 @@ export function fadeOut(element: string, time = 300) {
 export function matchMode(e: any) {
     const body = document.body;
     if (e.matches) {
-        if (!body.hasAttribute('theme-mode')) {
-            body.setAttribute('theme-mode', 'dark');
+        if (!body.hasAttribute("theme-mode")) {
+            body.setAttribute("theme-mode", "dark");
         }
     } else {
         if (body.hasAttribute('theme-mode')) {

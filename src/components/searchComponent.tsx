@@ -13,7 +13,7 @@ import {
     Button,
     Space,
     Select
-} from '@douyinfe/semi-ui';
+} from "@douyinfe/semi-ui";
 import {IconSearch, IconHomeStroked, IconDownloadStroked} from "@douyinfe/semi-icons";
 import "../stylesheets/searchComponent.css"
 import Text from "@douyinfe/semi-ui/lib/es/typography/text";
@@ -355,7 +355,7 @@ class SearchComponent extends React.Component {
                             </ImagePreview>
                         }
                         main={
-                            <Space align='start' vertical>
+                            <Space align="start" vertical>
                                 <Title heading={5} className="searchTitleP"
                                        style={{color: getFontColor(item.color)}}>
                                     {"摄影师：" + item.userName}
@@ -367,10 +367,10 @@ class SearchComponent extends React.Component {
                         }
                         extra={
                             <ButtonGroup>
-                                <Button theme={'borderless'} icon={<IconHomeStroked/>}
+                                <Button theme={"borderless"} icon={<IconHomeStroked/>}
                                         style={{color: getFontColor(item.color)}}
                                         onClick={this.homeButtonClick.bind(this, item)}>主页</Button>
-                                <Button theme={'borderless'} icon={<IconDownloadStroked/>}
+                                <Button theme={"borderless"} icon={<IconDownloadStroked/>}
                                         style={{color: getFontColor(item.color)}}
                                         onClick={this.downloadButtonClick.bind(this, item)}>下载</Button>
                             </ButtonGroup>

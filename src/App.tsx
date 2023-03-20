@@ -1,13 +1,13 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
 import {matchMode} from "./typescripts/publicFunctions"
 
 import WallpaperComponent from "./components/wallpaperComponent";
 import SearchComponent from "./components/searchComponent";
 import PreferenceComponent from "./components/preferenceComponent";
 
-import {Layout, Nav} from '@douyinfe/semi-ui';
-import {IconImage, IconSearch, IconSetting} from '@douyinfe/semi-icons';
+import {Layout, Nav} from "@douyinfe/semi-ui";
+import {IconImage, IconSearch, IconSetting} from "@douyinfe/semi-icons";
 import {Preference} from "./typescripts/publicInterface";
 import {defaultPreference} from "./typescripts/publicConstants";
 const {Sider, Content} = Layout;
@@ -41,9 +41,9 @@ class App extends React.Component {
 
     componentDidMount() {
         // 加载偏好设置
-        let tempPreference = localStorage.getItem('preference');
+        let tempPreference = localStorage.getItem("preference");
         if(tempPreference == null || tempPreference.length === 0) {
-            localStorage.setItem('preference', JSON.stringify(defaultPreference));
+            localStorage.setItem("preference", JSON.stringify(defaultPreference));
         }
         else {
             this.setState({
@@ -52,17 +52,17 @@ class App extends React.Component {
                 // 切换暗色模式
                 const body = document.body;
                 if (this.state.preference.displayMode === "autoMode") {
-                    const mql = window.matchMedia('(prefers-color-scheme: dark)');
+                    const mql = window.matchMedia("(prefers-color-scheme: dark)");
                     mql.addListener(matchMode);
                 }
                 else if (this.state.preference.displayMode === "lightMode" ) {
-                    if (body.hasAttribute('theme-mode')) {
-                        body.removeAttribute('theme-mode');
+                    if (body.hasAttribute("theme-mode")) {
+                        body.removeAttribute("theme-mode");
                     }
                 }
                 else {
-                    if (!body.hasAttribute('theme-mode')) {
-                        body.setAttribute('theme-mode', 'dark');
+                    if (!body.hasAttribute("theme-mode")) {
+                        body.setAttribute("theme-mode", "dark");
                     }
                 }
             })
@@ -82,7 +82,7 @@ class App extends React.Component {
                         }}
                         items={[
                             { itemKey: 'Wallpaper', text: '每日壁纸', icon: <IconImage size="large" /> },
-                            { itemKey: 'Search', text: '搜索图片', icon: <IconSearch size="large" /> },
+                            { itemKey: 'Search', text: '搜索壁纸', icon: <IconSearch size="large" /> },
                             { itemKey: 'Preference', text: '偏好设置', icon: <IconSetting size="large" /> },
                         ]}
                         onClick={data => {

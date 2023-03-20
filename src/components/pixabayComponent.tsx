@@ -1,5 +1,5 @@
 import React from "react";
-import {Row, Col, List, Toast, Typography, Select, Image, ButtonGroup, Button, Space} from '@douyinfe/semi-ui';
+import {Row, Col, List, Toast, Typography, Select, Image, ButtonGroup, Button, Space} from "@douyinfe/semi-ui";
 import "../stylesheets/wallpaperComponent.css"
 import WallpaperCardComponent from "./wallpaperCardComponent";
 import {

@@ -1,5 +1,5 @@
 import React from "react";
-import {Row, Space} from '@douyinfe/semi-ui';
+import {Row, Space} from "@douyinfe/semi-ui";
 import "../stylesheets/wallpaperComponent.css"
 import UnsplashComponent from "./unsplashComponent";
 import PixabayComponent from "./pixabayComponent";

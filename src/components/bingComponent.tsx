@@ -1,5 +1,5 @@
 import React from "react";
-import {Row, Col, List, Space, Image, Toast, Typography, Button, Select} from '@douyinfe/semi-ui';
+import {Row, Col, List, Space, Image, Toast, Typography, Button, Select} from "@douyinfe/semi-ui";
 import {IconLink} from "@douyinfe/semi-icons";
 import "../stylesheets/wallpaperComponent.css"
 import {bingRequestUrl, defaultImageData} from "../typescripts/publicConstants";

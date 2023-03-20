@@ -1,6 +1,6 @@
 import React from "react";
-import {List, Select, Typography} from '@douyinfe/semi-ui';
-import {IconMoon, IconColorPalette, IconLanguage, IconInfoCircle, IconLink} from '@douyinfe/semi-icons';
+import {List, Select, Typography} from "@douyinfe/semi-ui";
+import {IconMoon, IconColorPalette, IconLanguage, IconInfoCircle, IconLink} from "@douyinfe/semi-icons";
 import "../stylesheets/preferenceComponent.css"
 import {matchMode} from "../typescripts/publicFunctions"
 import {Preference} from "../typescripts/publicInterface";
@@ -33,17 +33,17 @@ class PreferenceComponent extends React.Component {
     darkModeOnChange(value: any) {
         const body = document.body;
         if (value === "autoMode") {
-            const mql = window.matchMedia('(prefers-color-scheme: dark)');
+            const mql = window.matchMedia("(prefers-color-scheme: dark)");
             mql.addListener(matchMode);
         }
         else if (value === "lightMode" ) {
-            if (body.hasAttribute('theme-mode')) {
-                body.removeAttribute('theme-mode');
+            if (body.hasAttribute("theme-mode")) {
+                body.removeAttribute("theme-mode");
             }
         }
         else {
-            if (!body.hasAttribute('theme-mode')) {
-                body.setAttribute('theme-mode', 'dark');
+            if (!body.hasAttribute("theme-mode")) {
+                body.setAttribute("theme-mode", "dark");
             }
         }
 
