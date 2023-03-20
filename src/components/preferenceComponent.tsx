@@ -1,6 +1,6 @@
 import React from "react";
 import {List, Select, Typography} from "@douyinfe/semi-ui";
-import {IconMoon, IconColorPalette, IconLanguage, IconInfoCircle, IconLink} from "@douyinfe/semi-icons";
+import {IconMoon, IconColorPalette, IconLanguage, IconInfoCircle, IconLink, IconRadio} from "@douyinfe/semi-icons";
 import "../stylesheets/preferenceComponent.css"
 import {matchMode} from "../typescripts/publicFunctions"
 import {Preference} from "../typescripts/publicInterface";
@@ -107,20 +107,21 @@ class PreferenceComponent extends React.Component {
                     header={ <IconColorPalette className={"listItemIcon"}/> }
                     main={ <Text className="listItemText">主题颜色</Text> }
                     extra={
-                        <Select className="preferenceSelect" defaultValue={"amber"} value={this.state.preference.themeColor} onChange={this.themeColorOnChange.bind(this)}>
-                            <Select.Option value="amber">amber</Select.Option>
-                            <Select.Option value="blue">blue</Select.Option>
-                            <Select.Option value="cyan">cyan</Select.Option>
-                        </Select>
-                    }
-                />
-                <List.Item
-                    header={ <IconLanguage className={"listItemIcon"}/> }
-                    main={ <Text className="listItemText">切换语言</Text> }
-                    extra={
-                        <Select className="preferenceSelect" defaultValue="Chinese" onChange={this.darkModeOnChange.bind(this)}>
-                            <Select.Option value="Chinese">简体中文</Select.Option>
-                            <Select.Option value="English">English</Select.Option>
+                        <Select className="preferenceSelect" insetLabel={<IconRadio size={"extra-large"} style={{color: this.state.preference.themeColor}}/>}
+                                defaultValue={"rgba(var(--semi-red-3), 1)"} value={this.state.preference.themeColor}
+                                onChange={this.themeColorOnChange.bind(this)}
+                        >
+                            <Select.Option value="rgba(var(--semi-red-3), 1)"    style={{color: "rgba(var(--semi-red-3), 1)"}}>红色</Select.Option>
+                            <Select.Option value="rgba(var(--semi-pink-3), 1)"   style={{color: "rgba(var(--semi-pink-3), 1)"}}>粉色</Select.Option>
+                            <Select.Option value="rgba(var(--semi-purple-3), 1)" style={{color: "rgba(var(--semi-purple-3), 1)"}}>紫色</Select.Option>
+                            <Select.Option value="rgba(var(--semi-blue-3), 1)"   style={{color: "rgba(var(--semi-blue-3), 1)"}}>蓝色</Select.Option>
+                            <Select.Option value="rgba(var(--semi-cyan-3), 1)"   style={{color: "rgba(var(--semi-cyan-3), 1)"}}>青色</Select.Option>
+                            <Select.Option value="rgba(var(--semi-teal-3), 1)"   style={{color: "rgba(var(--semi-teal-3), 1)"}}>茶色</Select.Option>
+                            <Select.Option value="rgba(var(--semi-green-3), 1)"  style={{color: "rgba(var(--semi-green-3), 1)"}}>绿色</Select.Option>
+                            <Select.Option value="rgba(var(--semi-lime-3), 1)"   style={{color: "rgba(var(--semi-lime-3), 1)"}}>石灰</Select.Option>
+                            <Select.Option value="rgba(var(--semi-yellow-3), 1)" style={{color: "rgba(var(--semi-yellow-3), 1)"}}>黄色</Select.Option>
+                            <Select.Option value="rgba(var(--semi-amber-3), 1)"  style={{color: "rgba(var(--semi-amber-3), 1)"}}>琥珀</Select.Option>
+                            <Select.Option value="rgba(var(--semi-orange-3), 1)" style={{color: "rgba(var(--semi-orange-3), 1)"}}>橘黄</Select.Option>
                         </Select>
                     }
                 />

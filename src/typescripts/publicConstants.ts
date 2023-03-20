@@ -18,7 +18,7 @@ export const searchPageSize: number = 10;
 
 export const defaultPreference: Preference = {
     displayMode: "lightMode",
-    themeColor: "amber",
+    themeColor: "rgba(var(--semi-red-3), 1)",
 }
 
 export const defaultImageData: ImageData = {

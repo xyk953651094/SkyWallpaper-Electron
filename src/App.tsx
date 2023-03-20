@@ -12,6 +12,8 @@ import {Preference} from "./typescripts/publicInterface";
 import {defaultPreference} from "./typescripts/publicConstants";
 const {Sider, Content} = Layout;
 
+const $ = require("jquery");
+
 type propType = {}
 
 type stateType = {
@@ -70,6 +72,8 @@ class App extends React.Component {
     }
 
     render() {
+        const navigationItems = $(".semi-navigation-list").children("li");
+
         return (
             <Layout style={{ border: '1px solid var(--semi-color-border)' }}>
                 <Sider>
@@ -86,20 +90,24 @@ class App extends React.Component {
                             { itemKey: 'Preference', text: '偏好设置', icon: <IconSetting size="large" /> },
                         ]}
                         onClick={data => {
+                            navigationItems.css({"background-color": "transparent"});
                             switch (data.itemKey) {
                                 case "Wallpaper":  {
+                                    navigationItems.eq(0).css({"background-color": this.state.preference.themeColor});
                                     this.setState({
                                         navigationItemDisplay: ["block", "none", "none", "none"]
                                     });
                                     break;
                                 }
                                 case "Search": {
+                                    navigationItems.eq(1).css({"background-color": this.state.preference.themeColor});
                                     this.setState({
                                         navigationItemDisplay: ["none", "block", "none", "none"]
                                     });
                                     break;
                                 }
                                 case "Preference": {
+                                    navigationItems.eq(2).css({"background-color": this.state.preference.themeColor});
                                     this.setState({
                                         navigationItemDisplay: ["none", "none", "block", "none"]
                                     });
