@@ -1,17 +1,19 @@
 import React from "react";
-import {List, Toast, Typography} from '@douyinfe/semi-ui';
+import {Row, Col, List, Space, Image, Toast, Typography, Button, Select} from '@douyinfe/semi-ui';
+import {IconLink} from "@douyinfe/semi-icons";
 import "../stylesheets/wallpaperComponent.css"
-import WallpaperCardComponent from "./wallpaperCardComponent";
-import {bingRequestUrl, wallpaperPageSize, } from "../typescripts/publicConstants";
+import {bingRequestUrl, defaultImageData} from "../typescripts/publicConstants";
 import {ImageData} from "../typescripts/publicInterface"
 import {httpRequest} from "../typescripts/publicFunctions";
-const {Title} = Typography;
+
+const {Title, Text} = Typography;
+
+const chinaUrl = "https://fly.atlinker.cn/api/bing/cn.php";
 
 type propType = {}
 
 type stateType = {
-    imageData: ImageData[],
-    requestData: any,
+    imageData: ImageData,
 }
 
 interface BingComponent {
@@ -23,35 +25,26 @@ class BingComponent extends React.Component {
     constructor(props: any) {
         super(props);
         this.state = {
-            imageData: [],
-            requestData: {
-                "format": "js",
-                "idx": "0",
-                "n": wallpaperPageSize,
-                "mkt": "zh-CN"
-            },
+            imageData: defaultImageData,
         };
     }
 
-    // // 获取 Pexels 图片
+    // 获取 Bing 图片
     getImages( headers: object, url: string, data: object ) {
         let tempThis = this;
         httpRequest(headers, url, data, "GET")
             .then(function(resultData: any){
-                let tempImageData = [];
-                for (let i in resultData.images) {
-                    let tempData: ImageData = {
-                        displayUrl: "https://s.cn.bing.net" + resultData.images[i].url,
-                        previewUrl: "https://s.cn.bing.net" + resultData.images[i].url,
-                        imageUrl: "https://cn.bing.com",
-                        userName: resultData.images[i].copyright,
-                        userUrl: resultData.images[i].copyrightlink,
-                        createTime: "无拍摄时间",
-                        description: resultData.images[i].title,
-                        color: "rgba(var(--semi-grey-0), 1)",
-                    };
-                    tempImageData.push(tempData);
-                }
+                let tempImageData: ImageData = {
+                    displayUrl: "https://cn.bing.com" + resultData.images[0].url,
+                    previewUrl: "https://cn.bing.com" + resultData.images[0].url,
+                    imageUrl: "https://cn.bing.com",
+                    userName: resultData.images[0].copyright,
+                    userUrl: resultData.images[0].copyrightlink,
+                    createTime: "无拍摄时间",
+                    description: resultData.images[0].title,
+                    color: "rgba(var(--semi-grey-0), 1)",
+                };
+                console.log(tempImageData)
                 tempThis.setState({
                     imageData: tempImageData
                 });
@@ -65,6 +58,10 @@ class BingComponent extends React.Component {
             })
     }
 
+    linkButtonOnClick() {
+        window.open("https://cn.bing.com/");
+    }
+
     componentWillReceiveProps(nextProps: any, prevProps: any) {
         if (nextProps.display !== prevProps.display) {
             this.setState({
@@ -74,20 +71,43 @@ class BingComponent extends React.Component {
     }
 
     componentDidMount() {
-        this.getImages({}, bingRequestUrl, this.state.requestData);
+        this.getImages({}, bingRequestUrl, {});
     }
 
     render() {
         return (
             <List
                 style={{width: "660px"}}
-                header={<Title heading={3}>Bing</Title>}
+                header={
+                    <Row>
+                        <Col span={12}>
+                            <Title heading={3}>Bing</Title>
+                        </Col>
+                        <Col span={12} style={{textAlign: "right"}}>
+                            <Button theme={"borderless"} icon={<IconLink />}
+                                    style={{color: "rgba(var(--semi-grey-9), 1)"}}
+                                    onClick={this.linkButtonOnClick.bind(this)}
+                            >
+                            </Button>
+                        </Col>
+                    </Row>
+                }
                 size="small"
                 bordered
             >
                 <List.Item
                     main={
-                        <WallpaperCardComponent imageData={this.state.imageData}></WallpaperCardComponent>
+                        <Space vertical>
+                            <Image width={"620px"} src={this.state.imageData.displayUrl}></Image>
+                            <Row style={{width: "100%"}}>
+                                <Col span={12}>
+                                    <Text>{this.state.imageData.description}</Text>
+                                </Col>
+                                <Col span={12} style={{textAlign: "right"}}>
+                                    <Text>{this.state.imageData.userName}</Text>
+                                </Col>
+                            </Row>
+                        </Space>
                     }
                 />
             </List>

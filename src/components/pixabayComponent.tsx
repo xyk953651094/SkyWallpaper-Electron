@@ -119,7 +119,7 @@ class PixabayComponent extends React.Component {
                         <div className={"listHeaderTitle"}>
                             <Title heading={3}>Pixabay</Title>
                         </div>
-                        <ButtonGroup theme={"borderless"} className={"listHeaderButtonGroup overflowScroll"} style={{width: "450px"}}>
+                        <ButtonGroup theme={"borderless"} className={"listHeaderButtonGroup overflowScroll"} style={{width: "430px"}}>
                             {
                                 new Array(getJsonLength(this.state.categories)).fill(this.state.categories).map((value, index) => (
                                     <Button key={index}

@@ -35,10 +35,10 @@ class WallpaperComponent extends React.Component {
         return (
             <Row style={{display: this.props.display}}>
                 <Space spacing={"loose"} vertical align={"start"}>
+                    <BingComponent />
                     <UnsplashComponent />
                     <PexelsComponent />
                     <PixabayComponent />
-                    <BingComponent />
                 </Space>
             </Row>
         )
