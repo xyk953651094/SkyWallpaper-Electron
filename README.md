@@ -18,6 +18,9 @@
 ## 安装
 * 正在开发中。
 
+## 问题
+* Pexels 图片加载不出来：关闭广告拦截程序。
+
 ## 效果展示（正在开发中，不代表最终效果）
 <img width="930" alt="截屏2023-03-20 20 51 32" src="https://user-images.githubusercontent.com/28004442/226344073-b00b63fb-5c99-40d6-a74a-d8758b3510d4.png">
 
