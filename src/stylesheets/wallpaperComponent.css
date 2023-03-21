@@ -6,16 +6,6 @@
     display: inline-block;
 }
 
-.listHeaderButtonGroup > button {
-    color: rgba(var(--semi-grey-9), 1) !important;
-}
-
-.overflowScroll {
-    word-break: keep-all;
-    white-space: nowrap;
-    overflow: scroll;
-}
-
 .semi-card-body {
     padding: 10px;
 }

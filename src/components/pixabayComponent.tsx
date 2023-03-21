@@ -1,5 +1,5 @@
 import React from "react";
-import {Row, Col, List, Toast, Typography, Select, Image, ButtonGroup, Button, Space} from "@douyinfe/semi-ui";
+import {Row, Col, List, Toast, Typography, Select, ButtonGroup, Button, Tooltip, Space} from "@douyinfe/semi-ui";
 import "../stylesheets/wallpaperComponent.css"
 import WallpaperCardComponent from "./wallpaperCardComponent";
 import {
@@ -10,10 +10,14 @@ import {
 } from "../typescripts/publicConstants";
 import {getJsonLength, httpRequest} from "../typescripts/publicFunctions";
 import {ImageData} from "../typescripts/publicInterface"
+import {IconLink} from "@douyinfe/semi-icons";
 
 const {Title} = Typography;
+const $ = require("jquery");
 
-type propType = {}
+type propType = {
+    themeColor: string
+}
 
 type stateType = {
     imageData: ImageData[],
@@ -77,7 +81,11 @@ class PixabayComponent extends React.Component {
             })
     }
 
-    categoryButtonClick(value: string) {
+    categoryButtonClick(index: number, value: string) {
+        const pixabayButtonGroup = $(".pixabayButtonGroup").children("button");
+        pixabayButtonGroup.css({"background-color": "transparent"});
+        pixabayButtonGroup.eq(index).css({"background-color": this.props.themeColor});
+
         let data = Object.assign({}, this.state.requestData, {category: value});
         this.setState({
             requestData: data,
@@ -97,6 +105,10 @@ class PixabayComponent extends React.Component {
         })
     }
 
+    linkButtonOnClick() {
+        window.open("https://pixabay.com/zh/");
+    }
+
     componentWillReceiveProps(nextProps: any, prevProps: any) {
         if (nextProps.display !== prevProps.display) {
             this.setState({
@@ -113,29 +125,44 @@ class PixabayComponent extends React.Component {
     render() {
         return (
             <List
-                style={{width: "660px"}}
+                style={{width: "100%", maxWidth: "fit-content"}}
                 header={
-                    <Space>
-                        <div className={"listHeaderTitle"}>
+                <Row>
+                    <Row>
+                        <Col span={12}>
                             <Title heading={3}>Pixabay</Title>
-                        </div>
-                        <ButtonGroup theme={"borderless"} className={"listHeaderButtonGroup overflowScroll"} style={{width: "430px"}}>
+                        </Col>
+                        <Col  span={12} style={{textAlign: "right"}}>
+                            <Space>
+                                <Select defaultValue="popular" onChange={this.orderSelectOnChange.bind(this)}>
+                                    <Select.Option value="popular">热门</Select.Option>
+                                    <Select.Option value="latest">最新</Select.Option>
+                                </Select>
+                                <Tooltip content={"前往 Pixabay"} position={"top"}>
+                                    <Button theme={"borderless"} icon={<IconLink />}
+                                            style={{color: "rgba(var(--semi-grey-9), 1)"}}
+                                            onClick={this.linkButtonOnClick.bind(this)}
+                                    >
+                                    </Button>
+                                </Tooltip>
+                            </Space>
+                        </Col>
+                    </Row>
+                    <Row style={{overflow: "scroll", marginTop: "5px"}}>
+                        <ButtonGroup theme={"borderless"} className={"listHeaderButtonGroup overflowScroll pixabayButtonGroup"}
+                                     style={{width: "1055px"}}
+                        >
                             {
                                 new Array(getJsonLength(this.state.categories)).fill(this.state.categories).map((value, index) => (
-                                    <Button key={index}
-                                            onClick={this.categoryButtonClick.bind(this, Object.keys(value)[index])}>
+                                    <Button key={index} type="tertiary"
+                                            onClick={this.categoryButtonClick.bind(this, index, Object.keys(value)[index])}>
                                         {value[Object.keys(value)[index]]}
                                     </Button>
                                 ))
                             }
                         </ButtonGroup>
-                        <div className={"listHeaderTitle"}>
-                            <Select className="todaySelect" defaultValue="popular" onChange={this.orderSelectOnChange.bind(this)}>
-                                <Select.Option value="popular">热门</Select.Option>
-                                <Select.Option value="latest">最新</Select.Option>
-                            </Select>
-                        </div>
-                    </Space>
+                    </Row>
+                </Row>
                 }
                 size="small"
                 bordered

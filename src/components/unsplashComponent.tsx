@@ -1,5 +1,5 @@
 import React from "react";
-import {List, Toast, Typography, ButtonGroup, Button, Space} from "@douyinfe/semi-ui";
+import {Row, Col, List, Toast, Typography, ButtonGroup, Button, Tooltip} from "@douyinfe/semi-ui";
 import "../stylesheets/wallpaperComponent.css"
 import WallpaperCardComponent from "./wallpaperCardComponent";
 import {
@@ -11,10 +11,14 @@ import {
 } from "../typescripts/publicConstants";
 import {getJsonLength, httpRequest} from "../typescripts/publicFunctions";
 import {ImageData} from "../typescripts/publicInterface"
+import {IconLink} from "@douyinfe/semi-icons";
 
 const {Title} = Typography;
+const $ = require("jquery");
 
-type propType = {}
+type propType = {
+    themeColor: string,
+}
 
 type stateType = {
     imageData: ImageData[],
@@ -82,7 +86,15 @@ class UnsplashComponent extends React.Component {
             })
     }
 
+    linkButtonOnClick() {
+        window.open("https://unsplash.com/");
+    }
+
     topicButtonClick(index: number, value: string) {
+        const unsplashButtonGroup = $(".unsplashButtonGroup").children("button");
+        unsplashButtonGroup.css({"background-color": "transparent"});
+        unsplashButtonGroup.eq(index).css({"background-color": this.props.themeColor});
+
         if(value === "popular" || value === "latest") {
             let data = Object.assign({}, this.state.todayRequestData, {order_by: value});
             this.setState({
@@ -121,23 +133,38 @@ class UnsplashComponent extends React.Component {
         return (
             <List
                 emptyContent = "图片加载中，请稍后"
-                style={{width: "660px"}}
+                style={{width: "100%", maxWidth: "fit-content"}}
                 header={
-                    <Space>
-                        <div className={"listHeaderTitle"}>
-                            <Title heading={3}>Unsplash</Title>
-                        </div>
-                        <ButtonGroup theme={"borderless"} className={"listHeaderButtonGroup overflowScroll"} style={{width: "530px"}}>
-                            {
-                                new Array(getJsonLength(this.state.imageTopics)).fill(this.state.imageTopics).map((value, index) => (
-                                    <Button key={index}
-                                            onClick={this.topicButtonClick.bind(this, index, Object.keys(value)[index])}>
-                                        {value[Object.keys(value)[index]]}
+                    <Row>
+                        <Row>
+                            <Col span={12}>
+                                <Title heading={3}>Unsplash</Title>
+                            </Col>
+                            <Col span={12} style={{textAlign: "right"}}>
+                                <Tooltip content={"前往 Unsplash"} position={"left"}>
+                                    <Button theme={"borderless"} icon={<IconLink />}
+                                            style={{color: "rgba(var(--semi-grey-9), 1)"}}
+                                            onClick={this.linkButtonOnClick.bind(this)}
+                                    >
                                     </Button>
-                                ))
-                            }
-                        </ButtonGroup>
-                    </Space>
+                                </Tooltip>
+                            </Col>
+                        </Row>
+                        <Row style={{overflow: "scroll", marginTop: "5px"}}>
+                            <ButtonGroup theme={"borderless"} className={"listHeaderButtonGroup unsplashButtonGroup"}
+                                style={{width: "1200px"}}
+                            >
+                                {
+                                    new Array(getJsonLength(this.state.imageTopics)).fill(this.state.imageTopics).map((value, index) => (
+                                        <Button key={index} type="tertiary"
+                                                onClick={this.topicButtonClick.bind(this, index, Object.keys(value)[index])}>
+                                            {value[Object.keys(value)[index]]}
+                                        </Button>
+                                    ))
+                                }
+                            </ButtonGroup>
+                        </Row>
+                    </Row>
                 }
                 size="small"
                 bordered

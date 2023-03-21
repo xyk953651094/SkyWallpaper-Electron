@@ -30,7 +30,7 @@ class App extends React.Component {
     constructor(props: any) {
         super(props)
         this.state = {
-            navigationItemDisplay: ["block", "none", "none"],
+            navigationItemDisplay: ["flex", "none", "none"],
             preference: defaultPreference,
         }
     }
@@ -95,21 +95,21 @@ class App extends React.Component {
                                 case "Wallpaper":  {
                                     navigationItems.eq(0).css({"background-color": this.state.preference.themeColor});
                                     this.setState({
-                                        navigationItemDisplay: ["block", "none", "none", "none"]
+                                        navigationItemDisplay: ["flex", "none", "none"]
                                     });
                                     break;
                                 }
                                 case "Search": {
                                     navigationItems.eq(1).css({"background-color": this.state.preference.themeColor});
                                     this.setState({
-                                        navigationItemDisplay: ["none", "block", "none", "none"]
+                                        navigationItemDisplay: ["none", "block", "none"]
                                     });
                                     break;
                                 }
                                 case "Preference": {
                                     navigationItems.eq(2).css({"background-color": this.state.preference.themeColor});
                                     this.setState({
-                                        navigationItemDisplay: ["none", "none", "block", "none"]
+                                        navigationItemDisplay: ["none", "none", "block"]
                                     });
                                     break;
                                 }
@@ -122,7 +122,7 @@ class App extends React.Component {
                 </Sider>
                 <Layout>
                     <Content style={{ padding: '24px', backgroundColor: 'var(--semi-color-bg-0)',}}>
-                        <WallpaperComponent display={this.state.navigationItemDisplay[0]}/>
+                        <WallpaperComponent display={this.state.navigationItemDisplay[0]} themeColor={this.state.preference.themeColor}/>
                         <SearchComponent display={this.state.navigationItemDisplay[1]}/>
                         <PreferenceComponent display={this.state.navigationItemDisplay[2]} getPreference={this.getPreference.bind(this)}/>
                     </Content>

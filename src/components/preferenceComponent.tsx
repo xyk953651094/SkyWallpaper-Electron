@@ -1,6 +1,6 @@
 import React from "react";
 import {List, Select, Typography} from "@douyinfe/semi-ui";
-import {IconMoon, IconColorPalette, IconLanguage, IconInfoCircle, IconLink, IconRadio} from "@douyinfe/semi-icons";
+import {IconAlertCircle, IconMoon, IconColorPalette, IconInfoCircle, IconLink, IconRadio} from "@douyinfe/semi-icons";
 import "../stylesheets/preferenceComponent.css"
 import {matchMode} from "../typescripts/publicFunctions"
 import {Preference} from "../typescripts/publicInterface";
@@ -93,6 +93,11 @@ class PreferenceComponent extends React.Component {
                 style={{ display: this.props.display}}
             >
                 <List.Item
+                    header={ <IconAlertCircle className={"listItemIcon"}/> }
+                    main={ <Text className="listItemText">使用声明</Text> }
+                    extra={ <Text style={{color: "rgba(var(--semi-red-6), 1)"}}>图片来源于第三方网站，内容不代表开发者任何观点</Text> }
+                />
+                <List.Item
                     header={ <IconMoon className={"listItemIcon"}/> }
                     main={ <Text className="listItemText">暗黑模式</Text> }
                     extra={
@@ -105,7 +110,7 @@ class PreferenceComponent extends React.Component {
                 />
                 <List.Item
                     header={ <IconColorPalette className={"listItemIcon"}/> }
-                    main={ <Text className="listItemText">主题颜色</Text> }
+                    main={ <Text className="listItemText">主题颜色（需下一次交互才会生效）</Text> }
                     extra={
                         <Select className="preferenceSelect" insetLabel={<IconRadio size={"extra-large"} style={{color: this.state.preference.themeColor}}/>}
                                 defaultValue={"rgba(var(--semi-red-3), 1)"} value={this.state.preference.themeColor}
@@ -128,12 +133,12 @@ class PreferenceComponent extends React.Component {
                 <List.Item
                     header={ <IconLink className={"listItemIcon"}/> }
                     main={ <Text className="listItemText">产品主页</Text> }
-                    extra={ <Text link={{ href: "https://github.com/xyk953651094" }}>Github.com</Text> }
+                    extra={ <Text link={{ href: "https://github.com/xyk953651094/SkyWallpaper-React-Electron" }}>Github.com</Text> }
                 />
                 <List.Item
                     header={ <IconInfoCircle className={"listItemIcon"}/> }
-                    main={ <Text className="listItemText">使用声明</Text> }
-                    extra={ <Text style={{color: "rgba(var(--semi-red-6), 1)"}}>图片来源于第三方网站，内容不代表开发者任何观点</Text> }
+                    main={ <Text className="listItemText">版本号</Text> }
+                    extra={ <Text link={{ href: "https://github.com/xyk953651094/SkyWallpaper-React-Electron/releases"}}>V1.0.0</Text> }
                 />
             </List>
         );

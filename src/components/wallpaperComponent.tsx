@@ -8,6 +8,7 @@ import BingComponent from "./bingComponent";
 
 type propType = {
     display: string,
+    themeColor: string,
 }
 
 type stateType = {}
@@ -33,14 +34,14 @@ class WallpaperComponent extends React.Component {
 
     render() {
         return (
-            <Row style={{display: this.props.display}}>
-                <Space spacing={"loose"} vertical align={"start"}>
+            // <Row style={{display: this.props.display}}>
+                <Space spacing={"loose"} vertical align={"start"} style={{display: this.props.display}}>
                     <BingComponent />
-                    <UnsplashComponent />
+                    <UnsplashComponent themeColor={this.props.themeColor}/>
                     <PexelsComponent />
-                    <PixabayComponent />
+                    <PixabayComponent themeColor={this.props.themeColor}/>
                 </Space>
-            </Row>
+            // </Row>
         )
     }
 }

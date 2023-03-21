@@ -320,7 +320,7 @@ class SearchComponent extends React.Component {
     render() {
         return (
             <List
-                style={{width: "660px", display: this.props.display}}
+                style={{display: this.props.display}}
                 loading={this.state.loading}
                 size="small"
                 bordered
@@ -334,7 +334,7 @@ class SearchComponent extends React.Component {
                                    onEnterPress={this.inputOnEnterPress.bind(this)}></Input>
                         </Col>
                         <Col span={5} style={{textAlign: "right"}}>
-                            <Select className="todaySelect" defaultValue="popular" value={this.state.searchSource} onChange={this.selectOnChange.bind(this)}>
+                            <Select defaultValue="Unspalsh" value={this.state.searchSource} onChange={this.selectOnChange.bind(this)}>
                                 <Select.Option value="Unspalsh">Unspalsh</Select.Option>
                                 <Select.Option value="Pexels">Pexels</Select.Option>
                                 <Select.Option value="Pixabay">Pixabay</Select.Option>

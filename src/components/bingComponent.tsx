@@ -1,5 +1,5 @@
 import React from "react";
-import {Row, Col, List, Space, Image, Toast, Typography, Button, Select} from "@douyinfe/semi-ui";
+import {Row, Col, List, Space, Image, Toast, Typography, Button, Tooltip} from "@douyinfe/semi-ui";
 import {IconLink} from "@douyinfe/semi-icons";
 import "../stylesheets/wallpaperComponent.css"
 import {bingRequestUrl, defaultImageData} from "../typescripts/publicConstants";
@@ -7,8 +7,6 @@ import {ImageData} from "../typescripts/publicInterface"
 import {httpRequest} from "../typescripts/publicFunctions";
 
 const {Title, Text} = Typography;
-
-const chinaUrl = "https://fly.atlinker.cn/api/bing/cn.php";
 
 type propType = {}
 
@@ -77,18 +75,20 @@ class BingComponent extends React.Component {
     render() {
         return (
             <List
-                style={{width: "660px"}}
+                style={{width: "100%", maxWidth: "fit-content"}}
                 header={
                     <Row>
                         <Col span={12}>
                             <Title heading={3}>Bing</Title>
                         </Col>
                         <Col span={12} style={{textAlign: "right"}}>
-                            <Button theme={"borderless"} icon={<IconLink />}
-                                    style={{color: "rgba(var(--semi-grey-9), 1)"}}
-                                    onClick={this.linkButtonOnClick.bind(this)}
-                            >
-                            </Button>
+                            <Tooltip content={"前往 Bing"} position={"left"}>
+                                <Button theme={"borderless"} icon={<IconLink />}
+                                        style={{color: "rgba(var(--semi-grey-9), 1)"}}
+                                        onClick={this.linkButtonOnClick.bind(this)}
+                                >
+                                </Button>
+                            </Tooltip>
                         </Col>
                     </Row>
                 }
@@ -98,7 +98,7 @@ class BingComponent extends React.Component {
                 <List.Item
                     main={
                         <Space vertical>
-                            <Image width={"620px"} src={this.state.imageData.displayUrl}></Image>
+                            <Image width={"628px"} src={this.state.imageData.displayUrl}></Image>
                             <Row style={{width: "100%"}}>
                                 <Col span={12}>
                                     <Text>{this.state.imageData.description}</Text>
