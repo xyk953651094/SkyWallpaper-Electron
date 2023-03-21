@@ -126,6 +126,8 @@ class UnsplashComponent extends React.Component {
     }
 
     componentDidMount() {
+        const unsplashButtonGroup = $(".unsplashButtonGroup").children("button");
+        unsplashButtonGroup.eq(0).css({"background-color": this.props.themeColor});
         this.getImages(unsplashTodayRequestUrl, this.state.todayRequestData);  // 默认获取"热门"图片
     }
 

@@ -118,6 +118,9 @@ class PixabayComponent extends React.Component {
     }
 
     componentDidMount() {
+        const pixabayButtonGroup = $(".pixabayButtonGroup").children("button");
+        pixabayButtonGroup.eq(0).css({"background-color": this.props.themeColor});
+
         // 获取每日图片
         this.getImages(pixabayRequestUrl, this.state.requestData);
     }

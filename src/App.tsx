@@ -42,6 +42,9 @@ class App extends React.Component {
     }
 
     componentDidMount() {
+        const navigationItems = $(".semi-navigation-list").children("li");
+        navigationItems.eq(0).css({"background-color": this.state.preference.themeColor});
+
         // 加载偏好设置
         let tempPreference = localStorage.getItem("preference");
         if(tempPreference == null || tempPreference.length === 0) {

@@ -2,9 +2,10 @@
 // app 控制应用程序的事件生命周期。事件调用app.on('eventName', callback)，方法调用app.functionName(arg)
 // BrowserWindow 创建和控制浏览器窗口。new BrowserWindow([options]) 事件和方法调用同app
 // Electron参考文档 https://www.electronjs.org/docs
-const {app, BrowserWindow, nativeImage } = require('electron')
+const {app, BrowserWindow, nativeImage } = require('electron');
 const path = require('path')
 const url = require('url');
+const exeName = path.basename(process.execPath);
 
 function createWindow () {
     // Create the browser window.
@@ -55,11 +56,21 @@ function createWindow () {
 
 app.allowRendererProcessReuse =true;
 
+app.setLoginItemSettings({
+    openAtLogin: true,
+    openAsHidden: true,
+    path: process.execPath,
+    args: [
+        "--processStart", exeName,
+    ]
+})
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() =>{
-    createWindow();})
+    createWindow();
+})
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {

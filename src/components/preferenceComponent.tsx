@@ -1,6 +1,6 @@
 import React from "react";
-import {List, Select, Typography} from "@douyinfe/semi-ui";
-import {IconAlertCircle, IconMoon, IconColorPalette, IconInfoCircle, IconLink, IconRadio} from "@douyinfe/semi-icons";
+import {List, Select, Space, Switch, Typography} from "@douyinfe/semi-ui";
+import {IconAlertCircle, IconMoon, IconColorPalette, IconQuit, IconRefresh, IconInfoCircle, IconLink, IconRadio} from "@douyinfe/semi-icons";
 import "../stylesheets/preferenceComponent.css"
 import {matchMode} from "../typescripts/publicFunctions"
 import {Preference} from "../typescripts/publicInterface";
@@ -128,6 +128,31 @@ class PreferenceComponent extends React.Component {
                             <Select.Option value="rgba(var(--semi-amber-3), 1)"  style={{color: "rgba(var(--semi-amber-3), 1)"}}>琥珀</Select.Option>
                             <Select.Option value="rgba(var(--semi-orange-3), 1)" style={{color: "rgba(var(--semi-orange-3), 1)"}}>橘黄</Select.Option>
                         </Select>
+                    }
+                />
+                <List.Item
+                    header={ <IconQuit className={"listItemIcon"}/> }
+                    main={ <Text className="listItemText">自动启动</Text> }
+                    extra={
+                        <Switch></Switch>
+                    }
+                />
+                <List.Item
+                    header={ <IconRefresh className={"listItemIcon"}/> }
+                    main={ <Text className="listItemText">自动切换</Text> }
+                    extra={
+                    <Space>
+                        <Select defaultValue="close" insetLabel={"间隔"}>
+                            <Select.Option value="close">不切换</Select.Option>
+                            <Select.Option value="perHour">每小时</Select.Option>
+                            <Select.Option value="perDay">每天</Select.Option>
+                        </Select>
+                        <Select defaultValue="Unspalsh" insetLabel={"来源"}>
+                            <Select.Option value="Unspalsh">Unspalsh</Select.Option>
+                            <Select.Option value="Pexels">Pexels</Select.Option>
+                            <Select.Option value="Pixabay">Pixabay</Select.Option>
+                        </Select>
+                    </Space>
                     }
                 />
                 <List.Item
