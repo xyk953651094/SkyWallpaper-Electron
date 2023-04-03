@@ -4,12 +4,14 @@ import {matchMode} from "./typescripts/publicFunctions"
 
 import WallpaperComponent from "./components/wallpaperComponent";
 import SearchComponent from "./components/searchComponent";
+import HistoryComponent from "./components/historyComponent";
 import PreferenceComponent from "./components/preferenceComponent";
 
 import {Layout, Nav} from "@douyinfe/semi-ui";
-import {IconImage, IconSearch, IconSetting} from "@douyinfe/semi-icons";
+import {IconImage, IconSearch, IconHistory, IconSetting} from "@douyinfe/semi-icons";
 import {Preference} from "./typescripts/publicInterface";
 import {defaultPreference} from "./typescripts/publicConstants";
+
 const {Sider, Content} = Layout;
 
 const $ = require("jquery");
@@ -30,7 +32,7 @@ class App extends React.Component {
     constructor(props: any) {
         super(props)
         this.state = {
-            navigationItemDisplay: ["flex", "none", "none"],
+            navigationItemDisplay: ["flex", "none", "none", "none"],
             preference: defaultPreference,
         }
     }
@@ -88,8 +90,9 @@ class App extends React.Component {
                             text: 'Sky 每日壁纸',
                         }}
                         items={[
-                            { itemKey: 'Wallpaper', text: '每日壁纸', icon: <IconImage size="large" /> },
+                            { itemKey: 'Wallpaper', text: '推荐壁纸', icon: <IconImage size="large" /> },
                             { itemKey: 'Search', text: '搜索壁纸', icon: <IconSearch size="large" /> },
+                            { itemKey: 'History', text: '历史记录', icon: <IconHistory size="large" /> },
                             { itemKey: 'Preference', text: '偏好设置', icon: <IconSetting size="large" /> },
                         ]}
                         onClick={data => {
@@ -98,21 +101,28 @@ class App extends React.Component {
                                 case "Wallpaper":  {
                                     navigationItems.eq(0).css({"background-color": this.state.preference.themeColor});
                                     this.setState({
-                                        navigationItemDisplay: ["flex", "none", "none"]
+                                        navigationItemDisplay: ["flex", "none", "none", "none"]
                                     });
                                     break;
                                 }
                                 case "Search": {
                                     navigationItems.eq(1).css({"background-color": this.state.preference.themeColor});
                                     this.setState({
-                                        navigationItemDisplay: ["none", "block", "none"]
+                                        navigationItemDisplay: ["none", "block", "none", "none"]
+                                    });
+                                    break;
+                                }
+                                case "History":  {
+                                    navigationItems.eq(2).css({"background-color": this.state.preference.themeColor});
+                                    this.setState({
+                                        navigationItemDisplay: ["none", "none", "block", "none"]
                                     });
                                     break;
                                 }
                                 case "Preference": {
-                                    navigationItems.eq(2).css({"background-color": this.state.preference.themeColor});
+                                    navigationItems.eq(3).css({"background-color": this.state.preference.themeColor});
                                     this.setState({
-                                        navigationItemDisplay: ["none", "none", "block"]
+                                        navigationItemDisplay: ["none", "none", "none", "block"]
                                     });
                                     break;
                                 }
@@ -127,7 +137,8 @@ class App extends React.Component {
                     <Content style={{ padding: '24px', backgroundColor: 'var(--semi-color-bg-0)',}}>
                         <WallpaperComponent display={this.state.navigationItemDisplay[0]} themeColor={this.state.preference.themeColor}/>
                         <SearchComponent display={this.state.navigationItemDisplay[1]}/>
-                        <PreferenceComponent display={this.state.navigationItemDisplay[2]} getPreference={this.getPreference.bind(this)}/>
+                        <HistoryComponent display={this.state.navigationItemDisplay[2]}/>
+                        <PreferenceComponent display={this.state.navigationItemDisplay[3]} getPreference={this.getPreference.bind(this)}/>
                     </Content>
                 </Layout>
             </Layout>

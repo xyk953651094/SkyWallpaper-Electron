@@ -16,21 +16,19 @@ import {
 } from "@douyinfe/semi-ui";
 import {IconSearch, IconHomeStroked, IconDownloadStroked} from "@douyinfe/semi-icons";
 import "../stylesheets/searchComponent.css"
-import Text from "@douyinfe/semi-ui/lib/es/typography/text";
 import {
     unsplashSearchRequestUrl,
     unsplashClientId,
-    unsplashVisitUrl,
     pexelsSearchRequestUrl,
     pexelsAuth,
     pixabayRequestUrl,
     pixabayKey,
-    searchPageSize,
+    listPageSize,
 } from "../typescripts/publicConstants";
-import {getFontColor, httpRequest, isEmptyString} from "../typescripts/publicFunctions";
+import {getFontColor, httpRequest, isEmptyString, setWallpaper} from "../typescripts/publicFunctions";
 import {ImageData} from "../typescripts/publicInterface"
 
-const {Title} = Typography;
+const {Title, Text} = Typography;
 
 type propType = {
     display: string,
@@ -74,7 +72,7 @@ class SearchComponent extends React.Component {
             "orientation": "landscape",
             "content_filter": "high",
             "page": this.state.currentPage,
-            "per_page": searchPageSize
+            "per_page": listPageSize
         }
         this.setState({
             loading: true,
@@ -132,7 +130,7 @@ class SearchComponent extends React.Component {
             "query": this.state.searchValue,
             "orientation": "landscape",
             "page": this.state.currentPage,
-            "per_page":  searchPageSize,
+            "per_page":  listPageSize,
         }
         this.setState({
             loading: true,
@@ -192,7 +190,7 @@ class SearchComponent extends React.Component {
             "image_type": "photo",
             "orientation": "vertical",
             "page": this.state.currentPage,
-            "per_page":  searchPageSize,
+            "per_page":  listPageSize,
             "order": "latest",
             "safesearch": "true",
         }
@@ -273,19 +271,15 @@ class SearchComponent extends React.Component {
     }
 
     homeButtonClick(item: any) {
-        if ( isEmptyString(item.userUrl) ) {
-            Toast.error("无跳转链接");
-        } else {
-            window.open(item.userUrl + unsplashVisitUrl);
-        }
-    }
-
-    downloadButtonClick(item: any) {
         if ( isEmptyString(item.imageUrl) ) {
-            Toast.error("无下载链接");
+            Toast.error("无跳转链接");
         } else {
             window.open(item.imageUrl);
         }
+    }
+
+    setWallpaperButtonClick(item: any) {
+        setWallpaper(item);
     }
 
     onPageChange( currentPage: number ) {
@@ -369,17 +363,17 @@ class SearchComponent extends React.Component {
                             <ButtonGroup>
                                 <Button theme={"borderless"} icon={<IconHomeStroked/>}
                                         style={{color: getFontColor(item.color)}}
-                                        onClick={this.homeButtonClick.bind(this, item)}>主页</Button>
+                                        onClick={this.homeButtonClick.bind(this, item)}>图片主页</Button>
                                 <Button theme={"borderless"} icon={<IconDownloadStroked/>}
                                         style={{color: getFontColor(item.color)}}
-                                        onClick={this.downloadButtonClick.bind(this, item)}>下载</Button>
+                                        onClick={this.setWallpaperButtonClick.bind(this, item)}>设为桌面壁纸</Button>
                             </ButtonGroup>
                         }
                     />
                 )}
                 footer={
                     <Pagination size="default" className={"searchPagination"} style={{display: this.state.paginationDisplay}}
-                                pageSize={searchPageSize} total={this.state.totalCounts} currentPage={this.state.currentPage}
+                                pageSize={listPageSize} total={this.state.totalCounts} currentPage={this.state.currentPage}
                                 onChange={currentPage => this.onPageChange(currentPage)}
                     />
                 }

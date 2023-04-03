@@ -34,14 +34,12 @@ class WallpaperComponent extends React.Component {
 
     render() {
         return (
-            // <Row style={{display: this.props.display}}>
-                <Space spacing={"loose"} vertical align={"start"} style={{display: this.props.display}}>
-                    <BingComponent />
-                    <UnsplashComponent themeColor={this.props.themeColor}/>
-                    <PexelsComponent />
-                    <PixabayComponent themeColor={this.props.themeColor}/>
-                </Space>
-            // </Row>
+            <Space spacing={"loose"} vertical align={"start"} style={{display: this.props.display}}>
+                <BingComponent />
+                <UnsplashComponent themeColor={this.props.themeColor}/>
+                <PexelsComponent />
+                <PixabayComponent themeColor={this.props.themeColor}/>
+            </Space>
         )
     }
 }

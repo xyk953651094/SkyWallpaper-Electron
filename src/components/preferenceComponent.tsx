@@ -1,6 +1,16 @@
 import React from "react";
-import {List, Select, Space, Switch, Typography} from "@douyinfe/semi-ui";
-import {IconAlertCircle, IconMoon, IconColorPalette, IconQuit, IconRefresh, IconInfoCircle, IconLink, IconRadio} from "@douyinfe/semi-icons";
+import {Button, List, Select, Space, Switch, Typography} from "@douyinfe/semi-ui";
+import {
+    IconAlertCircle,
+    IconMoon,
+    IconColorPalette,
+    IconQuit,
+    IconRefresh,
+    IconInfoCircle,
+    IconLink,
+    IconRadio,
+    IconDelete
+} from "@douyinfe/semi-icons";
 import "../stylesheets/preferenceComponent.css"
 import {matchMode} from "../typescripts/publicFunctions"
 import {Preference} from "../typescripts/publicInterface";
@@ -154,6 +164,11 @@ class PreferenceComponent extends React.Component {
                         </Select>
                     </Space>
                     }
+                />
+                <List.Item
+                    header={ <IconDelete className={"listItemIcon"}/> }
+                    main={ <Text className="listItemText">使用空间：100Mb</Text> }
+                    extra={ <Button type="danger">清空缓存</Button> }
                 />
                 <List.Item
                     header={ <IconLink className={"listItemIcon"}/> }
