@@ -23,6 +23,7 @@ type propType = {
 type stateType = {
     imageData: ImageData[],
     imageTopics: any,
+    selectedTopics: number,
     todayRequestData: any,
     topicRequestData: any,
 }
@@ -38,6 +39,7 @@ class UnsplashComponent extends React.Component {
         this.state = {
             imageData: [],
             imageTopics: unsplashImageTopics,
+            selectedTopics: 0,
             todayRequestData: {
                 "client_id": unsplashClientId,
                 "per_page": wallpaperPageSize,
@@ -98,6 +100,7 @@ class UnsplashComponent extends React.Component {
         if(value === "popular" || value === "latest") {
             let data = Object.assign({}, this.state.todayRequestData, {order_by: value});
             this.setState({
+                selectedTopics: index,
                 todayRequestData: data,
                 imageData: [], // 重置图片数据为空
             }, () => {
@@ -107,6 +110,7 @@ class UnsplashComponent extends React.Component {
         else {
             let data = Object.assign({}, this.state.topicRequestData, {topics: value});
             this.setState({
+                selectedTopics: index,
                 topicRequestData: data,
                 imageData: [], // 重置图片数据为空
             }, () => {
@@ -118,16 +122,16 @@ class UnsplashComponent extends React.Component {
     }
 
     componentWillReceiveProps(nextProps: any, prevProps: any) {
-        if (nextProps.display !== prevProps.display) {
-            this.setState({
-                display: nextProps.display,
-            });
+        if (nextProps.themeColor !== prevProps.themeColor) {
+            const unsplashButtonGroup = $(".unsplashButtonGroup").children("button");
+            unsplashButtonGroup.css({"background-color": "transparent"});
+            unsplashButtonGroup.eq(this.state.selectedTopics).css({"background-color": this.props.themeColor});
         }
     }
 
     componentDidMount() {
         const unsplashButtonGroup = $(".unsplashButtonGroup").children("button");
-        unsplashButtonGroup.eq(0).css({"background-color": this.props.themeColor});
+        unsplashButtonGroup.eq(this.state.selectedTopics).css({"background-color": this.props.themeColor});
         this.getImages(unsplashTodayRequestUrl, this.state.todayRequestData);  // 默认获取"热门"图片
     }
 

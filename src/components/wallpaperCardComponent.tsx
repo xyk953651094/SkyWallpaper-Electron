@@ -1,6 +1,6 @@
 import React from "react";
 import {Row, Empty, CardGroup, Card, ImagePreview, Image, ButtonGroup, Button, Toast} from "@douyinfe/semi-ui";
-import {IconHomeStroked, IconDownloadStroked} from "@douyinfe/semi-icons";
+import {IconHomeStroked, IconDownloadStroked, IconLoading} from "@douyinfe/semi-icons";
 import "../stylesheets/wallpaperComponent.css"
 import {getFontColor, getJsonLength, isEmptyString, setWallpaper} from "../typescripts/publicFunctions"
 import {ImageData} from "../typescripts/publicInterface";
@@ -71,8 +71,9 @@ class WallpaperCardComponent extends React.Component {
                                     <ImagePreview>
                                         <Image width={this.state.imageSideLength} height={this.state.imageSideLength}
                                                src={value[index].displayUrl} preview={true}
-                                               placeholder={<Image width={this.state.imageSideLength} height={this.state.imageSideLength}
-                                                                   src={value[index].previewUrl} preview={false}/>}
+                                               // placeholder={<Image width={this.state.imageSideLength} height={this.state.imageSideLength}
+                                               //                     src={value[index].previewUrl} preview={false}/>}
+                                               placeholder={<IconLoading />}
                                                className={"wallpaperFadeIn"}
                                         />
                                     </ImagePreview>

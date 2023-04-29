@@ -14,7 +14,7 @@ import {
     Space,
     Select
 } from "@douyinfe/semi-ui";
-import {IconSearch, IconHomeStroked, IconDownloadStroked} from "@douyinfe/semi-icons";
+import {IconSearch, IconHomeStroked, IconDownloadStroked, IconLoading} from "@douyinfe/semi-icons";
 import "../stylesheets/searchComponent.css"
 import {
     unsplashSearchRequestUrl,
@@ -343,13 +343,15 @@ class SearchComponent extends React.Component {
                         header={
                             <ImagePreview>
                                 <Image width={80} height={80} src={item.displayUrl} preview={true}
-                                       placeholder={<Image src={item.previewUrl} preview={false}/>}
+                                       // placeholder={<Image width={80} height={80}
+                                       //                     src={item.previewUrl} preview={false}/>}
+                                       placeholder={<IconLoading />}
                                        className={"wallpaperFadeIn"}
                                 />
                             </ImagePreview>
                         }
                         main={
-                            <Space align="start" vertical>
+                            <Space vertical align={"start"}>
                                 <Title heading={5} className="searchTitleP"
                                        style={{color: getFontColor(item.color)}}>
                                     {"摄影师：" + item.userName}
@@ -360,14 +362,14 @@ class SearchComponent extends React.Component {
                             </Space>
                         }
                         extra={
-                            <ButtonGroup>
+                            <Space vertical align={"start"}>
                                 <Button theme={"borderless"} icon={<IconHomeStroked/>}
                                         style={{color: getFontColor(item.color)}}
                                         onClick={this.homeButtonClick.bind(this, item)}>图片主页</Button>
                                 <Button theme={"borderless"} icon={<IconDownloadStroked/>}
                                         style={{color: getFontColor(item.color)}}
                                         onClick={this.setWallpaperButtonClick.bind(this, item)}>设为桌面壁纸</Button>
-                            </ButtonGroup>
+                            </Space>
                         }
                     />
                 )}

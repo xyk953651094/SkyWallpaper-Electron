@@ -100,10 +100,10 @@ class BingComponent extends React.Component {
                         <Space vertical>
                             <Image width={"628px"} src={this.state.imageData.displayUrl}></Image>
                             <Row style={{width: "100%"}}>
-                                <Col span={12}>
+                                <Col span={6}>
                                     <Text>{this.state.imageData.description}</Text>
                                 </Col>
-                                <Col span={12} style={{textAlign: "right"}}>
+                                <Col span={18} style={{textAlign: "right"}}>
                                     <Text>{this.state.imageData.userName}</Text>
                                 </Col>
                             </Row>

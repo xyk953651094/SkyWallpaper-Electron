@@ -22,6 +22,7 @@ type propType = {
 type stateType = {
     imageData: ImageData[],
     categories: any,
+    selectedCategory: number,
     requestData: any,
 }
 
@@ -36,6 +37,7 @@ class PixabayComponent extends React.Component {
         this.state = {
             imageData: [],
             categories: pixabayImageCategories,
+            selectedCategory: 0,
             requestData: {
                 "key": pixabayKey,
                 "editors_choice": "true",
@@ -88,6 +90,7 @@ class PixabayComponent extends React.Component {
 
         let data = Object.assign({}, this.state.requestData, {category: value});
         this.setState({
+            selectedCategory: index,
             requestData: data,
             imageData: [], // 重置图片数据为空
         }, () => {
@@ -110,16 +113,16 @@ class PixabayComponent extends React.Component {
     }
 
     componentWillReceiveProps(nextProps: any, prevProps: any) {
-        if (nextProps.display !== prevProps.display) {
-            this.setState({
-                display: nextProps.display,
-            });
+        if (nextProps.themeColor !== prevProps.themeColor) {
+            const pixabayButtonGroup = $(".pixabayButtonGroup").children("button");
+            pixabayButtonGroup.css({"background-color": "transparent"});
+            pixabayButtonGroup.eq(this.state.selectedCategory).css({"background-color": this.props.themeColor});
         }
     }
 
     componentDidMount() {
         const pixabayButtonGroup = $(".pixabayButtonGroup").children("button");
-        pixabayButtonGroup.eq(0).css({"background-color": this.props.themeColor});
+        pixabayButtonGroup.eq(this.state.selectedCategory).css({"background-color": this.props.themeColor});
 
         // 获取每日图片
         this.getImages(pixabayRequestUrl, this.state.requestData);

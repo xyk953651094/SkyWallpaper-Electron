@@ -17,6 +17,7 @@ import {Preference} from "../typescripts/publicInterface";
 import {defaultPreference} from "../typescripts/publicConstants";
 
 const {Title, Text} = Typography;
+const $ = require("jquery");
 
 type propType = {
     display: string,
@@ -74,6 +75,9 @@ class PreferenceComponent extends React.Component {
         }, ()=>{
             this.props.getPreference(this.state.preference);
             localStorage.setItem("preference", JSON.stringify(this.state.preference));
+
+            const navigationItems = $(".semi-navigation-list").children("li");
+            navigationItems.eq(3).css({"background-color": this.state.preference.themeColor});
         })
     }
 
