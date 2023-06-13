@@ -107,13 +107,8 @@ class PreferenceComponent extends React.Component {
                 style={{ display: this.props.display}}
             >
                 <List.Item
-                    header={ <IconAlertCircle className={"listItemIcon"}/> }
-                    main={ <Text className="listItemText">使用声明</Text> }
-                    extra={ <Text style={{color: "rgba(var(--semi-red-6), 1)"}}>图片来源于第三方网站，内容不代表开发者任何观点</Text> }
-                />
-                <List.Item
                     header={ <IconMoon className={"listItemIcon"}/> }
-                    main={ <Text className="listItemText">暗黑模式</Text> }
+                    main={ <Text className="listItemText">夜间模式</Text> }
                     extra={
                         <Select className="preferenceSelect" defaultValue={"autoMode"} value={this.state.preference.displayMode} onChange={this.darkModeOnChange.bind(this)}>
                             <Select.Option value="autoMode" disabled>跟随系统</Select.Option>
@@ -123,8 +118,8 @@ class PreferenceComponent extends React.Component {
                     }
                 />
                 <List.Item
-                    header={ <IconColorPalette className={"listItemIcon"}/> }
-                    main={ <Text className="listItemText">主题颜色（需下一次交互才会生效）</Text> }
+                    header={ <IconColorPalette className={"listItemIcon"} style={{color: "rgba(var(--semi-green-3), 1)"}}/> }
+                    main={ <Text className="listItemText">主题颜色</Text> }
                     extra={
                         <Select className="preferenceSelect" insetLabel={<IconRadio size={"extra-large"} style={{color: this.state.preference.themeColor}}/>}
                                 defaultValue={"rgba(var(--semi-red-3), 1)"} value={this.state.preference.themeColor}
@@ -151,27 +146,27 @@ class PreferenceComponent extends React.Component {
                         <Switch></Switch>
                     }
                 />
-                <List.Item
-                    header={ <IconRefresh className={"listItemIcon"}/> }
-                    main={ <Text className="listItemText">自动切换</Text> }
-                    extra={
-                    <Space>
-                        <Select defaultValue="close" insetLabel={"间隔"}>
-                            <Select.Option value="close">不切换</Select.Option>
-                            <Select.Option value="perHour">每小时</Select.Option>
-                            <Select.Option value="perDay">每天</Select.Option>
-                        </Select>
-                        <Select defaultValue="Unspalsh" insetLabel={"来源"}>
-                            <Select.Option value="Unspalsh">Unspalsh</Select.Option>
-                            <Select.Option value="Pexels">Pexels</Select.Option>
-                            <Select.Option value="Pixabay">Pixabay</Select.Option>
-                        </Select>
-                    </Space>
-                    }
-                />
+                {/*<List.Item*/}
+                {/*    header={ <IconRefresh className={"listItemIcon"}/> }*/}
+                {/*    main={ <Text className="listItemText">自动切换</Text> }*/}
+                {/*    extra={*/}
+                {/*    <Space>*/}
+                {/*        <Select defaultValue="close" insetLabel={"间隔"}>*/}
+                {/*            <Select.Option value="close">不切换</Select.Option>*/}
+                {/*            <Select.Option value="perHour">每小时</Select.Option>*/}
+                {/*            <Select.Option value="perDay">每天</Select.Option>*/}
+                {/*        </Select>*/}
+                {/*        <Select defaultValue="Unspalsh" insetLabel={"来源"}>*/}
+                {/*            <Select.Option value="Unspalsh">Unspalsh</Select.Option>*/}
+                {/*            <Select.Option value="Pexels">Pexels</Select.Option>*/}
+                {/*            <Select.Option value="Pixabay">Pixabay</Select.Option>*/}
+                {/*        </Select>*/}
+                {/*    </Space>*/}
+                {/*    }*/}
+                {/*/>*/}
                 <List.Item
                     header={ <IconDelete className={"listItemIcon"}/> }
-                    main={ <Text className="listItemText">使用空间：100Mb</Text> }
+                    main={ <Text className="listItemText">存储空间</Text> }
                     extra={ <Button type="danger">清空缓存</Button> }
                 />
                 <List.Item
@@ -183,6 +178,11 @@ class PreferenceComponent extends React.Component {
                     header={ <IconInfoCircle className={"listItemIcon"}/> }
                     main={ <Text className="listItemText">版本号</Text> }
                     extra={ <Text link={{ href: "https://github.com/xyk953651094/SkyWallpaper-React-Electron/releases"}}>V1.0.0</Text> }
+                />
+                <List.Item
+                    header={ <IconAlertCircle className={"listItemIcon"}/> }
+                    main={ <Text className="listItemText">使用声明</Text> }
+                    extra={ <Text style={{color: "rgba(var(--semi-red-6), 1)"}}>图片来源于第三方网站，内容不代表开发者任何观点</Text> }
                 />
             </List>
         );

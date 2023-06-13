@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/skywallpaper-react.iml" filepath="$PROJECT_DIR$/.idea/skywallpaper-react.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/SkyWallpaper-Electron.iml" filepath="$PROJECT_DIR$/.idea/SkyWallpaper-Electron.iml" />
     </modules>
   </component>
 </project>

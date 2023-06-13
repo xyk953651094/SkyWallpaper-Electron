@@ -131,27 +131,27 @@ class PixabayComponent extends React.Component {
     render() {
         return (
             <List
-                style={{width: "100%", maxWidth: "fit-content"}}
+                className={"listStyle"}
                 header={
                 <Row>
                     <Row>
                         <Col span={12}>
-                            <Title heading={3}>Pixabay</Title>
-                        </Col>
-                        <Col  span={12} style={{textAlign: "right"}}>
                             <Space>
+                                <Title heading={3}>Pixabay</Title>
                                 <Select defaultValue="popular" onChange={this.orderSelectOnChange.bind(this)}>
                                     <Select.Option value="popular">热门</Select.Option>
                                     <Select.Option value="latest">最新</Select.Option>
                                 </Select>
-                                <Tooltip content={"前往 Pixabay"} position={"top"}>
-                                    <Button theme={"borderless"} icon={<IconLink />}
-                                            style={{color: "rgba(var(--semi-grey-9), 1)"}}
-                                            onClick={this.linkButtonOnClick.bind(this)}
-                                    >
-                                    </Button>
-                                </Tooltip>
                             </Space>
+                        </Col>
+                        <Col  span={12} style={{textAlign: "right"}}>
+                            <Tooltip content={"前往 Pixabay"} position={"top"}>
+                                <Button theme={"borderless"} icon={<IconLink />}
+                                        style={{color: "rgba(var(--semi-grey-9), 1)"}}
+                                        onClick={this.linkButtonOnClick.bind(this)}
+                                >
+                                </Button>
+                            </Tooltip>
                         </Col>
                     </Row>
                     <Row style={{overflow: "scroll", marginTop: "5px"}}>

@@ -5,7 +5,11 @@
 }
 
 .semi-layout-sider {
-  background-color: var(--semi-color-bg-1)
+  background-color: var(--semi-color-bg-1);
+}
+
+.semi-navigation-list > li {
+  border-radius: var(--semi-border-radius-medium);
 }
 
 .semi-layout-footer {

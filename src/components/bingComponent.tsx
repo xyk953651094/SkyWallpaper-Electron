@@ -1,6 +1,6 @@
 import React from "react";
 import {Row, Col, List, Space, Image, Toast, Typography, Button, Tooltip} from "@douyinfe/semi-ui";
-import {IconLink} from "@douyinfe/semi-icons";
+import {IconLink, IconInfoCircle, IconMapPin} from "@douyinfe/semi-icons";
 import "../stylesheets/wallpaperComponent.css"
 import {bingRequestUrl, defaultImageData} from "../typescripts/publicConstants";
 import {ImageData} from "../typescripts/publicInterface"
@@ -75,7 +75,7 @@ class BingComponent extends React.Component {
     render() {
         return (
             <List
-                style={{width: "100%", maxWidth: "fit-content"}}
+                className={"listStyle"}
                 header={
                     <Row>
                         <Col span={12}>
@@ -97,16 +97,16 @@ class BingComponent extends React.Component {
             >
                 <List.Item
                     main={
-                        <Space vertical>
+                        <Space vertical align={"start"}>
                             <Image width={"628px"} src={this.state.imageData.displayUrl}></Image>
-                            <Row style={{width: "100%"}}>
-                                <Col span={6}>
-                                    <Text>{this.state.imageData.description}</Text>
-                                </Col>
-                                <Col span={18} style={{textAlign: "right"}}>
-                                    <Text>{this.state.imageData.userName}</Text>
-                                </Col>
-                            </Row>
+                            <Space align={"center"}>
+                                <IconInfoCircle />
+                                <Text>{this.state.imageData.description}</Text>
+                            </Space>
+                            <Space align={"center"}>
+                                <IconMapPin />
+                                <Text>{this.state.imageData.userName}</Text>
+                            </Space>
                         </Space>
                     }
                 />

@@ -138,8 +138,7 @@ class UnsplashComponent extends React.Component {
     render() {
         return (
             <List
-                emptyContent = "图片加载中，请稍后"
-                style={{width: "100%", maxWidth: "fit-content"}}
+                className={"listStyle"}
                 header={
                     <Row>
                         <Row>
@@ -158,7 +157,7 @@ class UnsplashComponent extends React.Component {
                         </Row>
                         <Row style={{overflow: "scroll", marginTop: "5px"}}>
                             <ButtonGroup theme={"borderless"} className={"listHeaderButtonGroup unsplashButtonGroup"}
-                                style={{width: "1200px"}}
+                                style={{width: "1196px"}}
                             >
                                 {
                                     new Array(getJsonLength(this.state.imageTopics)).fill(this.state.imageTopics).map((value, index) => (

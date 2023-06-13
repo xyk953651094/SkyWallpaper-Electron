@@ -85,7 +85,7 @@ class PexelsComponent extends React.Component {
     render() {
         return (
             <List
-                style={{width: "100%", maxWidth: "fit-content"}}
+                className={"listStyle"}
                 header={
                     <Row>
                         <Col span={12}>
