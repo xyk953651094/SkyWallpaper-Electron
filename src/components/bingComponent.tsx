@@ -8,7 +8,9 @@ import {httpRequest} from "../typescripts/publicFunctions";
 
 const {Title, Text} = Typography;
 
-type propType = {}
+type propType = {
+    themeColor: string,
+}
 
 type stateType = {
     imageData: ImageData,
@@ -84,7 +86,7 @@ class BingComponent extends React.Component {
                         <Col span={12} style={{textAlign: "right"}}>
                             <Tooltip content={"前往 Bing"} position={"left"}>
                                 <Button theme={"borderless"} icon={<IconLink />}
-                                        style={{color: "rgba(var(--semi-grey-9), 1)"}}
+                                        style={{color: "rgba(var(--semi-grey-9), 1)", backgroundColor: this.props.themeColor}}
                                         onClick={this.linkButtonOnClick.bind(this)}
                                 >
                                 </Button>
@@ -98,13 +100,13 @@ class BingComponent extends React.Component {
                 <List.Item
                     main={
                         <Space vertical align={"start"}>
-                            <Image width={"628px"} src={this.state.imageData.displayUrl}></Image>
-                            <Space align={"center"}>
-                                <IconInfoCircle />
+                            <Image width={"100%"} src={this.state.imageData.displayUrl}></Image>
+                            <Space align={"start"}>
+                                <IconInfoCircle style={{color: this.props.themeColor}}/>
                                 <Text>{this.state.imageData.description}</Text>
                             </Space>
-                            <Space align={"center"}>
-                                <IconMapPin />
+                            <Space align={"start"}>
+                                <IconMapPin style={{color: this.props.themeColor}}/>
                                 <Text>{this.state.imageData.userName}</Text>
                             </Space>
                         </Space>

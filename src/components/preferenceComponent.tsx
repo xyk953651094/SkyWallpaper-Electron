@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, List, Select, Space, Switch, Typography} from "@douyinfe/semi-ui";
+import {Button, List, Select, Switch, Typography} from "@douyinfe/semi-ui";
 import {
     IconAlertCircle,
     IconMoon,
@@ -118,7 +118,7 @@ class PreferenceComponent extends React.Component {
                     }
                 />
                 <List.Item
-                    header={ <IconColorPalette className={"listItemIcon"} style={{color: "rgba(var(--semi-green-3), 1)"}}/> }
+                    header={ <IconColorPalette className={"listItemIcon"} /> }
                     main={ <Text className="listItemText">主题颜色</Text> }
                     extra={
                         <Select className="preferenceSelect" insetLabel={<IconRadio size={"extra-large"} style={{color: this.state.preference.themeColor}}/>}

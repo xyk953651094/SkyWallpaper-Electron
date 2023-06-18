@@ -1,5 +1,17 @@
 import React from "react";
-import {Row, Col, List, Toast, Typography, Select, ButtonGroup, Button, Tooltip, Space} from "@douyinfe/semi-ui";
+import {
+    Row,
+    Col,
+    List,
+    Toast,
+    Typography,
+    Select,
+    ButtonGroup,
+    Button,
+    Tooltip,
+    Space,
+    Divider
+} from "@douyinfe/semi-ui";
 import "../stylesheets/wallpaperComponent.css"
 import WallpaperCardComponent from "./wallpaperCardComponent";
 import {
@@ -67,6 +79,7 @@ class PixabayComponent extends React.Component {
                         createTime: "无拍摄时间",
                         description: resultData.hits[i].tags,
                         color: "rgba(var(--semi-grey-0), 1)",
+                        // color: tempThis.props.themeColor
                     };
                     tempImageData.push(tempData);
                 }
@@ -147,13 +160,14 @@ class PixabayComponent extends React.Component {
                         <Col  span={12} style={{textAlign: "right"}}>
                             <Tooltip content={"前往 Pixabay"} position={"top"}>
                                 <Button theme={"borderless"} icon={<IconLink />}
-                                        style={{color: "rgba(var(--semi-grey-9), 1)"}}
+                                        style={{color: "rgba(var(--semi-grey-9), 1)", backgroundColor: this.props.themeColor}}
                                         onClick={this.linkButtonOnClick.bind(this)}
                                 >
                                 </Button>
                             </Tooltip>
                         </Col>
                     </Row>
+                    <Divider margin={"5px"}/>
                     <Row style={{overflow: "scroll", marginTop: "5px"}}>
                         <ButtonGroup theme={"borderless"} className={"listHeaderButtonGroup overflowScroll pixabayButtonGroup"}
                                      style={{width: "1055px"}}

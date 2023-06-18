@@ -8,7 +8,9 @@ import {httpRequest} from "../typescripts/publicFunctions";
 import {IconLink} from "@douyinfe/semi-icons";
 const {Title} = Typography;
 
-type propType = {}
+type propType = {
+    themeColor: string,
+}
 
 type stateType = {
     imageData: ImageData[],
@@ -94,7 +96,7 @@ class PexelsComponent extends React.Component {
                         <Col span={12} style={{textAlign: "right"}}>
                             <Tooltip content={"前往 Pexels"} position={"left"}>
                                 <Button theme={"borderless"} icon={<IconLink />}
-                                        style={{color: "rgba(var(--semi-grey-9), 1)"}}
+                                        style={{color: "rgba(var(--semi-grey-9), 1)", backgroundColor: this.props.themeColor}}
                                         onClick={this.linkButtonOnClick.bind(this)}
                                 >
                                 </Button>

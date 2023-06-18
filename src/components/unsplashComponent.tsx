@@ -1,5 +1,5 @@
 import React from "react";
-import {Row, Col, List, Toast, Typography, ButtonGroup, Button, Tooltip} from "@douyinfe/semi-ui";
+import {Row, Col, Divider, List, Toast, Typography, ButtonGroup, Button, Tooltip} from "@douyinfe/semi-ui";
 import "../stylesheets/wallpaperComponent.css"
 import WallpaperCardComponent from "./wallpaperCardComponent";
 import {
@@ -148,16 +148,17 @@ class UnsplashComponent extends React.Component {
                             <Col span={12} style={{textAlign: "right"}}>
                                 <Tooltip content={"前往 Unsplash"} position={"left"}>
                                     <Button theme={"borderless"} icon={<IconLink />}
-                                            style={{color: "rgba(var(--semi-grey-9), 1)"}}
+                                            style={{color: "rgba(var(--semi-grey-9), 1)", backgroundColor: this.props.themeColor}}
                                             onClick={this.linkButtonOnClick.bind(this)}
                                     >
                                     </Button>
                                 </Tooltip>
                             </Col>
                         </Row>
+                        <Divider margin={"5px"}/>
                         <Row style={{overflow: "scroll", marginTop: "5px"}}>
                             <ButtonGroup theme={"borderless"} className={"listHeaderButtonGroup unsplashButtonGroup"}
-                                style={{width: "1196px"}}
+                                style={{width: "1200px"}}
                             >
                                 {
                                     new Array(getJsonLength(this.state.imageTopics)).fill(this.state.imageTopics).map((value, index) => (
