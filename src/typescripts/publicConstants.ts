@@ -13,22 +13,24 @@ export const pixabayKey: string = "34466426-b21174c2eaa64ee76ce599e3b";
 
 export const bingRequestUrl:string = "https://fly.atlinker.cn/api/bing/cn.php"; // https://atlinker.cn/2019/07/28/bing.html
 
-export const wallpaperPageSize: number = 6;
-export const searchPageSize: number = 10;
+export const wallpaperPageSize: number = 30;
+export const listPageSize: number = 10;
+
+export const historyMaxSize: number = 10;
 
 export const defaultPreference: Preference = {
     displayMode: "lightMode",
-    themeColor: "amber",
+    themeColor: "rgba(var(--semi-red-3), 1)",
 }
 
 export const defaultImageData: ImageData = {
     displayUrl: "",
     previewUrl: "",
     imageUrl: "",
-    userName: "暂无摄影师信息",
+    userName: "暂无信息",
     userUrl: "",
-    createTime: "暂无拍摄时间",
-    description: "暂无描述",
+    createTime: "暂无信息",
+    description: "暂无信息",
     color: "",
 }
 

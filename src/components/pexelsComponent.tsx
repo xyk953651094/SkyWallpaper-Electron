@@ -1,13 +1,16 @@
 import React from "react";
-import {List, Toast, Typography} from '@douyinfe/semi-ui';
+import {Row, Col, List, Button, Tooltip, Toast, Typography} from "@douyinfe/semi-ui";
 import "../stylesheets/wallpaperComponent.css"
 import WallpaperCardComponent from "./wallpaperCardComponent";
 import {pexelsCurateRequestUrl, pexelsAuth, wallpaperPageSize} from "../typescripts/publicConstants";
 import {ImageData} from "../typescripts/publicInterface"
 import {httpRequest} from "../typescripts/publicFunctions";
+import {IconLink} from "@douyinfe/semi-icons";
 const {Title} = Typography;
 
-type propType = {}
+type propType = {
+    themeColor: string,
+}
 
 type stateType = {
     imageData: ImageData[],
@@ -62,6 +65,10 @@ class PexelsComponent extends React.Component {
             })
     }
 
+    linkButtonOnClick() {
+        window.open("https://www.pexels.com/zh-cn/");
+    }
+
     componentWillReceiveProps(nextProps: any, prevProps: any) {
         if (nextProps.display !== prevProps.display) {
             this.setState({
@@ -80,8 +87,23 @@ class PexelsComponent extends React.Component {
     render() {
         return (
             <List
-                style={{width: "660px"}}
-                header={<Title heading={3}>Pexels</Title>}
+                className={"listStyle"}
+                header={
+                    <Row>
+                        <Col span={12}>
+                            <Title heading={3}>Pexels</Title>
+                        </Col>
+                        <Col span={12} style={{textAlign: "right"}}>
+                            <Tooltip content={"前往 Pexels"} position={"left"}>
+                                <Button theme={"borderless"} icon={<IconLink />}
+                                        style={{color: "rgba(var(--semi-grey-9), 1)", backgroundColor: this.props.themeColor}}
+                                        onClick={this.linkButtonOnClick.bind(this)}
+                                >
+                                </Button>
+                            </Tooltip>
+                        </Col>
+                    </Row>
+                }
                 size="small"
                 bordered
             >

@@ -13,24 +13,22 @@ import {
     Button,
     Space,
     Select
-} from '@douyinfe/semi-ui';
-import {IconSearch, IconHomeStroked, IconDownloadStroked} from "@douyinfe/semi-icons";
+} from "@douyinfe/semi-ui";
+import {IconSearch, IconHomeStroked, IconDownloadStroked, IconLoading} from "@douyinfe/semi-icons";
 import "../stylesheets/searchComponent.css"
-import Text from "@douyinfe/semi-ui/lib/es/typography/text";
 import {
     unsplashSearchRequestUrl,
     unsplashClientId,
-    unsplashVisitUrl,
     pexelsSearchRequestUrl,
     pexelsAuth,
     pixabayRequestUrl,
     pixabayKey,
-    searchPageSize,
+    listPageSize,
 } from "../typescripts/publicConstants";
-import {getFontColor, httpRequest, isEmptyString} from "../typescripts/publicFunctions";
+import {getFontColor, httpRequest, isEmptyString, setWallpaper} from "../typescripts/publicFunctions";
 import {ImageData} from "../typescripts/publicInterface"
 
-const {Title} = Typography;
+const {Title, Text} = Typography;
 
 type propType = {
     display: string,
@@ -74,7 +72,7 @@ class SearchComponent extends React.Component {
             "orientation": "landscape",
             "content_filter": "high",
             "page": this.state.currentPage,
-            "per_page": searchPageSize
+            "per_page": listPageSize
         }
         this.setState({
             loading: true,
@@ -132,7 +130,7 @@ class SearchComponent extends React.Component {
             "query": this.state.searchValue,
             "orientation": "landscape",
             "page": this.state.currentPage,
-            "per_page":  searchPageSize,
+            "per_page":  listPageSize,
         }
         this.setState({
             loading: true,
@@ -192,7 +190,7 @@ class SearchComponent extends React.Component {
             "image_type": "photo",
             "orientation": "vertical",
             "page": this.state.currentPage,
-            "per_page":  searchPageSize,
+            "per_page":  listPageSize,
             "order": "latest",
             "safesearch": "true",
         }
@@ -273,19 +271,15 @@ class SearchComponent extends React.Component {
     }
 
     homeButtonClick(item: any) {
-        if ( isEmptyString(item.userUrl) ) {
-            Toast.error("无跳转链接");
-        } else {
-            window.open(item.userUrl + unsplashVisitUrl);
-        }
-    }
-
-    downloadButtonClick(item: any) {
         if ( isEmptyString(item.imageUrl) ) {
-            Toast.error("无下载链接");
+            Toast.error("无跳转链接");
         } else {
             window.open(item.imageUrl);
         }
+    }
+
+    setWallpaperButtonClick(item: any) {
+        setWallpaper(item);
     }
 
     onPageChange( currentPage: number ) {
@@ -320,7 +314,7 @@ class SearchComponent extends React.Component {
     render() {
         return (
             <List
-                style={{width: "660px", display: this.props.display}}
+                style={{display: this.props.display}}
                 loading={this.state.loading}
                 size="small"
                 bordered
@@ -334,7 +328,7 @@ class SearchComponent extends React.Component {
                                    onEnterPress={this.inputOnEnterPress.bind(this)}></Input>
                         </Col>
                         <Col span={5} style={{textAlign: "right"}}>
-                            <Select className="todaySelect" defaultValue="popular" value={this.state.searchSource} onChange={this.selectOnChange.bind(this)}>
+                            <Select defaultValue="Unspalsh" value={this.state.searchSource} onChange={this.selectOnChange.bind(this)}>
                                 <Select.Option value="Unspalsh">Unspalsh</Select.Option>
                                 <Select.Option value="Pexels">Pexels</Select.Option>
                                 <Select.Option value="Pixabay">Pixabay</Select.Option>
@@ -349,13 +343,15 @@ class SearchComponent extends React.Component {
                         header={
                             <ImagePreview>
                                 <Image width={80} height={80} src={item.displayUrl} preview={true}
-                                       placeholder={<Image src={item.previewUrl} preview={false}/>}
+                                       // placeholder={<Image width={80} height={80}
+                                       //                     src={item.previewUrl} preview={false}/>}
+                                       placeholder={<IconLoading />}
                                        className={"wallpaperFadeIn"}
                                 />
                             </ImagePreview>
                         }
                         main={
-                            <Space align='start' vertical>
+                            <Space vertical align={"start"}>
                                 <Title heading={5} className="searchTitleP"
                                        style={{color: getFontColor(item.color)}}>
                                     {"摄影师：" + item.userName}
@@ -366,20 +362,20 @@ class SearchComponent extends React.Component {
                             </Space>
                         }
                         extra={
-                            <ButtonGroup>
-                                <Button theme={'borderless'} icon={<IconHomeStroked/>}
+                            <Space vertical align={"start"}>
+                                <Button theme={"borderless"} icon={<IconHomeStroked/>}
                                         style={{color: getFontColor(item.color)}}
-                                        onClick={this.homeButtonClick.bind(this, item)}>主页</Button>
-                                <Button theme={'borderless'} icon={<IconDownloadStroked/>}
+                                        onClick={this.homeButtonClick.bind(this, item)}>图片主页</Button>
+                                <Button theme={"borderless"} icon={<IconDownloadStroked/>}
                                         style={{color: getFontColor(item.color)}}
-                                        onClick={this.downloadButtonClick.bind(this, item)}>下载</Button>
-                            </ButtonGroup>
+                                        onClick={this.setWallpaperButtonClick.bind(this, item)}>设为桌面壁纸</Button>
+                            </Space>
                         }
                     />
                 )}
                 footer={
                     <Pagination size="default" className={"searchPagination"} style={{display: this.state.paginationDisplay}}
-                                pageSize={searchPageSize} total={this.state.totalCounts} currentPage={this.state.currentPage}
+                                pageSize={listPageSize} total={this.state.totalCounts} currentPage={this.state.currentPage}
                                 onChange={currentPage => this.onPageChange(currentPage)}
                     />
                 }

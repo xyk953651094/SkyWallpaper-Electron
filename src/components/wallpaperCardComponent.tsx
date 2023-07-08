@@ -1,8 +1,8 @@
 import React from "react";
 import {Row, Empty, CardGroup, Card, ImagePreview, Image, ButtonGroup, Button, Toast} from "@douyinfe/semi-ui";
-import {IconHomeStroked, IconDownloadStroked} from "@douyinfe/semi-icons";
+import {IconHomeStroked, IconDownloadStroked, IconLoading} from "@douyinfe/semi-icons";
 import "../stylesheets/wallpaperComponent.css"
-import {getFontColor, getJsonLength, isEmptyString} from "../typescripts/publicFunctions"
+import {getFontColor, getJsonLength, isEmptyString, setWallpaper} from "../typescripts/publicFunctions"
 import {ImageData} from "../typescripts/publicInterface";
 
 type propType = {
@@ -34,16 +34,13 @@ class WallpaperCardComponent extends React.Component {
         if ( this.props.imageData[index].userUrl && isEmptyString(this.props.imageData[index].userUrl) ) {
             Toast.error("无跳转链接");
         } else {
-            window.open(this.props.imageData[index].userUrl);
+            window.open(this.props.imageData[index].imageUrl);
+            // window.open(this.props.imageData[index].userUrl);
         }
     }
 
-    downloadButtonClick(index: number) {
-        if ( isEmptyString(this.props.imageData[index].imageUrl) ) {
-            Toast.error("无下载链接");
-        } else {
-            window.open(this.props.imageData[index].imageUrl);
-        }
+    setWallpaperButtonClick(index: number) {
+        setWallpaper(this.props.imageData[index]);
     }
 
     componentWillReceiveProps(nextProps: any, prevProps: any) {
@@ -74,8 +71,9 @@ class WallpaperCardComponent extends React.Component {
                                     <ImagePreview>
                                         <Image width={this.state.imageSideLength} height={this.state.imageSideLength}
                                                src={value[index].displayUrl} preview={true}
-                                               placeholder={<Image width={this.state.imageSideLength} height={this.state.imageSideLength}
-                                                                   src={value[index].previewUrl} preview={false}/>}
+                                               // placeholder={<Image width={this.state.imageSideLength} height={this.state.imageSideLength}
+                                               //                     src={value[index].previewUrl} preview={false}/>}
+                                               placeholder={<IconLoading />}
                                                className={"wallpaperFadeIn"}
                                         />
                                     </ImagePreview>
@@ -87,7 +85,7 @@ class WallpaperCardComponent extends React.Component {
                                                 onClick={this.homeButtonClick.bind(this, index)}>主页</Button>
                                         <Button icon={<IconDownloadStroked/>}
                                                 style={{color: getFontColor(value[index].color)}}
-                                                onClick={this.downloadButtonClick.bind(this, index)}>下载</Button>
+                                                onClick={this.setWallpaperButtonClick.bind(this, index)}>设置壁纸</Button>
                                     </ButtonGroup>
                                 ]}
                             >

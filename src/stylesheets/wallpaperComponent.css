@@ -1,19 +1,15 @@
-.listHeaderTitle{
+.listStyle {
+    width: 100%;
+    max-width: fit-content;
+    border-radius: var(--semi-border-radius-medium)
+}
+
+.listHeaderTitle {
     width: 100px;
     display: inline-block;
 }
 .listHeaderButtonGroup {
     display: inline-block;
-}
-
-.listHeaderButtonGroup > button {
-    color: rgba(var(--semi-grey-9), 1) !important;
-}
-
-.overflowScroll {
-    word-break: keep-all;
-    white-space: nowrap;
-    overflow: scroll;
 }
 
 .semi-card-body {

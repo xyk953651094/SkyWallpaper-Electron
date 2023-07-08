@@ -1,5 +1,5 @@
 import React from "react";
-import {List, Toast, Typography, ButtonGroup, Button, Space} from '@douyinfe/semi-ui';
+import {Row, Col, Divider, List, Toast, Typography, ButtonGroup, Button, Tooltip} from "@douyinfe/semi-ui";
 import "../stylesheets/wallpaperComponent.css"
 import WallpaperCardComponent from "./wallpaperCardComponent";
 import {
@@ -11,14 +11,19 @@ import {
 } from "../typescripts/publicConstants";
 import {getJsonLength, httpRequest} from "../typescripts/publicFunctions";
 import {ImageData} from "../typescripts/publicInterface"
+import {IconLink} from "@douyinfe/semi-icons";
 
 const {Title} = Typography;
+const $ = require("jquery");
 
-type propType = {}
+type propType = {
+    themeColor: string,
+}
 
 type stateType = {
     imageData: ImageData[],
     imageTopics: any,
+    selectedTopics: number,
     todayRequestData: any,
     topicRequestData: any,
 }
@@ -34,6 +39,7 @@ class UnsplashComponent extends React.Component {
         this.state = {
             imageData: [],
             imageTopics: unsplashImageTopics,
+            selectedTopics: 0,
             todayRequestData: {
                 "client_id": unsplashClientId,
                 "per_page": wallpaperPageSize,
@@ -82,10 +88,19 @@ class UnsplashComponent extends React.Component {
             })
     }
 
+    linkButtonOnClick() {
+        window.open("https://unsplash.com/");
+    }
+
     topicButtonClick(index: number, value: string) {
+        const unsplashButtonGroup = $(".unsplashButtonGroup").children("button");
+        unsplashButtonGroup.css({"background-color": "transparent"});
+        unsplashButtonGroup.eq(index).css({"background-color": this.props.themeColor});
+
         if(value === "popular" || value === "latest") {
             let data = Object.assign({}, this.state.todayRequestData, {order_by: value});
             this.setState({
+                selectedTopics: index,
                 todayRequestData: data,
                 imageData: [], // 重置图片数据为空
             }, () => {
@@ -95,6 +110,7 @@ class UnsplashComponent extends React.Component {
         else {
             let data = Object.assign({}, this.state.topicRequestData, {topics: value});
             this.setState({
+                selectedTopics: index,
                 topicRequestData: data,
                 imageData: [], // 重置图片数据为空
             }, () => {
@@ -106,38 +122,55 @@ class UnsplashComponent extends React.Component {
     }
 
     componentWillReceiveProps(nextProps: any, prevProps: any) {
-        if (nextProps.display !== prevProps.display) {
-            this.setState({
-                display: nextProps.display,
-            });
+        if (nextProps.themeColor !== prevProps.themeColor) {
+            const unsplashButtonGroup = $(".unsplashButtonGroup").children("button");
+            unsplashButtonGroup.css({"background-color": "transparent"});
+            unsplashButtonGroup.eq(this.state.selectedTopics).css({"background-color": this.props.themeColor});
         }
     }
 
     componentDidMount() {
+        const unsplashButtonGroup = $(".unsplashButtonGroup").children("button");
+        unsplashButtonGroup.eq(this.state.selectedTopics).css({"background-color": this.props.themeColor});
         this.getImages(unsplashTodayRequestUrl, this.state.todayRequestData);  // 默认获取"热门"图片
     }
 
     render() {
         return (
             <List
-                emptyContent = "图片加载中，请稍后"
-                style={{width: "660px"}}
+                className={"listStyle"}
                 header={
-                    <Space>
-                        <div className={"listHeaderTitle"}>
-                            <Title heading={3}>Unsplash</Title>
-                        </div>
-                        <ButtonGroup theme={"borderless"} className={"listHeaderButtonGroup overflowScroll"} style={{width: "530px"}}>
-                            {
-                                new Array(getJsonLength(this.state.imageTopics)).fill(this.state.imageTopics).map((value, index) => (
-                                    <Button key={index}
-                                            onClick={this.topicButtonClick.bind(this, index, Object.keys(value)[index])}>
-                                        {value[Object.keys(value)[index]]}
+                    <Row>
+                        <Row>
+                            <Col span={12}>
+                                <Title heading={3}>Unsplash</Title>
+                            </Col>
+                            <Col span={12} style={{textAlign: "right"}}>
+                                <Tooltip content={"前往 Unsplash"} position={"left"}>
+                                    <Button theme={"borderless"} icon={<IconLink />}
+                                            style={{color: "rgba(var(--semi-grey-9), 1)", backgroundColor: this.props.themeColor}}
+                                            onClick={this.linkButtonOnClick.bind(this)}
+                                    >
                                     </Button>
-                                ))
-                            }
-                        </ButtonGroup>
-                    </Space>
+                                </Tooltip>
+                            </Col>
+                        </Row>
+                        <Divider margin={"5px"}/>
+                        <Row style={{overflow: "scroll", marginTop: "5px"}}>
+                            <ButtonGroup theme={"borderless"} className={"listHeaderButtonGroup unsplashButtonGroup"}
+                                style={{width: "1200px"}}
+                            >
+                                {
+                                    new Array(getJsonLength(this.state.imageTopics)).fill(this.state.imageTopics).map((value, index) => (
+                                        <Button key={index} type="tertiary"
+                                                onClick={this.topicButtonClick.bind(this, index, Object.keys(value)[index])}>
+                                            {value[Object.keys(value)[index]]}
+                                        </Button>
+                                    ))
+                                }
+                            </ButtonGroup>
+                        </Row>
+                    </Row>
                 }
                 size="small"
                 bordered

@@ -1,5 +1,5 @@
 import React from "react";
-import {Row, Space} from '@douyinfe/semi-ui';
+import {Row, Space} from "@douyinfe/semi-ui";
 import "../stylesheets/wallpaperComponent.css"
 import UnsplashComponent from "./unsplashComponent";
 import PixabayComponent from "./pixabayComponent";
@@ -8,6 +8,7 @@ import BingComponent from "./bingComponent";
 
 type propType = {
     display: string,
+    themeColor: string,
 }
 
 type stateType = {}
@@ -33,14 +34,12 @@ class WallpaperComponent extends React.Component {
 
     render() {
         return (
-            <Row style={{display: this.props.display}}>
-                <Space spacing={"loose"} vertical align={"start"}>
-                    <BingComponent />
-                    <UnsplashComponent />
-                    <PexelsComponent />
-                    <PixabayComponent />
-                </Space>
-            </Row>
+            <Space spacing={"loose"} vertical align={"start"} style={{display: this.props.display}}>
+                <BingComponent themeColor={this.props.themeColor}/>
+                <UnsplashComponent themeColor={this.props.themeColor}/>
+                <PexelsComponent themeColor={this.props.themeColor}/>
+                <PixabayComponent themeColor={this.props.themeColor}/>
+            </Space>
         )
     }
 }
