@@ -1,5 +1,7 @@
-# SkyWallpaper based React Electron
+# 云开壁纸 based React Electron
 ## 声明
+* 博客：https://xyk953651094.blogspot.com
+* 捐赠：https://afdian.net/a/xyk953651094
 * 图片由第三方网站提供，图片内容不代表作者任何观点。  
 * 本作品由作者个人出于学习目的开发，由于成本原因，难以保证不同型号设备下的最终品质，后续尽量完善。
 * [JetBrains Open Source Support](https://jb.gg/OpenSourceSupport "跳转至 JetBrains Open Source Support")
@@ -19,7 +21,7 @@
 * 正在开发中。
 
 ## 问题
-* Pexels 图片加载不出来：关闭广告拦截程序。
+* Pexels 图片加载不出来：请尝试关闭桌面或浏览器的广告拦截程序。
 
 ## 效果展示（正在开发中，不代表最终效果）
 <img width="930" alt="截屏2023-03-20 20 51 32" src="https://user-images.githubusercontent.com/28004442/226344073-b00b63fb-5c99-40d6-a74a-d8758b3510d4.png">
