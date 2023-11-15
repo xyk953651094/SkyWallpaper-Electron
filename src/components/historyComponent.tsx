@@ -6,11 +6,10 @@ import {
     Toast,
     ImagePreview,
     Image,
-    ButtonGroup,
     Button,
-    Space,
+    Space, Spin,
 } from "@douyinfe/semi-ui";
-import {IconDelete, IconHomeStroked, IconDownloadStroked, IconLoading} from "@douyinfe/semi-icons";
+import {IconDelete, IconHomeStroked, IconImage} from "@douyinfe/semi-icons";
 import "../stylesheets/searchComponent.css"
 import {historyMaxSize} from "../typescripts/publicConstants";
 import {getFontColor, isEmptyString, setWallpaper} from "../typescripts/publicFunctions";
@@ -100,8 +99,7 @@ class HistoryComponent extends React.Component {
                         </Col>
                         <Col span={12} style={{textAlign: "right"}}>
                             <Space spacing={"loose"}>
-                                <Button theme={"borderless"} icon={<IconDelete />}
-                                        style={{color: "rgba(var(--semi-grey-9), 1)"}}
+                                <Button icon={<IconDelete />} type='danger'
                                         onClick={this.cleanHistoryButtonOnClick.bind(this)}
                                 >
                                     清空历史记录
@@ -116,11 +114,9 @@ class HistoryComponent extends React.Component {
                     <List.Item
                         style={{backgroundColor: item.color, padding: "10px 10px 5px 10px"}}
                         header={
-                            <ImagePreview>
+                            <ImagePreview disableDownload={true}>
                                 <Image width={80} height={80} src={item.displayUrl} preview={true}
-                                       // placeholder={<Image width={80} height={80}
-                                       //                     src={item.previewUrl} preview={false}/>}
-                                       placeholder={<IconLoading />}
+                                       placeholder={<Spin />}
                                        className={"wallpaperFadeIn"}
                                 />
                             </ImagePreview>
@@ -141,9 +137,9 @@ class HistoryComponent extends React.Component {
                                 <Button theme={"borderless"} icon={<IconHomeStroked/>}
                                         style={{color: getFontColor(item.color)}}
                                         onClick={this.homeButtonClick.bind(this, item)}>图片主页</Button>
-                                <Button theme={"borderless"} icon={<IconDownloadStroked/>}
+                                <Button theme={"borderless"} icon={<IconImage/>}
                                         style={{color: getFontColor(item.color)}}
-                                        onClick={this.setWallpaperButtonClick.bind(this, item)}>设置壁纸</Button>
+                                        onClick={this.setWallpaperButtonClick.bind(this, item)}>设为壁纸</Button>
                             </Space>
                         }
                     />

@@ -9,12 +9,11 @@ import {
     Toast,
     ImagePreview,
     Image,
-    ButtonGroup,
     Button,
     Space,
-    Select
+    Select, Spin
 } from "@douyinfe/semi-ui";
-import {IconSearch, IconHomeStroked, IconDownloadStroked, IconLoading} from "@douyinfe/semi-icons";
+import {IconSearch, IconHomeStroked, IconImage} from "@douyinfe/semi-icons";
 import "../stylesheets/searchComponent.css"
 import {
     unsplashSearchRequestUrl,
@@ -341,11 +340,9 @@ class SearchComponent extends React.Component {
                     <List.Item
                         style={{backgroundColor: item.color, padding: "10px 10px 5px 10px"}}
                         header={
-                            <ImagePreview>
+                            <ImagePreview disableDownload={true}>
                                 <Image width={80} height={80} src={item.displayUrl} preview={true}
-                                       // placeholder={<Image width={80} height={80}
-                                       //                     src={item.previewUrl} preview={false}/>}
-                                       placeholder={<IconLoading />}
+                                       placeholder={<Spin />}
                                        className={"wallpaperFadeIn"}
                                 />
                             </ImagePreview>
@@ -366,9 +363,9 @@ class SearchComponent extends React.Component {
                                 <Button theme={"borderless"} icon={<IconHomeStroked/>}
                                         style={{color: getFontColor(item.color)}}
                                         onClick={this.homeButtonClick.bind(this, item)}>图片主页</Button>
-                                <Button theme={"borderless"} icon={<IconDownloadStroked/>}
+                                <Button theme={"borderless"} icon={<IconImage/>}
                                         style={{color: getFontColor(item.color)}}
-                                        onClick={this.setWallpaperButtonClick.bind(this, item)}>设为桌面壁纸</Button>
+                                        onClick={this.setWallpaperButtonClick.bind(this, item)}>设为壁纸</Button>
                             </Space>
                         }
                     />

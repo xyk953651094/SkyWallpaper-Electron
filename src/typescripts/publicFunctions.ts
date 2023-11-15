@@ -36,12 +36,10 @@ export function setWallpaper(currentImage: ImageData) {
     let sameIndex: number = -1;
     if(tempLocalStorage) {
         tempHistory = JSON.parse(tempLocalStorage);
-        console.log(tempHistory);
 
         // 超过数量上限时删除最早记录
         if(tempHistory.length === historyMaxSize) {
             tempHistory.shift();
-            console.log(tempHistory);
         }
 
         // 查重
@@ -49,22 +47,19 @@ export function setWallpaper(currentImage: ImageData) {
             if( currentImage.imageUrl === tempHistory[i].imageUrl){
                 hasSame = true;
                 sameIndex = Number(i);
-                // console.log(sameIndex);
             }
         }
 
         // 删除重复的数据然后重新 push 一个新的
         if(hasSame) {
             tempHistory.splice(sameIndex, 1);
-            // console.log(tempHistory);
         }
     }
 
     tempHistory.push(currentImage);
-    console.log(tempHistory);
     localStorage.setItem("history", JSON.stringify(tempHistory));
 
-    // TODO: 设置壁纸
+    // TODO：根据不同操作系统设置壁纸
     Toast.success("设置成功");
 }
 

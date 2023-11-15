@@ -1,5 +1,5 @@
 import React from "react";
-import {Row, Col, Divider, List, Toast, Typography, ButtonGroup, Button, Tooltip} from "@douyinfe/semi-ui";
+import {Row, Col, Divider, List, Toast, Typography, ButtonGroup, Button} from "@douyinfe/semi-ui";
 import "../stylesheets/wallpaperComponent.css"
 import WallpaperCardComponent from "./wallpaperCardComponent";
 import {
@@ -146,13 +146,12 @@ class UnsplashComponent extends React.Component {
                                 <Title heading={3}>Unsplash</Title>
                             </Col>
                             <Col span={12} style={{textAlign: "right"}}>
-                                <Tooltip content={"前往 Unsplash"} position={"left"}>
-                                    <Button theme={"borderless"} icon={<IconLink />}
-                                            style={{color: "rgba(var(--semi-grey-9), 1)", backgroundColor: this.props.themeColor}}
-                                            onClick={this.linkButtonOnClick.bind(this)}
-                                    >
-                                    </Button>
-                                </Tooltip>
+                                <Button theme={"borderless"} icon={<IconLink />}
+                                        style={{color: "rgba(var(--semi-grey-9), 1)", backgroundColor: this.props.themeColor}}
+                                        onClick={this.linkButtonOnClick.bind(this)}
+                                >
+                                    {"前往 Unsplash"}
+                                </Button>
                             </Col>
                         </Row>
                         <Divider margin={"5px"}/>

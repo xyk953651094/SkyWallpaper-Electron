@@ -1,5 +1,5 @@
 import React from "react";
-import {Row, Col, List, Button, Tooltip, Toast, Typography} from "@douyinfe/semi-ui";
+import {Row, Col, List, Button, Toast, Typography} from "@douyinfe/semi-ui";
 import "../stylesheets/wallpaperComponent.css"
 import WallpaperCardComponent from "./wallpaperCardComponent";
 import {pexelsCurateRequestUrl, pexelsAuth, wallpaperPageSize} from "../typescripts/publicConstants";
@@ -94,13 +94,12 @@ class PexelsComponent extends React.Component {
                             <Title heading={3}>Pexels</Title>
                         </Col>
                         <Col span={12} style={{textAlign: "right"}}>
-                            <Tooltip content={"前往 Pexels"} position={"left"}>
-                                <Button theme={"borderless"} icon={<IconLink />}
-                                        style={{color: "rgba(var(--semi-grey-9), 1)", backgroundColor: this.props.themeColor}}
-                                        onClick={this.linkButtonOnClick.bind(this)}
-                                >
-                                </Button>
-                            </Tooltip>
+                            <Button theme={"borderless"} icon={<IconLink />}
+                                    style={{color: "rgba(var(--semi-grey-9), 1)", backgroundColor: this.props.themeColor}}
+                                    onClick={this.linkButtonOnClick.bind(this)}
+                            >
+                                {"前往 Pexels"}
+                            </Button>
                         </Col>
                     </Row>
                 }

@@ -1,5 +1,5 @@
 import React from "react";
-import {Row, Col, List, Space, Image, Toast, Typography, Button, Tooltip} from "@douyinfe/semi-ui";
+import {Row, Col, List, Space, Image, Toast, Typography, Button, ImagePreview} from "@douyinfe/semi-ui";
 import {IconLink, IconInfoCircle, IconMapPin} from "@douyinfe/semi-icons";
 import "../stylesheets/wallpaperComponent.css"
 import {bingRequestUrl, defaultImageData} from "../typescripts/publicConstants";
@@ -44,7 +44,6 @@ class BingComponent extends React.Component {
                     description: resultData.images[0].title,
                     color: "rgba(var(--semi-grey-0), 1)",
                 };
-                console.log(tempImageData)
                 tempThis.setState({
                     imageData: tempImageData
                 });
@@ -81,16 +80,15 @@ class BingComponent extends React.Component {
                 header={
                     <Row>
                         <Col span={12}>
-                            <Title heading={3}>Bing</Title>
+                            <Title heading={3}>Microsoft Bing</Title>
                         </Col>
                         <Col span={12} style={{textAlign: "right"}}>
-                            <Tooltip content={"前往 Bing"} position={"left"}>
-                                <Button theme={"borderless"} icon={<IconLink />}
-                                        style={{color: "rgba(var(--semi-grey-9), 1)", backgroundColor: this.props.themeColor}}
-                                        onClick={this.linkButtonOnClick.bind(this)}
-                                >
-                                </Button>
-                            </Tooltip>
+                            <Button theme={"borderless"} icon={<IconLink />}
+                                    style={{color: "rgba(var(--semi-grey-9), 1)", backgroundColor: this.props.themeColor}}
+                                    onClick={this.linkButtonOnClick.bind(this)}
+                            >
+                                {"前往 Bing"}
+                            </Button>
                         </Col>
                     </Row>
                 }
@@ -100,7 +98,7 @@ class BingComponent extends React.Component {
                 <List.Item
                     main={
                         <Space vertical align={"start"}>
-                            <Image width={"100%"} src={this.state.imageData.displayUrl}></Image>
+                            <Image width={"100%"} src={this.state.imageData.displayUrl} preview={false}></Image>
                             <Space align={"start"}>
                                 <IconInfoCircle style={{color: this.props.themeColor}}/>
                                 <Text>{this.state.imageData.description}</Text>

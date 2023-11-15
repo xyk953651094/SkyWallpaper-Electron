@@ -87,7 +87,7 @@ class App extends React.Component {
                         style={{ maxWidth: 220, height: '100%' }}
                         header={{
                             logo: <img src="//lf1-cdn-tos.bytescm.com/obj/ttfe/ies/semi/webcast_logo.svg" />,
-                            text: 'Sky 每日壁纸',
+                            text: '云开壁纸',
                         }}
                         items={[
                             { itemKey: 'Wallpaper', text: '推荐壁纸', icon: <IconImage size="large" /> },

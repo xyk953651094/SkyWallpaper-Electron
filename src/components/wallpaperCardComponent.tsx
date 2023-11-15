@@ -1,6 +1,17 @@
 import React from "react";
-import {Row, Empty, CardGroup, Card, ImagePreview, Image, ButtonGroup, Button, Toast} from "@douyinfe/semi-ui";
-import {IconHomeStroked, IconDownloadStroked, IconLoading} from "@douyinfe/semi-icons";
+import {
+    Row,
+    Empty,
+    CardGroup,
+    Card,
+    ImagePreview,
+    Image,
+    ButtonGroup,
+    Button,
+    Toast,
+    Spin, Space
+} from "@douyinfe/semi-ui";
+import {IconHomeStroked, IconImage} from "@douyinfe/semi-icons";
 import "../stylesheets/wallpaperComponent.css"
 import {getFontColor, getJsonLength, isEmptyString, setWallpaper} from "../typescripts/publicFunctions"
 import {ImageData} from "../typescripts/publicInterface";
@@ -68,25 +79,23 @@ class WallpaperCardComponent extends React.Component {
                                     display: "display: inline-block"
                                 }}
                                 cover={
-                                    <ImagePreview>
+                                    <ImagePreview disableDownload={true}>
                                         <Image width={this.state.imageSideLength} height={this.state.imageSideLength}
                                                src={value[index].displayUrl} preview={true}
-                                               // placeholder={<Image width={this.state.imageSideLength} height={this.state.imageSideLength}
-                                               //                     src={value[index].previewUrl} preview={false}/>}
-                                               placeholder={<IconLoading />}
+                                               placeholder={<Spin />}
                                                className={"wallpaperFadeIn"}
                                         />
                                     </ImagePreview>
                                 }
                                 actions={[
-                                    <ButtonGroup size="small" theme={"borderless"}>
-                                        <Button icon={<IconHomeStroked/>}
+                                    <Space>
+                                        <Button theme={"borderless"} icon={<IconHomeStroked/>} size={"small"}
                                                 style={{color: getFontColor(value[index].color)}}
                                                 onClick={this.homeButtonClick.bind(this, index)}>主页</Button>
-                                        <Button icon={<IconDownloadStroked/>}
+                                        <Button theme={"borderless"} icon={<IconImage/>} size={"small"}
                                                 style={{color: getFontColor(value[index].color)}}
-                                                onClick={this.setWallpaperButtonClick.bind(this, index)}>设置壁纸</Button>
-                                    </ButtonGroup>
+                                                onClick={this.setWallpaperButtonClick.bind(this, index)}>壁纸</Button>
+                                    </Space>
                                 ]}
                             >
                             </Card>

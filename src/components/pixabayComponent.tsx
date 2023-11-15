@@ -8,7 +8,6 @@ import {
     Select,
     ButtonGroup,
     Button,
-    Tooltip,
     Space,
     Divider
 } from "@douyinfe/semi-ui";
@@ -158,13 +157,12 @@ class PixabayComponent extends React.Component {
                             </Space>
                         </Col>
                         <Col  span={12} style={{textAlign: "right"}}>
-                            <Tooltip content={"前往 Pixabay"} position={"top"}>
-                                <Button theme={"borderless"} icon={<IconLink />}
-                                        style={{color: "rgba(var(--semi-grey-9), 1)", backgroundColor: this.props.themeColor}}
-                                        onClick={this.linkButtonOnClick.bind(this)}
-                                >
-                                </Button>
-                            </Tooltip>
+                            <Button theme={"borderless"} icon={<IconLink />}
+                                    style={{color: "rgba(var(--semi-grey-9), 1)", backgroundColor: this.props.themeColor}}
+                                    onClick={this.linkButtonOnClick.bind(this)}
+                            >
+                                {"前往 Pixabay"}
+                            </Button>
                         </Col>
                     </Row>
                     <Divider margin={"5px"}/>
