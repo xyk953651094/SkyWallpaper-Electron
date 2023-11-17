@@ -1,6 +1,6 @@
-import {ImageData} from "./publicInterface";
+import {ImageData, Preference} from "./publicInterface";
 import {Toast} from "@douyinfe/semi-ui";
-import {historyMaxSize} from "./publicConstants";
+import {defaultPreference, historyMaxSize} from "./publicConstants";
 
 const $ = require("jquery");
 
@@ -63,6 +63,13 @@ export function setWallpaper(currentImage: ImageData) {
     Toast.success("设置成功");
 }
 
+// 根据图片背景颜色获取元素反色效果
+export function getReverseColor(color: string) {
+    color = "0x" + color.replace("#", '');
+    let newColor = "000000" + (0xFFFFFF - parseInt(color)).toString(16);
+    return "#" + newColor.substring(newColor.length - 6, newColor.length);
+}
+
 // 根据图片背景颜色改变字体颜色效果
 export function getFontColor(color: string) {
     if(color === "rgba(var(--semi-grey-0), 1)") {
@@ -95,12 +102,44 @@ export function getJsonLength(jsonData: JSON) {
     return length;
 }
 
-// 自动切换亮暗色模式
+// 补全设置数据
+export function fixPreference(preference: Preference) {
+    let isFixed = false;
+    if (!preference.openAtLogin) {
+        preference.openAtLogin = defaultPreference.openAtLogin;
+        isFixed = true;
+    }
+    if (!preference.colorMode) {
+        preference.colorMode = defaultPreference.colorMode;
+        isFixed = true;
+    }
+    if (!preference.changeImageTime) {
+        preference.changeImageTime = defaultPreference.changeImageTime;
+        isFixed = true;
+    }
+
+    if (isFixed) {
+        localStorage.setItem("preference", JSON.stringify(preference));  // 重新保存设置
+    }
+    return preference;
+}
+
+export function getPreferenceStorage() {
+    let tempPreference = localStorage.getItem("preference");
+    if (tempPreference === null || tempPreference.length === 0) {
+        localStorage.setItem("preference", JSON.stringify(defaultPreference));
+        return defaultPreference;
+    } else {
+        return fixPreference(JSON.parse(tempPreference));  // 检查是否缺少数据
+    }
+}
+
+// 自动亮暗模式
 export function matchMode(e: any) {
     const body = document.body;
     if (e.matches) {
-        if (!body.hasAttribute("theme-mode")) {
-            body.setAttribute("theme-mode", "dark");
+        if (!body.hasAttribute('theme-mode')) {
+            body.setAttribute('theme-mode', 'dark');
         }
     } else {
         if (body.hasAttribute('theme-mode')) {

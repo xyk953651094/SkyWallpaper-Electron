@@ -9,17 +9,16 @@ import {
     Button,
     Space, Spin,
 } from "@douyinfe/semi-ui";
-import {IconDelete, IconHomeStroked, IconImage} from "@douyinfe/semi-icons";
+import {IconUserCircle, IconGlobeStroke, IconInfoCircle, IconDelete, IconHomeStroked, IconImage} from "@douyinfe/semi-icons";
 import "../stylesheets/searchComponent.css"
 import {historyMaxSize} from "../typescripts/publicConstants";
-import {getFontColor, isEmptyString, setWallpaper} from "../typescripts/publicFunctions";
+import {getFontColor, getReverseColor, isEmptyString, setWallpaper} from "../typescripts/publicFunctions";
 import {ImageData} from "../typescripts/publicInterface";
+import "../stylesheets/publicStyles.css"
 
 const {Title, Text} = Typography;
 
-type propType = {
-    display: string,
-}
+type propType = {}
 
 type stateType = {
     history: ImageData[],
@@ -40,10 +39,33 @@ class HistoryComponent extends React.Component {
         };
     }
 
+    btnMouseOver(color: string, e: any) {
+        if(color !== "var(--semi-color-bg-0)") {
+            e.currentTarget.style.backgroundColor = getReverseColor(color);
+            e.currentTarget.style.color = getFontColor(getReverseColor(color));
+        }
+        else {
+            e.currentTarget.style.backgroundColor = "var(--semi-color-text-0)";
+            e.currentTarget.style.color = "var(--semi-color-bg-0)";
+        }
+    }
+
+    btnMouseOut(color: string, e: any) {
+        if(color !== "var(--semi-color-bg-0)") {
+            e.currentTarget.style.backgroundColor = "transparent";
+            e.currentTarget.style.color = getFontColor(color);
+        }
+        else {
+            e.currentTarget.style.backgroundColor = "var(--semi-color-bg-0)";
+            e.currentTarget.style.color = "var(--semi-color-text-0)";
+        }
+    }
+
     cleanHistoryButtonOnClick() {
         localStorage.setItem("history", "[]");
         this.setState({
             history: [],
+            historyLength: 0,
         })
     }
 
@@ -61,7 +83,7 @@ class HistoryComponent extends React.Component {
         if ( isEmptyString(item.imageUrl) ) {
             Toast.error("无跳转链接");
         } else {
-            window.open(item.imageUrl);
+            window.open(item.imageUrl, "_blank");
         }
     }
 
@@ -71,17 +93,6 @@ class HistoryComponent extends React.Component {
 
     onPageChange( currentPage: number ) {}
 
-    componentWillReceiveProps(nextProps: any, prevProps: any) {
-        if (nextProps.display !== prevProps.display) {
-            this.setState({
-                display: nextProps.display,
-            });
-
-            // 每次进入时刷新列表
-            this.getHistory();
-        }
-    }
-
     componentDidMount() {
         this.getHistory();
     }
@@ -89,7 +100,6 @@ class HistoryComponent extends React.Component {
     render() {
         return (
             <List
-                style={{display: this.props.display}}
                 size="small"
                 bordered
                 header={
@@ -99,12 +109,12 @@ class HistoryComponent extends React.Component {
                         </Col>
                         <Col span={12} style={{textAlign: "right"}}>
                             <Space spacing={"loose"}>
+                                <Text>{this.state.historyLength + " / " + historyMaxSize}</Text>
                                 <Button icon={<IconDelete />} type='danger'
                                         onClick={this.cleanHistoryButtonOnClick.bind(this)}
                                 >
-                                    清空历史记录
+                                    清空记录
                                 </Button>
-                                <Text>{this.state.historyLength + " / " + historyMaxSize}</Text>
                             </Space>
                         </Col>
                     </Row>
@@ -122,23 +132,42 @@ class HistoryComponent extends React.Component {
                             </ImagePreview>
                         }
                         main={
-                            <Space vertical align="start">
-                                <Title heading={5} className="searchTitleP"
-                                       style={{color: getFontColor(item.color)}}>
-                                    {"摄影师：" + item.userName}
-                                </Title>
-                                <Text className="searchDescriptionP" style={{color: getFontColor(item.color)}}>
-                                    {item.description == null ? "暂无图片描述" : "图片描述：" + item.description}
-                                </Text>
-                            </Space>
+                            <div className={"alignCenter"} style={{height: "80px"}}>
+                                <Space vertical align="start">
+                                    <Space>
+                                        <Button theme={"borderless"} icon={<IconUserCircle />}
+                                                style={{color: item.color === "var(--semi-color-bg-0)" ? "var(--semi-color-text-0)" : getFontColor(item.color), cursor: "default"}}
+                                                onMouseOver={this.btnMouseOver.bind(this, item.color)}
+                                                onMouseOut={this.btnMouseOut.bind(this, item.color)}>
+                                            {"摄影师：" + item.userName}
+                                        </Button>
+                                        <Button theme={"borderless"} icon={<IconGlobeStroke />}
+                                                style={{color: item.color === "var(--semi-color-bg-0)" ? "var(--semi-color-text-0)" : getFontColor(item.color), cursor: "default"}}
+                                                onMouseOver={this.btnMouseOver.bind(this, item.color)}
+                                                onMouseOut={this.btnMouseOut.bind(this, item.color)}>
+                                            {"来源：" + item.source}
+                                        </Button>
+                                    </Space>
+                                    <Button theme={"borderless"} icon={<IconInfoCircle />}
+                                            style={{color: item.color === "var(--semi-color-bg-0)" ? "var(--semi-color-text-0)" : getFontColor(item.color), cursor: "default"}}
+                                            onMouseOver={this.btnMouseOver.bind(this, item.color)}
+                                            onMouseOut={this.btnMouseOut.bind(this, item.color)}>
+                                        {"图片描述：" + (item.description === null ? "暂无图片描述" : item.description)}
+                                    </Button>
+                                </Space>
+                            </div>
                         }
                         extra={
                             <Space vertical align={"start"}>
                                 <Button theme={"borderless"} icon={<IconHomeStroked/>}
-                                        style={{color: getFontColor(item.color)}}
+                                        style={{color: item.color === "var(--semi-color-bg-0)" ? "var(--semi-color-text-0)" : getFontColor(item.color)}}
+                                        onMouseOver={this.btnMouseOver.bind(this, item.color)}
+                                        onMouseOut={this.btnMouseOut.bind(this, item.color)}
                                         onClick={this.homeButtonClick.bind(this, item)}>图片主页</Button>
                                 <Button theme={"borderless"} icon={<IconImage/>}
-                                        style={{color: getFontColor(item.color)}}
+                                        style={{color: item.color === "var(--semi-color-bg-0)" ? "var(--semi-color-text-0)" : getFontColor(item.color)}}
+                                        onMouseOver={this.btnMouseOver.bind(this, item.color)}
+                                        onMouseOut={this.btnMouseOut.bind(this, item.color)}
                                         onClick={this.setWallpaperButtonClick.bind(this, item)}>设为壁纸</Button>
                             </Space>
                         }

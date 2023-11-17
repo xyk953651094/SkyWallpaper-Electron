@@ -7,9 +7,11 @@ export interface ImageData {
     createTime: string,
     description: string,
     color: string,
+    source: string
 }
 
 export interface Preference {
-    displayMode: "autoMode" | "lightMode" | "darkMode",
-    themeColor: string,
+    openAtLogin: boolean,
+    colorMode: "autoSwitch" | "lightMode" | "darkMode"
+    changeImageTime: string,
 }

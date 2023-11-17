@@ -1,25 +1,24 @@
 import React from "react";
+import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
-import {matchMode} from "./typescripts/publicFunctions"
-
 import WallpaperComponent from "./components/wallpaperComponent";
 import SearchComponent from "./components/searchComponent";
 import HistoryComponent from "./components/historyComponent";
 import PreferenceComponent from "./components/preferenceComponent";
-
 import {Layout, Nav} from "@douyinfe/semi-ui";
-import {IconImage, IconSearch, IconHistory, IconSetting} from "@douyinfe/semi-icons";
+import {IconImage, IconSearch, IconHistory, IconSetting, IconHomeStroked} from "@douyinfe/semi-icons";
 import {Preference} from "./typescripts/publicInterface";
 import {defaultPreference} from "./typescripts/publicConstants";
+import HeaderComponent from "./components/headerComponent";
+import {matchMode} from "./typescripts/publicFunctions";
 
-const {Sider, Content} = Layout;
+const {Header, Sider, Content} = Layout;
 
 const $ = require("jquery");
 
 type propType = {}
 
 type stateType = {
-    navigationItemDisplay: string[],
     preference: Preference,
 }
 
@@ -32,7 +31,6 @@ class App extends React.Component {
     constructor(props: any) {
         super(props)
         this.state = {
-            navigationItemDisplay: ["flex", "none", "none", "none"],
             preference: defaultPreference,
         }
     }
@@ -44,9 +42,6 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        const navigationItems = $(".semi-navigation-list").children("li");
-        navigationItems.eq(0).css({"background-color": this.state.preference.themeColor});
-
         // 加载偏好设置
         let tempPreference = localStorage.getItem("preference");
         if(tempPreference == null || tempPreference.length === 0) {
@@ -55,90 +50,66 @@ class App extends React.Component {
         else {
             this.setState({
                 preference: JSON.parse(tempPreference),
-            }, ()=>{
-                // 切换暗色模式
-                const body = document.body;
-                if (this.state.preference.displayMode === "autoMode") {
-                    const mql = window.matchMedia("(prefers-color-scheme: dark)");
-                    mql.addListener(matchMode);
-                }
-                else if (this.state.preference.displayMode === "lightMode" ) {
-                    if (body.hasAttribute("theme-mode")) {
-                        body.removeAttribute("theme-mode");
-                    }
-                }
-                else {
-                    if (!body.hasAttribute("theme-mode")) {
-                        body.setAttribute("theme-mode", "dark");
-                    }
-                }
             })
+        }
+
+        // 自动亮暗模式
+        if(this.state.preference.colorMode === "autoSwitch") {
+            const mql = window.matchMedia('(prefers-color-scheme: dark)');
+            mql.addListener(matchMode);
         }
     }
 
     render() {
-        const navigationItems = $(".semi-navigation-list").children("li");
-
         return (
-            <Layout style={{ border: '1px solid var(--semi-color-border)' }}>
+            <Layout>
                 <Sider>
                     <Nav
-                        defaultSelectedKeys={['Home']}
+                        defaultSelectedKeys={['Wallpaper']}
                         style={{ maxWidth: 220, height: '100%' }}
                         header={{
                             logo: <img src="//lf1-cdn-tos.bytescm.com/obj/ttfe/ies/semi/webcast_logo.svg" />,
                             text: '云开壁纸',
                         }}
-                        items={[
-                            { itemKey: 'Wallpaper', text: '推荐壁纸', icon: <IconImage size="large" /> },
-                            { itemKey: 'Search', text: '搜索壁纸', icon: <IconSearch size="large" /> },
-                            { itemKey: 'History', text: '历史记录', icon: <IconHistory size="large" /> },
-                            { itemKey: 'Preference', text: '偏好设置', icon: <IconSetting size="large" /> },
-                        ]}
-                        onClick={data => {
-                            navigationItems.css({"background-color": "transparent"});
-                            switch (data.itemKey) {
-                                case "Wallpaper":  {
-                                    navigationItems.eq(0).css({"background-color": this.state.preference.themeColor});
-                                    this.setState({
-                                        navigationItemDisplay: ["flex", "none", "none", "none"]
-                                    });
-                                    break;
-                                }
-                                case "Search": {
-                                    navigationItems.eq(1).css({"background-color": this.state.preference.themeColor});
-                                    this.setState({
-                                        navigationItemDisplay: ["none", "block", "none", "none"]
-                                    });
-                                    break;
-                                }
-                                case "History":  {
-                                    navigationItems.eq(2).css({"background-color": this.state.preference.themeColor});
-                                    this.setState({
-                                        navigationItemDisplay: ["none", "none", "block", "none"]
-                                    });
-                                    break;
-                                }
-                                case "Preference": {
-                                    navigationItems.eq(3).css({"background-color": this.state.preference.themeColor});
-                                    this.setState({
-                                        navigationItemDisplay: ["none", "none", "none", "block"]
-                                    });
-                                    break;
-                                }
-                            }
+                        renderWrapper={({ itemElement, isSubNav, isInSubNav, props }) => {
+                            const routerMap = {
+                                Wallpaper: "/wallpaper",
+                                Search: "/search",
+                                History: "/history",
+                                Preference: "/preference"
+                            };
+                            return (
+                                // @ts-ignore
+                                <Link style={{ textDecoration: "none" }} to={routerMap[props.itemKey]}>
+                                    {itemElement}
+                                </Link>
+                            );
                         }}
+                        items={[
+                            { itemKey: 'Wallpaper', text: '推荐壁纸', icon: <IconImage /> },
+                            { itemKey: 'Search', text: '搜索壁纸', icon: <IconSearch /> },
+                            { itemKey: 'History', text: '历史记录', icon: <IconHistory /> },
+                            { itemKey: 'Preference', text: '偏好设置', icon: <IconSetting /> },
+                        ]}
                         footer={{
                             collapseButton: true,
                         }}
                     />
                 </Sider>
                 <Layout>
-                    <Content style={{ padding: '24px', backgroundColor: 'var(--semi-color-bg-0)',}}>
-                        <WallpaperComponent display={this.state.navigationItemDisplay[0]} themeColor={this.state.preference.themeColor}/>
-                        <SearchComponent display={this.state.navigationItemDisplay[1]}/>
-                        <HistoryComponent display={this.state.navigationItemDisplay[2]}/>
-                        <PreferenceComponent display={this.state.navigationItemDisplay[3]} getPreference={this.getPreference.bind(this)}/>
+                    <Header style={{padding: "16px 16px 8px 16px", backgroundColor: "var(--semi-color-bg-0)"}}>
+                        <HeaderComponent/>
+                    </Header>
+                    <Content style={{padding: "8px 16px 16px 16px", backgroundColor: "var(--semi-color-bg-0)"}}>
+                        <Routes>
+                            {/*<Route index element={<Home />} />*/}
+                            {/*<Route path="*" element={<NoMatch />} />*/}
+                            <Route path="/" element={<WallpaperComponent />} />
+                            <Route path="/wallpaper" element={<WallpaperComponent />} />
+                            <Route path="/search" element={<SearchComponent />} />
+                            <Route path="/history" element={<HistoryComponent />} />
+                            <Route path="/preference" element={<PreferenceComponent getPreference={this.getPreference.bind(this)}/>} />
+                        </Routes>
                     </Content>
                 </Layout>
             </Layout>

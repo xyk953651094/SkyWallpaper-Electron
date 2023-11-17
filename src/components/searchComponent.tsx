@@ -13,7 +13,14 @@ import {
     Space,
     Select, Spin
 } from "@douyinfe/semi-ui";
-import {IconSearch, IconHomeStroked, IconImage} from "@douyinfe/semi-icons";
+import {
+    IconSearch,
+    IconHomeStroked,
+    IconImage,
+    IconUserCircle,
+    IconGlobeStroke,
+    IconInfoCircle
+} from "@douyinfe/semi-icons";
 import "../stylesheets/searchComponent.css"
 import {
     unsplashSearchRequestUrl,
@@ -22,16 +29,14 @@ import {
     pexelsAuth,
     pixabayRequestUrl,
     pixabayKey,
-    listPageSize,
+    listPageSize, imageDescriptionMaxSize,
 } from "../typescripts/publicConstants";
-import {getFontColor, httpRequest, isEmptyString, setWallpaper} from "../typescripts/publicFunctions";
+import {getFontColor, getReverseColor, httpRequest, isEmptyString, setWallpaper} from "../typescripts/publicFunctions";
 import {ImageData} from "../typescripts/publicInterface"
 
 const {Title, Text} = Typography;
 
-type propType = {
-    display: string,
-}
+type propType = {}
 
 type stateType = {
     searchValue: string,
@@ -60,6 +65,28 @@ class SearchComponent extends React.Component {
             totalCounts: 0,
             paginationDisplay: "none",
         };
+    }
+
+    btnMouseOver(color: string, e: any) {
+        if(color !== "var(--semi-color-bg-0)") {
+            e.currentTarget.style.backgroundColor = getReverseColor(color);
+            e.currentTarget.style.color = getFontColor(getReverseColor(color));
+        }
+        else {
+            e.currentTarget.style.backgroundColor = "var(--semi-color-text-0)";
+            e.currentTarget.style.color = "var(--semi-color-bg-0)";
+        }
+    }
+
+    btnMouseOut(color: string, e: any) {
+        if(color !== "var(--semi-color-bg-0)") {
+            e.currentTarget.style.backgroundColor = "transparent";
+            e.currentTarget.style.color = getFontColor(color);
+        }
+        else {
+            e.currentTarget.style.backgroundColor = "var(--semi-color-bg-0)";
+            e.currentTarget.style.color = "var(--semi-color-text-0)";
+        }
     }
 
     // 获取 Unsplash 图片
@@ -96,8 +123,9 @@ class SearchComponent extends React.Component {
                                 userName: resultData.results[i].user.name,
                                 userUrl: resultData.results[i].user.links.html,
                                 createTime: resultData.results[i].created_at.split("T")[0],
-                                description: resultData.results[i].description,
+                                description: (resultData.results[i].description.length > imageDescriptionMaxSize ? resultData.results[i].description.substring(0, imageDescriptionMaxSize) + "..." : resultData.results[i].description),
                                 color: resultData.results[i].color,
+                                source: "Unsplash"
                             };
                             tempImageData.push(tempData);
                         }
@@ -154,8 +182,9 @@ class SearchComponent extends React.Component {
                                 userName: resultData.photos[i].photographer,
                                 userUrl: resultData.photos[i].photographer_url,
                                 createTime: "无拍摄时间",
-                                description: resultData.photos[i].alt,
+                                description: (resultData.photos[i].alt.length > imageDescriptionMaxSize ? resultData.photos[i].alt.substring(0, imageDescriptionMaxSize) + "..." : resultData.photos[i].alt),
                                 color: resultData.photos[i].avg_color,
+                                source: "Pexels"
                             };
                             tempImageData.push(tempData);
                         }
@@ -216,8 +245,9 @@ class SearchComponent extends React.Component {
                                 userName: resultData.hits[i].user,
                                 userUrl: resultData.hits[i].pageURL,
                                 createTime: "无拍摄时间",
-                                description: resultData.hits[i].tags,
+                                description: (resultData.hits[i].tags.length > imageDescriptionMaxSize ? resultData.hits[i].tags.substring(0, imageDescriptionMaxSize) + "..." : resultData.hits[i].tags),
                                 color: "rgba(var(--semi-grey-0), 1)",
+                                source: "Pixabay"
                             };
                             tempImageData.push(tempData);
                         }
@@ -247,6 +277,7 @@ class SearchComponent extends React.Component {
             searchResult: [],
             currentPage: 1,
         }, ()=>{
+            // this.getUnsplashImages();
             switch (this.state.searchSource) {
                 case "Unspalsh": {
                     this.getUnsplashImages();
@@ -273,7 +304,7 @@ class SearchComponent extends React.Component {
         if ( isEmptyString(item.imageUrl) ) {
             Toast.error("无跳转链接");
         } else {
-            window.open(item.imageUrl);
+            window.open(item.imageUrl, "_blank");
         }
     }
 
@@ -286,6 +317,7 @@ class SearchComponent extends React.Component {
             searchResult: [],
             currentPage: currentPage,   // 设置分页
         }, ()=>{
+            // this.getUnsplashImages();
             switch (this.state.searchSource) {
                 case "Unspalsh": {
                     this.getUnsplashImages();
@@ -302,18 +334,9 @@ class SearchComponent extends React.Component {
         })
     }
 
-    componentWillReceiveProps(nextProps: any, prevProps: any) {
-        if (nextProps.display !== prevProps.display) {
-            this.setState({
-                display: nextProps.display,
-            });
-        }
-    }
-
     render() {
         return (
             <List
-                style={{display: this.props.display}}
                 loading={this.state.loading}
                 size="small"
                 bordered
@@ -348,23 +371,42 @@ class SearchComponent extends React.Component {
                             </ImagePreview>
                         }
                         main={
-                            <Space vertical align={"start"}>
-                                <Title heading={5} className="searchTitleP"
-                                       style={{color: getFontColor(item.color)}}>
-                                    {"摄影师：" + item.userName}
-                                </Title>
-                                <Text className="searchDescriptionP" style={{color: getFontColor(item.color)}}>
-                                    {item.description == null ? "暂无图片描述" : "图片描述：" + item.description}
-                                </Text>
-                            </Space>
+                            <div className={"alignCenter"} style={{height: "80px"}}>
+                                <Space vertical align="start">
+                                    <Space>
+                                        <Button theme={"borderless"} icon={<IconUserCircle />}
+                                                style={{color: item.color === "var(--semi-color-bg-0)" ? "var(--semi-color-text-0)" : getFontColor(item.color), cursor: "default"}}
+                                                onMouseOver={this.btnMouseOver.bind(this, item.color)}
+                                                onMouseOut={this.btnMouseOut.bind(this, item.color)}>
+                                            {"摄影师：" + item.userName}
+                                        </Button>
+                                        <Button theme={"borderless"} icon={<IconGlobeStroke />}
+                                                style={{color: item.color === "var(--semi-color-bg-0)" ? "var(--semi-color-text-0)" : getFontColor(item.color), cursor: "default"}}
+                                                onMouseOver={this.btnMouseOver.bind(this, item.color)}
+                                                onMouseOut={this.btnMouseOut.bind(this, item.color)}>
+                                            {"来源：" + item.source}
+                                        </Button>
+                                    </Space>
+                                    <Button theme={"borderless"} icon={<IconInfoCircle />}
+                                            style={{color: item.color === "var(--semi-color-bg-0)" ? "var(--semi-color-text-0)" : getFontColor(item.color), cursor: "default"}}
+                                            onMouseOver={this.btnMouseOver.bind(this, item.color)}
+                                            onMouseOut={this.btnMouseOut.bind(this, item.color)}>
+                                        {"图片描述：" + (item.description === null ? "暂无图片描述" : item.description)}
+                                    </Button>
+                                </Space>
+                            </div>
                         }
                         extra={
                             <Space vertical align={"start"}>
                                 <Button theme={"borderless"} icon={<IconHomeStroked/>}
-                                        style={{color: getFontColor(item.color)}}
+                                        style={{color: item.color === "var(--semi-color-bg-0)" ? "var(--semi-color-text-0)" : getFontColor(item.color)}}
+                                        onMouseOver={this.btnMouseOver.bind(this, item.color)}
+                                        onMouseOut={this.btnMouseOut.bind(this, item.color)}
                                         onClick={this.homeButtonClick.bind(this, item)}>图片主页</Button>
                                 <Button theme={"borderless"} icon={<IconImage/>}
-                                        style={{color: getFontColor(item.color)}}
+                                        style={{color: item.color === "var(--semi-color-bg-0)" ? "var(--semi-color-text-0)" : getFontColor(item.color)}}
+                                        onMouseOver={this.btnMouseOver.bind(this, item.color)}
+                                        onMouseOut={this.btnMouseOut.bind(this, item.color)}
                                         onClick={this.setWallpaperButtonClick.bind(this, item)}>设为壁纸</Button>
                             </Space>
                         }

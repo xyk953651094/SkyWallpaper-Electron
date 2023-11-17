@@ -2,15 +2,18 @@ import React from "react";
 import {Row, Col, List, Button, Toast, Typography} from "@douyinfe/semi-ui";
 import "../stylesheets/wallpaperComponent.css"
 import WallpaperCardComponent from "./wallpaperCardComponent";
-import {pexelsCurateRequestUrl, pexelsAuth, wallpaperPageSize} from "../typescripts/publicConstants";
+import {
+    pexelsCurateRequestUrl,
+    pexelsAuth,
+    wallpaperPageSize,
+    imageDescriptionMaxSize
+} from "../typescripts/publicConstants";
 import {ImageData} from "../typescripts/publicInterface"
 import {httpRequest} from "../typescripts/publicFunctions";
 import {IconLink} from "@douyinfe/semi-icons";
 const {Title} = Typography;
 
-type propType = {
-    themeColor: string,
-}
+type propType = {}
 
 type stateType = {
     imageData: ImageData[],
@@ -47,8 +50,9 @@ class PexelsComponent extends React.Component {
                         userName: resultData.photos[i].photographer,
                         userUrl: resultData.photos[i].photographer_url,
                         createTime: "无拍摄时间",
-                        description: resultData.photos[i].alt,
+                        description: (resultData.photos[i].alt.length > imageDescriptionMaxSize ? resultData.photos[i].alt.substring(0, imageDescriptionMaxSize) + "..." : resultData.photos[i].alt),
                         color: resultData.photos[i].avg_color,
+                        source: "Pexels",
                     };
                     tempImageData.push(tempData);
                 }
@@ -63,10 +67,6 @@ class PexelsComponent extends React.Component {
                     Toast.error("获取 Pexels 图片失败");
                 });
             })
-    }
-
-    linkButtonOnClick() {
-        window.open("https://www.pexels.com/zh-cn/");
     }
 
     componentWillReceiveProps(nextProps: any, prevProps: any) {
@@ -90,16 +90,8 @@ class PexelsComponent extends React.Component {
                 className={"listStyle"}
                 header={
                     <Row>
-                        <Col span={12}>
+                        <Col span={24}>
                             <Title heading={3}>Pexels</Title>
-                        </Col>
-                        <Col span={12} style={{textAlign: "right"}}>
-                            <Button theme={"borderless"} icon={<IconLink />}
-                                    style={{color: "rgba(var(--semi-grey-9), 1)", backgroundColor: this.props.themeColor}}
-                                    onClick={this.linkButtonOnClick.bind(this)}
-                            >
-                                {"前往 Pexels"}
-                            </Button>
                         </Col>
                     </Row>
                 }

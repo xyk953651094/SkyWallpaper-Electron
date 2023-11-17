@@ -13,8 +13,9 @@ import {
 } from "@douyinfe/semi-ui";
 import {IconHomeStroked, IconImage} from "@douyinfe/semi-icons";
 import "../stylesheets/wallpaperComponent.css"
-import {getFontColor, getJsonLength, isEmptyString, setWallpaper} from "../typescripts/publicFunctions"
+import {getFontColor, getJsonLength, getReverseColor, isEmptyString, setWallpaper} from "../typescripts/publicFunctions"
 import {ImageData} from "../typescripts/publicInterface";
+import {equal} from "assert";
 
 type propType = {
     imageData: ImageData[],
@@ -41,12 +42,33 @@ class WallpaperCardComponent extends React.Component {
         };
     }
 
+    btnMouseOver(index: number, e: any) {
+        if(this.state.imageData[index].color !== "var(--semi-color-bg-0)") {
+            e.currentTarget.style.backgroundColor = getReverseColor(this.state.imageData[index].color);
+            e.currentTarget.style.color = getFontColor(getReverseColor(this.state.imageData[index].color));
+        }
+        else {
+            e.currentTarget.style.backgroundColor = "var(--semi-color-text-0)";
+            e.currentTarget.style.color = "var(--semi-color-bg-0)";
+        }
+    }
+
+    btnMouseOut(index: number, e: any) {
+        if(this.state.imageData[index].color !== "var(--semi-color-bg-0)") {
+            e.currentTarget.style.backgroundColor = "transparent";
+            e.currentTarget.style.color = getFontColor(this.state.imageData[index].color);
+        }
+        else {
+            e.currentTarget.style.backgroundColor = "var(--semi-color-bg-0)";
+            e.currentTarget.style.color = "var(--semi-color-text-0)";
+        }
+    }
+
     homeButtonClick(index: number) {
         if ( this.props.imageData[index].userUrl && isEmptyString(this.props.imageData[index].userUrl) ) {
             Toast.error("无跳转链接");
         } else {
-            window.open(this.props.imageData[index].imageUrl);
-            // window.open(this.props.imageData[index].userUrl);
+            window.open(this.props.imageData[index].imageUrl, "_blank");
         }
     }
 
@@ -89,11 +111,15 @@ class WallpaperCardComponent extends React.Component {
                                 }
                                 actions={[
                                     <Space>
-                                        <Button theme={"borderless"} icon={<IconHomeStroked/>} size={"small"}
-                                                style={{color: getFontColor(value[index].color)}}
+                                        <Button theme={"borderless"} icon={<IconHomeStroked/>}
+                                                style={{color: value[index].color === "var(--semi-color-bg-0)" ? "var(--semi-color-text-0)" : getFontColor(value[index].color)}}
+                                                onMouseOver={this.btnMouseOver.bind(this, index)}
+                                                onMouseOut={this.btnMouseOut.bind(this, index)}
                                                 onClick={this.homeButtonClick.bind(this, index)}>主页</Button>
-                                        <Button theme={"borderless"} icon={<IconImage/>} size={"small"}
-                                                style={{color: getFontColor(value[index].color)}}
+                                        <Button theme={"borderless"} icon={<IconImage/>}
+                                                style={{color: value[index].color === "var(--semi-color-bg-0)" ? "var(--semi-color-text-0)" : getFontColor(value[index].color)}}
+                                                onMouseOver={this.btnMouseOver.bind(this, index)}
+                                                onMouseOut={this.btnMouseOut.bind(this, index)}
                                                 onClick={this.setWallpaperButtonClick.bind(this, index)}>壁纸</Button>
                                     </Space>
                                 ]}

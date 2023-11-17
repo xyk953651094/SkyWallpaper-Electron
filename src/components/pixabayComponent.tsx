@@ -17,7 +17,7 @@ import {
     pixabayRequestUrl,
     pixabayKey,
     pixabayImageCategories,
-    wallpaperPageSize,
+    wallpaperPageSize, imageDescriptionMaxSize,
 } from "../typescripts/publicConstants";
 import {getJsonLength, httpRequest} from "../typescripts/publicFunctions";
 import {ImageData} from "../typescripts/publicInterface"
@@ -26,9 +26,7 @@ import {IconLink} from "@douyinfe/semi-icons";
 const {Title} = Typography;
 const $ = require("jquery");
 
-type propType = {
-    themeColor: string
-}
+type propType = {}
 
 type stateType = {
     imageData: ImageData[],
@@ -54,7 +52,7 @@ class PixabayComponent extends React.Component {
                 "editors_choice": "true",
                 "category": "",
                 "image_type": "photo",
-                "orientation": "vertical",
+                "orientation": "horizontal",
                 "per_page":  wallpaperPageSize,
                 "order": "latest",
                 "safesearch": "true",
@@ -76,9 +74,9 @@ class PixabayComponent extends React.Component {
                         userName: resultData.hits[i].user,
                         userUrl: resultData.hits[i].pageURL,
                         createTime: "无拍摄时间",
-                        description: resultData.hits[i].tags,
-                        color: "rgba(var(--semi-grey-0), 1)",
-                        // color: tempThis.props.themeColor
+                        description: (resultData.hits[i].tags.length > imageDescriptionMaxSize ? resultData.hits[i].tags.substring(0, imageDescriptionMaxSize) + "..." : resultData.hits[i].tags),
+                        color: "var(--semi-color-bg-0)",
+                        source: "Pixabay",
                     };
                     tempImageData.push(tempData);
                 }
@@ -97,8 +95,8 @@ class PixabayComponent extends React.Component {
 
     categoryButtonClick(index: number, value: string) {
         const pixabayButtonGroup = $(".pixabayButtonGroup").children("button");
-        pixabayButtonGroup.css({"background-color": "transparent"});
-        pixabayButtonGroup.eq(index).css({"background-color": this.props.themeColor});
+        pixabayButtonGroup.css({"color": "var(--semi-color-text-0)", "background-color": "var(--semi-color-bg-0)"});
+        pixabayButtonGroup.eq(index).css({"color": "var(--semi-color-bg-0)", "background-color": "var(--semi-color-text-0)"});
 
         let data = Object.assign({}, this.state.requestData, {category: value});
         this.setState({
@@ -120,21 +118,9 @@ class PixabayComponent extends React.Component {
         })
     }
 
-    linkButtonOnClick() {
-        window.open("https://pixabay.com/zh/");
-    }
-
-    componentWillReceiveProps(nextProps: any, prevProps: any) {
-        if (nextProps.themeColor !== prevProps.themeColor) {
-            const pixabayButtonGroup = $(".pixabayButtonGroup").children("button");
-            pixabayButtonGroup.css({"background-color": "transparent"});
-            pixabayButtonGroup.eq(this.state.selectedCategory).css({"background-color": this.props.themeColor});
-        }
-    }
-
     componentDidMount() {
         const pixabayButtonGroup = $(".pixabayButtonGroup").children("button");
-        pixabayButtonGroup.eq(this.state.selectedCategory).css({"background-color": this.props.themeColor});
+        pixabayButtonGroup.eq(this.state.selectedCategory).css({"color": "var(--semi-color-bg-0)", "background-color": "var(--semi-color-text-0)"});
 
         // 获取每日图片
         this.getImages(pixabayRequestUrl, this.state.requestData);
@@ -145,9 +131,8 @@ class PixabayComponent extends React.Component {
             <List
                 className={"listStyle"}
                 header={
-                <Row>
-                    <Row>
-                        <Col span={12}>
+                    <div style={{display: "flex"}}>
+                        <div style={{width: "180px"}}>
                             <Space>
                                 <Title heading={3}>Pixabay</Title>
                                 <Select defaultValue="popular" onChange={this.orderSelectOnChange.bind(this)}>
@@ -155,32 +140,22 @@ class PixabayComponent extends React.Component {
                                     <Select.Option value="latest">最新</Select.Option>
                                 </Select>
                             </Space>
-                        </Col>
-                        <Col  span={12} style={{textAlign: "right"}}>
-                            <Button theme={"borderless"} icon={<IconLink />}
-                                    style={{color: "rgba(var(--semi-grey-9), 1)", backgroundColor: this.props.themeColor}}
-                                    onClick={this.linkButtonOnClick.bind(this)}
+                        </div>
+                        <div style={{flex: "1", overflow: "scroll", scrollBehavior: "smooth"}}>
+                            <ButtonGroup theme={"borderless"} className={"listHeaderButtonGroup pixabayButtonGroup"}
+                                         style={{width: "max-content"}}
                             >
-                                {"前往 Pixabay"}
-                            </Button>
-                        </Col>
-                    </Row>
-                    <Divider margin={"5px"}/>
-                    <Row style={{overflow: "scroll", marginTop: "5px"}}>
-                        <ButtonGroup theme={"borderless"} className={"listHeaderButtonGroup overflowScroll pixabayButtonGroup"}
-                                     style={{width: "1055px"}}
-                        >
-                            {
-                                new Array(getJsonLength(this.state.categories)).fill(this.state.categories).map((value, index) => (
-                                    <Button key={index} type="tertiary"
-                                            onClick={this.categoryButtonClick.bind(this, index, Object.keys(value)[index])}>
-                                        {value[Object.keys(value)[index]]}
-                                    </Button>
-                                ))
-                            }
-                        </ButtonGroup>
-                    </Row>
-                </Row>
+                                {
+                                    new Array(getJsonLength(this.state.categories)).fill(this.state.categories).map((value, index) => (
+                                        <Button key={index} type="tertiary"
+                                                onClick={this.categoryButtonClick.bind(this, index, Object.keys(value)[index])}>
+                                            {value[Object.keys(value)[index]]}
+                                        </Button>
+                                    ))
+                                }
+                            </ButtonGroup>
+                        </div>
+                    </div>
                 }
                 size="small"
                 bordered

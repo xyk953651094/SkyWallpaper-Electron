@@ -1,6 +1,6 @@
 .listItemIcon {
     vertical-align: middle;
-    color: rgba(var(--semi-grey-9), 1)
+    color: var(--semi-color-text-0)
 }
 
 .listItemText {

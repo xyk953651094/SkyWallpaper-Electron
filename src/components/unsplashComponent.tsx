@@ -7,18 +7,15 @@ import {
     unsplashTopicRequestUrl,
     unsplashClientId,
     unsplashImageTopics,
-    wallpaperPageSize,
+    wallpaperPageSize, imageDescriptionMaxSize,
 } from "../typescripts/publicConstants";
 import {getJsonLength, httpRequest} from "../typescripts/publicFunctions";
 import {ImageData} from "../typescripts/publicInterface"
-import {IconLink} from "@douyinfe/semi-icons";
 
 const {Title} = Typography;
 const $ = require("jquery");
 
-type propType = {
-    themeColor: string,
-}
+type propType = {}
 
 type stateType = {
     imageData: ImageData[],
@@ -69,8 +66,9 @@ class UnsplashComponent extends React.Component {
                         userName: resultData[i].user.name,
                         userUrl: resultData[i].user.links.html,
                         createTime: resultData[i].created_at.split("T")[0],
-                        description: resultData[i].description,
+                        description: (resultData[i].description.length > imageDescriptionMaxSize ? resultData[i].description.substring(0, imageDescriptionMaxSize) + "..." : resultData[i].description),
                         color: resultData[i].color,
+                        source: "Unsplash",
                     };
                     tempImageData.push(tempData);
                 }
@@ -88,14 +86,10 @@ class UnsplashComponent extends React.Component {
             })
     }
 
-    linkButtonOnClick() {
-        window.open("https://unsplash.com/");
-    }
-
     topicButtonClick(index: number, value: string) {
         const unsplashButtonGroup = $(".unsplashButtonGroup").children("button");
-        unsplashButtonGroup.css({"background-color": "transparent"});
-        unsplashButtonGroup.eq(index).css({"background-color": this.props.themeColor});
+        unsplashButtonGroup.css({"color": "var(--semi-color-text-0)", "background-color": "var(--semi-color-bg-0)"});
+        unsplashButtonGroup.eq(index).css({"color": "var(--semi-color-bg-0)", "background-color": "var(--semi-color-text-0)"});
 
         if(value === "popular" || value === "latest") {
             let data = Object.assign({}, this.state.todayRequestData, {order_by: value});
@@ -121,17 +115,9 @@ class UnsplashComponent extends React.Component {
 
     }
 
-    componentWillReceiveProps(nextProps: any, prevProps: any) {
-        if (nextProps.themeColor !== prevProps.themeColor) {
-            const unsplashButtonGroup = $(".unsplashButtonGroup").children("button");
-            unsplashButtonGroup.css({"background-color": "transparent"});
-            unsplashButtonGroup.eq(this.state.selectedTopics).css({"background-color": this.props.themeColor});
-        }
-    }
-
     componentDidMount() {
         const unsplashButtonGroup = $(".unsplashButtonGroup").children("button");
-        unsplashButtonGroup.eq(this.state.selectedTopics).css({"background-color": this.props.themeColor});
+        unsplashButtonGroup.eq(this.state.selectedTopics).css({"color": "var(--semi-color-bg-0)", "background-color": "var(--semi-color-text-0)"});
         this.getImages(unsplashTodayRequestUrl, this.state.todayRequestData);  // 默认获取"热门"图片
     }
 
@@ -140,24 +126,13 @@ class UnsplashComponent extends React.Component {
             <List
                 className={"listStyle"}
                 header={
-                    <Row>
-                        <Row>
-                            <Col span={12}>
-                                <Title heading={3}>Unsplash</Title>
-                            </Col>
-                            <Col span={12} style={{textAlign: "right"}}>
-                                <Button theme={"borderless"} icon={<IconLink />}
-                                        style={{color: "rgba(var(--semi-grey-9), 1)", backgroundColor: this.props.themeColor}}
-                                        onClick={this.linkButtonOnClick.bind(this)}
-                                >
-                                    {"前往 Unsplash"}
-                                </Button>
-                            </Col>
-                        </Row>
-                        <Divider margin={"5px"}/>
-                        <Row style={{overflow: "scroll", marginTop: "5px"}}>
+                    <div style={{display: "flex"}}>
+                        <div style={{width: "115px"}}>
+                            <Title heading={3}>Unsplash</Title>
+                        </div>
+                        <div style={{flex: "1", overflow: "scroll", scrollBehavior: "smooth"}}>
                             <ButtonGroup theme={"borderless"} className={"listHeaderButtonGroup unsplashButtonGroup"}
-                                style={{width: "1200px"}}
+                                         style={{width: "max-content"}}
                             >
                                 {
                                     new Array(getJsonLength(this.state.imageTopics)).fill(this.state.imageTopics).map((value, index) => (
@@ -168,8 +143,8 @@ class UnsplashComponent extends React.Component {
                                     ))
                                 }
                             </ButtonGroup>
-                        </Row>
-                    </Row>
+                        </div>
+                    </div>
                 }
                 size="small"
                 bordered

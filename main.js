@@ -7,19 +7,21 @@ const path = require('path')
 const url = require('url');
 const exeName = path.basename(process.execPath);
 
+const openAtLogin = JSON.parse(localStorage.getItem('preference')).openAtLogin;  // 自启动
+
 function createWindow () {
     // Create the browser window.
     let mainWindow = new BrowserWindow({
-        width: 930,
-        height: 650,
-        minWidth: 930,
-        minHeight: 650,
-        maxWidth: 930,
-        maxHeight: 650,
-        resizable: false,
-        fullscreenable: false,
+        width: 1000,
+        height: 750,
+        minWidth: 1000,
+        minHeight: 750,
+        // maxWidth: 1000,
+        // maxHeight: 750,
+        resizable: true,
+        // fullscreenable: false,
         // useContentSize: true,
-        title: "Sky每日壁纸", // 窗口标题,如果由loadURL()加载的HTML文件中含有标签<title>，该属性可忽略
+        title: "云开壁纸", // 窗口标题,如果由loadURL()加载的HTML文件中含有标签<title>，该属性可忽略
         icon: nativeImage.createFromPath('public/favicon.ico'), // "string" || nativeImage.createFromPath('public/favicon.ico')从位于 path 的文件创建新的 NativeImage 实例
         webPreferences: { // 网页功能设置
             webviewTag: true, // 是否使用<webview>标签 在一个独立的 frame 和进程里显示外部 web 内容
@@ -51,13 +53,13 @@ function createWindow () {
     });
 
     // 在启动的时候打开DevTools
-    mainWindow.webContents.openDevTools()
+    // mainWindow.webContents.openDevTools()
 }
 
 app.allowRendererProcessReuse =true;
 
 app.setLoginItemSettings({
-    openAtLogin: true,
+    openAtLogin: openAtLogin,
     openAsHidden: true,
     path: process.execPath,
     args: [

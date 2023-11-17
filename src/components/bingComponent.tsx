@@ -8,9 +8,7 @@ import {httpRequest} from "../typescripts/publicFunctions";
 
 const {Title, Text} = Typography;
 
-type propType = {
-    themeColor: string,
-}
+type propType = {}
 
 type stateType = {
     imageData: ImageData,
@@ -43,6 +41,7 @@ class BingComponent extends React.Component {
                     createTime: "无拍摄时间",
                     description: resultData.images[0].title,
                     color: "rgba(var(--semi-grey-0), 1)",
+                    source: "Bing"
                 };
                 tempThis.setState({
                     imageData: tempImageData
@@ -58,7 +57,7 @@ class BingComponent extends React.Component {
     }
 
     linkButtonOnClick() {
-        window.open("https://cn.bing.com/");
+        window.open("https://cn.bing.com/", "_blank");
     }
 
     componentWillReceiveProps(nextProps: any, prevProps: any) {
@@ -84,7 +83,7 @@ class BingComponent extends React.Component {
                         </Col>
                         <Col span={12} style={{textAlign: "right"}}>
                             <Button theme={"borderless"} icon={<IconLink />}
-                                    style={{color: "rgba(var(--semi-grey-9), 1)", backgroundColor: this.props.themeColor}}
+                                    style={{color: "var(--semi-color-text-0)"}}
                                     onClick={this.linkButtonOnClick.bind(this)}
                             >
                                 {"前往 Bing"}
@@ -100,11 +99,11 @@ class BingComponent extends React.Component {
                         <Space vertical align={"start"}>
                             <Image width={"100%"} src={this.state.imageData.displayUrl} preview={false}></Image>
                             <Space align={"start"}>
-                                <IconInfoCircle style={{color: this.props.themeColor}}/>
+                                <IconInfoCircle />
                                 <Text>{this.state.imageData.description}</Text>
                             </Space>
                             <Space align={"start"}>
-                                <IconMapPin style={{color: this.props.themeColor}}/>
+                                <IconMapPin />
                                 <Text>{this.state.imageData.userName}</Text>
                             </Space>
                         </Space>
