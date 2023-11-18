@@ -1,6 +1,6 @@
 import {ImageData, Preference} from "./publicInterface";
 import {Toast} from "@douyinfe/semi-ui";
-import {defaultPreference, historyMaxSize} from "./publicConstants";
+import {defaultPreference, listPageSize} from "./publicConstants";
 
 const $ = require("jquery");
 
@@ -38,7 +38,7 @@ export function setWallpaper(currentImage: ImageData) {
         tempHistory = JSON.parse(tempLocalStorage);
 
         // 超过数量上限时删除最早记录
-        if(tempHistory.length === historyMaxSize) {
+        if(tempHistory.length === listPageSize) {
             tempHistory.shift();
         }
 
@@ -113,10 +113,6 @@ export function fixPreference(preference: Preference) {
         preference.colorMode = defaultPreference.colorMode;
         isFixed = true;
     }
-    if (!preference.changeImageTime) {
-        preference.changeImageTime = defaultPreference.changeImageTime;
-        isFixed = true;
-    }
 
     if (isFixed) {
         localStorage.setItem("preference", JSON.stringify(preference));  // 重新保存设置
@@ -146,4 +142,15 @@ export function matchMode(e: any) {
             body.removeAttribute('theme-mode');
         }
     }
+}
+
+// 按钮
+export function btnMouseOver(color: string, e: any) {
+    e.currentTarget.style.backgroundColor = getReverseColor(color);
+    e.currentTarget.style.color = getFontColor(getReverseColor(color));
+}
+
+export function btnMouseOut(color: string, e: any) {
+    e.currentTarget.style.backgroundColor = "transparent";
+    e.currentTarget.style.color = getFontColor(color);
 }

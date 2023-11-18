@@ -1,10 +1,8 @@
 import React from "react";
-import {Col, Row, Space} from "@douyinfe/semi-ui";
+import {Col, Row} from "@douyinfe/semi-ui";
 import "../stylesheets/wallpaperComponent.css"
-import UnsplashComponent from "./unsplashComponent";
-import PixabayComponent from "./pixabayComponent";
-import PexelsComponent from "./pexelsComponent";
-import BingComponent from "./bingComponent";
+import TopicImageComponent from "../wallpaperComponents/topicImageComponent";
+import HotImageComponent from "../wallpaperComponents/hotImageComponent";
 
 type propType = {}
 
@@ -23,18 +21,12 @@ class WallpaperComponent extends React.Component {
 
     render() {
         return (
-            <Row gutter={[0, 8]}>
-                {/*<Col span={24}>*/}
-                {/*    <BingComponent />*/}
-                {/*</Col>*/}
+            <Row gutter={[0, 16]}>
                 <Col span={24}>
-                    <UnsplashComponent />
+                    <TopicImageComponent />
                 </Col>
                 <Col span={24}>
-                    <PexelsComponent />
-                </Col>
-                <Col span={24}>
-                    <PixabayComponent />
+                    <HotImageComponent />
                 </Col>
             </Row>
         )

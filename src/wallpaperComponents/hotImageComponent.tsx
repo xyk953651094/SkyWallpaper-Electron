@@ -1,65 +1,63 @@
 import React from "react";
 import {
     List,
-    Typography,
     Toast,
-    ImagePreview,
-    Image,
+    Typography,
     Button,
-    Space, Spin,
+    Space,
+    ImagePreview,
+    Image, Spin
 } from "@douyinfe/semi-ui";
-import {IconUserCircle, IconInfoCircle, IconHomeStroked, IconImage} from "@douyinfe/semi-icons";
-import "../stylesheets/searchComponent.css"
-import {listPageSize} from "../typescripts/publicConstants";
+import "../stylesheets/wallpaperComponent.css"
+import {
+    unsplashTodayRequestUrl,
+    unsplashClientId,
+    imageDescriptionMaxSize, listPageSize,
+} from "../typescripts/publicConstants";
 import {
     btnMouseOut,
     btnMouseOver,
     getFontColor,
+    httpRequest,
     isEmptyString,
     setWallpaper
 } from "../typescripts/publicFunctions";
-import {ImageData} from "../typescripts/publicInterface";
-import "../stylesheets/publicStyles.css"
+import {ImageData} from "../typescripts/publicInterface"
+import {
+    IconHomeStroked,
+    IconImage,
+    IconInfoCircle,
+    IconUserCircle
+} from "@douyinfe/semi-icons";
 
-const {Title, Text} = Typography;
+const {Title} = Typography;
+const $ = require("jquery");
 
 type propType = {}
 
 type stateType = {
-    history: ImageData[],
-    historyLength: number,
+    loading: boolean,
+    imageData: ImageData[],
+    todayRequestData: any,
 }
 
-interface HistoryComponent {
+interface HotImageComponent {
     state: stateType,
     props: propType
 }
 
-class HistoryComponent extends React.Component {
+class HotImageComponent extends React.Component {
     constructor(props: any) {
         super(props);
         this.state = {
-            history: [],
-            historyLength: 0,
+            loading: false,
+            imageData: [],
+            todayRequestData: {
+                "client_id": unsplashClientId,
+                "per_page": listPageSize,
+                "order_by": "latest",
+            },
         };
-    }
-
-    cleanHistoryButtonOnClick() {
-        localStorage.setItem("history", "[]");
-        this.setState({
-            history: [],
-            historyLength: 0,
-        })
-    }
-
-    getHistory() {
-        let tempHistory = localStorage.getItem("history");
-        if (tempHistory !== null && tempHistory.length !== 0) {
-            this.setState({
-                history: JSON.parse(tempHistory),
-                historyLength: JSON.parse(tempHistory).length,
-            })
-        }
     }
 
     homeButtonClick(item: any) {
@@ -74,21 +72,53 @@ class HistoryComponent extends React.Component {
         setWallpaper(item);
     }
 
-    onPageChange( currentPage: number ) {}
+    // 获取图片
+    getImages(url: string, data: object) {
+        let tempThis = this;
+        httpRequest({}, url, data, "GET")
+            .then(function (resultData: any) {
+                let tempImageData = [];
+                for (let i in resultData) {
+                    let tempData: ImageData = {
+                        displayUrl: resultData[i].urls.regular,
+                        previewUrl: resultData[i].urls.small,
+                        imageUrl: resultData[i].links.html,
+                        userName: resultData[i].user.name,
+                        userUrl: resultData[i].user.links.html,
+                        createTime: resultData[i].created_at.split("T")[0],
+                        description: (resultData[i].alt_description.length > imageDescriptionMaxSize ? resultData[i].alt_description.substring(0, imageDescriptionMaxSize) + "..." : resultData[i].alt_description),
+                        color: resultData[i].color,
+                    };
+                    tempImageData.push(tempData);
+                }
+
+                tempThis.setState({
+                    loading: false,
+                    imageData: tempImageData,
+                });
+            })
+            .catch(function () {
+                tempThis.setState({
+                    loading: false,
+                    imageData: [],
+                },()=>{
+                    Toast.error("获取图片失败");
+                });
+            })
+    }
 
     componentDidMount() {
-        this.getHistory();
+        this.getImages(unsplashTodayRequestUrl, this.state.todayRequestData);  // 获取图片
     }
 
     render() {
         return (
             <List
+                loading={this.state.loading}
                 size="small"
                 bordered
-                header={
-                    <Title heading={3}>{"历史记录（" + this.state.historyLength + " / " + listPageSize + "）"}</Title>
-                }
-                dataSource={this.state.history}
+                header={<Title heading={3}>热门图片</Title>}
+                dataSource={this.state.imageData}
                 renderItem={item => (
                     <List.Item
                         style={{backgroundColor: item.color, padding: "10px 10px 5px 10px"}}
@@ -113,7 +143,7 @@ class HistoryComponent extends React.Component {
                                             style={{color: getFontColor(item.color), cursor: "default"}}
                                             onMouseOver={btnMouseOver.bind(this, item.color)}
                                             onMouseOut={btnMouseOut.bind(this, item.color)}>
-                                        {"图片描述：" + item.description === null ? "暂无图片描述" : item.description}
+                                        {"图片描述：" + (item.description === null ? "暂无图片描述" : item.description)}
                                     </Button>
                                 </Space>
                             </div>
@@ -139,4 +169,4 @@ class HistoryComponent extends React.Component {
     }
 }
 
-export default HistoryComponent;
+export default HotImageComponent;

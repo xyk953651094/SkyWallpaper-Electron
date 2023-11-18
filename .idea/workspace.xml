@@ -5,25 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="762362d4-97e4-4757-a2fe-94552437f98c" name="更改" comment="修复已知问题，优化视觉效果">
-      <change afterPath="$PROJECT_DIR$/src/components/headerComponent.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/stylesheets/publicStyles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/preferenceComponents/preferenceFunctionComponent.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/preferenceComponents/preferenceInfoComponent.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/preferenceComponents/preferenceProductComponent.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/wallpaperComponents/hotImageComponent.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/wallpaperComponents/topicImageComponent.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/bingComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/bingComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/bingComponent.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/headerComponent.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/historyComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/historyComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pexelsComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pexelsComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pixabayComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pixabayComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pexelsComponent.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pixabayComponent.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/preferenceComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/preferenceComponent.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/searchComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/searchComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/unsplashComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/unsplashComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/wallpaperCardComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/wallpaperCardComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/unsplashComponent.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/wallpaperCardComponent.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/wallpaperComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/wallpaperComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stylesheets/preferenceComponent.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/stylesheets/preferenceComponent.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stylesheets/wallpaperComponent.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/stylesheets/wallpaperComponent.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/typescripts/publicConstants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/typescripts/publicConstants.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/typescripts/publicFunctions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/typescripts/publicFunctions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/typescripts/publicInterface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/typescripts/publicInterface.ts" afterDir="false" />
@@ -36,8 +34,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript JSX File" />
         <option value="CSS File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -80,7 +78,13 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="npm.electron-start">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components" />
+      <recent name="$PROJECT_DIR$/src/wallpaperComponents" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.start">
     <configuration name="electron-start" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -119,7 +123,7 @@
       <workItem from="1700052578285" duration="4630000" />
       <workItem from="1700102096566" duration="16311000" />
       <workItem from="1700197668682" duration="131000" />
-      <workItem from="1700197958099" duration="8090000" />
+      <workItem from="1700197958099" duration="20050000" />
     </task>
     <task id="LOCAL-00001" summary="修复已知问题，优化视觉效果">
       <option name="closed" value="true" />
@@ -129,7 +133,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700055570870</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="修复已知问题，优化视觉效果">
+      <option name="closed" value="true" />
+      <created>1700222334172</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1700222334173</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -9,7 +9,6 @@ import {Layout, Nav} from "@douyinfe/semi-ui";
 import {IconImage, IconSearch, IconHistory, IconSetting, IconHomeStroked} from "@douyinfe/semi-icons";
 import {Preference} from "./typescripts/publicInterface";
 import {defaultPreference} from "./typescripts/publicConstants";
-import HeaderComponent from "./components/headerComponent";
 import {matchMode} from "./typescripts/publicFunctions";
 
 const {Header, Sider, Content} = Layout;
@@ -50,13 +49,30 @@ class App extends React.Component {
         else {
             this.setState({
                 preference: JSON.parse(tempPreference),
+            }, () => {
+                // 自动亮暗模式
+                switch (this.state.preference.colorMode) {
+                    case "autoSwitch": {
+                        const mql = window.matchMedia('(prefers-color-scheme: dark)');
+                        mql.addListener(matchMode);
+                        break;
+                    }
+                    case "lightMode": {
+                        const body = document.body;
+                        if (body.hasAttribute('theme-mode')) {
+                            body.removeAttribute('theme-mode');
+                        }
+                        break;
+                    }
+                    case "darkMode": {
+                        const body = document.body;
+                        if (!body.hasAttribute('theme-mode')) {
+                            body.setAttribute('theme-mode', 'dark');
+                        }
+                        break;
+                    }
+                }
             })
-        }
-
-        // 自动亮暗模式
-        if(this.state.preference.colorMode === "autoSwitch") {
-            const mql = window.matchMedia('(prefers-color-scheme: dark)');
-            mql.addListener(matchMode);
         }
     }
 
@@ -97,9 +113,6 @@ class App extends React.Component {
                     />
                 </Sider>
                 <Layout>
-                    <Header style={{padding: "16px 16px 8px 16px", backgroundColor: "var(--semi-color-bg-0)"}}>
-                        <HeaderComponent/>
-                    </Header>
                     <Content style={{padding: "8px 16px 16px 16px", backgroundColor: "var(--semi-color-bg-0)"}}>
                         <Routes>
                             {/*<Route index element={<Home />} />*/}

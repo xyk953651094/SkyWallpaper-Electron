@@ -4,25 +4,14 @@ export const unsplashTodayRequestUrl: string = "https://api.unsplash.com/photos"
 export const unsplashTopicRequestUrl: string = "https://api.unsplash.com/photos/random";
 export const unsplashSearchRequestUrl: string = "https://api.unsplash.com/search/photos";
 export const unsplashClientId: string = "ntHZZmwZUkhiLBMvwqqzmOG29nyXSCXlX7x_i-qhVHM";
-export const unsplashVisitUrl: string = "?utm_source=SkyNewTab&utm_medium=referral";  // Unsplash API规范
-export const pexelsCurateRequestUrl:string = "https://api.pexels.com/v1/curated";
-export const pexelsSearchRequestUrl: string = "https://api.pexels.com/v1/search"
-export const pexelsAuth: string = "sbJpn7uRC2FAknG1nefeRAYquBuMxyP68BaJ2joKCr6MtxAjqwBvth6h";
-export const pixabayRequestUrl:string = "https://pixabay.com/api/";
-export const pixabayKey: string = "34466426-b21174c2eaa64ee76ce599e3b";
 
-export const bingRequestUrl:string = "https://fly.atlinker.cn/api/bing/cn.php"; // https://atlinker.cn/2019/07/28/bing.html
-
-export const wallpaperPageSize: number = 10;
 export const listPageSize: number = 10;
 
-export const historyMaxSize: number = 10;
 export const imageDescriptionMaxSize: number = 40;
 
 export const defaultPreference: Preference = {
     openAtLogin: false,
     colorMode: "autoSwitch",
-    changeImageTime: "3600000",
 }
 
 export const defaultImageData: ImageData = {
@@ -34,7 +23,6 @@ export const defaultImageData: ImageData = {
     createTime: "暂无信息",
     description: "暂无信息",
     color: "",
-    source: "暂无信息"
 }
 
 export const unsplashImageTopics = {
@@ -61,27 +49,4 @@ export const unsplashImageTopics = {
     "bDo48cUhwnY": "文化",
     "dijpbw99kQQ": "历史",
     "Bn-DjrcBrwo": "体育",
-}
-
-export const pixabayImageCategories= {
-    "": "随机",
-    "backgrounds": "背景",
-    "fashion": "时尚",
-    "nature": "自然",
-    "science": "科技",
-    "education": "教育",
-    "feelings": "感受",
-    "health": "健康",
-    "religion": "宗教",
-    "places": "地点",
-    "animals": "动物",
-    "industry": "工业",
-    "computer": "计算机",
-    "food": "食物",
-    "sports": "运动",
-    "transportation": "交通",
-    "travel": "旅行",
-    "buildings": "建筑",
-    "business": "商业",
-    "music": "音乐",
 }
