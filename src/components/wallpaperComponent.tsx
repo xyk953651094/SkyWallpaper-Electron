@@ -1,10 +1,13 @@
 import React from "react";
 import {Col, Row} from "@douyinfe/semi-ui";
 import "../stylesheets/wallpaperComponent.css"
-import TopicImageComponent from "../wallpaperComponents/topicImageComponent";
-import HotImageComponent from "../wallpaperComponents/hotImageComponent";
+import RandomImageComponent from "../wallpaperComponents/randomImageComponent";
+import TodayImageComponent from "../wallpaperComponents/todayImageComponent";
+import {Preference} from "../typescripts/publicInterface";
 
-type propType = {}
+type propType = {
+    preference: Preference,
+}
 
 type stateType = {}
 
@@ -23,10 +26,10 @@ class WallpaperComponent extends React.Component {
         return (
             <Row gutter={[0, 16]}>
                 <Col span={24}>
-                    <TopicImageComponent />
+                    <RandomImageComponent preference={this.props.preference}/>
                 </Col>
                 <Col span={24}>
-                    <HotImageComponent />
+                    <TodayImageComponent />
                 </Col>
             </Row>
         )

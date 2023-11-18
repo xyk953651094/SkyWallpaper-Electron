@@ -117,8 +117,8 @@ class App extends React.Component {
                         <Routes>
                             {/*<Route index element={<Home />} />*/}
                             {/*<Route path="*" element={<NoMatch />} />*/}
-                            <Route path="/" element={<WallpaperComponent />} />
-                            <Route path="/wallpaper" element={<WallpaperComponent />} />
+                            <Route path="/" element={<WallpaperComponent preference={this.state.preference}/>} />
+                            <Route path="/wallpaper" element={<WallpaperComponent preference={this.state.preference}/>} />
                             <Route path="/search" element={<SearchComponent />} />
                             <Route path="/history" element={<HistoryComponent />} />
                             <Route path="/preference" element={<PreferenceComponent getPreference={this.getPreference.bind(this)}/>} />

@@ -6,27 +6,27 @@ import {
     Button,
     Space,
     ImagePreview,
-    Image, Spin
+    Image, Spin, Row, Col, RadioGroup, Radio
 } from "@douyinfe/semi-ui";
 import "../stylesheets/wallpaperComponent.css"
 import {
     unsplashTodayRequestUrl,
     unsplashClientId,
-    imageDescriptionMaxSize, listPageSize,
+    imageDescriptionMaxSize, listPageSize
 } from "../typescripts/publicConstants";
 import {
     btnMouseOut,
     btnMouseOver,
     getFontColor,
     httpRequest,
-    isEmptyString,
+    isEmpty,
     setWallpaper
 } from "../typescripts/publicFunctions";
 import {ImageData} from "../typescripts/publicInterface"
 import {
     IconHomeStroked,
     IconImage,
-    IconInfoCircle,
+    IconInfoCircle, IconMapPin,
     IconUserCircle
 } from "@douyinfe/semi-icons";
 
@@ -38,30 +38,36 @@ type propType = {}
 type stateType = {
     loading: boolean,
     imageData: ImageData[],
-    todayRequestData: any,
+    orderBy: "popular" | "latest",
 }
 
-interface HotImageComponent {
+interface TodayImageComponent {
     state: stateType,
     props: propType
 }
 
-class HotImageComponent extends React.Component {
+class TodayImageComponent extends React.Component {
     constructor(props: any) {
         super(props);
         this.state = {
             loading: false,
             imageData: [],
-            todayRequestData: {
-                "client_id": unsplashClientId,
-                "per_page": listPageSize,
-                "order_by": "latest",
-            },
+            orderBy: "popular",
         };
     }
 
+    orderRadioGroupOnChange(e: any) {
+        this.setState({
+            imageData: [],
+            orderBy: e.target.value,
+        }, () => {
+            this.getImages();
+            localStorage.setItem("orderBy", e.target.value);
+        })
+    }
+
     homeButtonClick(item: any) {
-        if ( isEmptyString(item.imageUrl) ) {
+        if ( isEmpty(item.imageUrl) ) {
             Toast.error("无跳转链接");
         } else {
             window.open(item.imageUrl, "_blank");
@@ -73,20 +79,27 @@ class HotImageComponent extends React.Component {
     }
 
     // 获取图片
-    getImages(url: string, data: object) {
+    getImages() {
         let tempThis = this;
-        httpRequest({}, url, data, "GET")
+        let data = {
+            "client_id": unsplashClientId,
+            "per_page": listPageSize,
+            "order_by": this.state.orderBy,
+        }
+
+        httpRequest({}, unsplashTodayRequestUrl, data, "GET")
             .then(function (resultData: any) {
                 let tempImageData = [];
                 for (let i in resultData) {
                     let tempData: ImageData = {
+                        wallpaperUrl: resultData[i].urls.full,
                         displayUrl: resultData[i].urls.regular,
-                        previewUrl: resultData[i].urls.small,
                         imageUrl: resultData[i].links.html,
                         userName: resultData[i].user.name,
                         userUrl: resultData[i].user.links.html,
                         createTime: resultData[i].created_at.split("T")[0],
                         description: (resultData[i].alt_description.length > imageDescriptionMaxSize ? resultData[i].alt_description.substring(0, imageDescriptionMaxSize) + "..." : resultData[i].alt_description),
+                        location: "暂无信息",
                         color: resultData[i].color,
                     };
                     tempImageData.push(tempData);
@@ -95,6 +108,10 @@ class HotImageComponent extends React.Component {
                 tempThis.setState({
                     loading: false,
                     imageData: tempImageData,
+                }, () => {
+                    // 保存请求时间，防抖节流
+                    localStorage.setItem("lastTodayImagesRequestTime", String(new Date().getTime()));
+                    localStorage.setItem("lastTodayImages", JSON.stringify(tempThis.state.imageData));
                 });
             })
             .catch(function () {
@@ -108,7 +125,29 @@ class HotImageComponent extends React.Component {
     }
 
     componentDidMount() {
-        this.getImages(unsplashTodayRequestUrl, this.state.todayRequestData);  // 获取图片
+        // 防抖节流
+        let lastRequestTime: any = localStorage.getItem("lastTodayImagesRequestTime");
+        let nowTimeStamp = new Date().getTime();
+        if (lastRequestTime === null) {  // 第一次请求时 lastRequestTime 为 null，因此直接进行请求赋值 lastRequestTime
+            this.getImages();
+        } else if (nowTimeStamp - parseInt(lastRequestTime) > 60 * 60 * 1000) {  // 必须多于切换间隔才能进行新的请求
+            this.getImages();
+        } else {  // 切换间隔内使用上一次请求结果
+            let lastImage: any = localStorage.getItem("lastTodayImages");
+            if (lastImage) {
+                this.setState({
+                    imageData: JSON.parse(lastImage),
+                });
+            }
+        }
+
+        // 初始化单选框
+        let tempOrderBy = localStorage.getItem("orderBy");
+        if(!isEmpty(tempOrderBy)) {
+            this.setState({
+                orderBy: tempOrderBy,
+            })
+        }
     }
 
     render() {
@@ -117,21 +156,33 @@ class HotImageComponent extends React.Component {
                 loading={this.state.loading}
                 size="small"
                 bordered
-                header={<Title heading={3}>热门图片</Title>}
+                header={
+                <Row>
+                    <Col span={12}>
+                        <Title heading={3}>推荐图片</Title>
+                    </Col>
+                    <Col span={12} style={{textAlign: "right"}}>
+                        <RadioGroup type="button" defaultValue={this.state.orderBy} value={this.state.orderBy} onChange={this.orderRadioGroupOnChange.bind(this)}>
+                            <Radio value={"popular"}>热门</Radio>
+                            <Radio value={"latest"}>最新</Radio>
+                        </RadioGroup>
+                    </Col>
+                </Row>
+                }
                 dataSource={this.state.imageData}
                 renderItem={item => (
                     <List.Item
                         style={{backgroundColor: item.color, padding: "10px 10px 5px 10px"}}
                         header={
-                            <ImagePreview disableDownload={true}>
-                                <Image width={80} height={80} src={item.displayUrl} preview={true}
+                            <ImagePreview disableDownload={true} src={item.wallpaperUrl}>
+                                <Image width={100} height={100} src={item.displayUrl} preview={true}
                                        placeholder={<Spin />}
                                        className={"wallpaperFadeIn"}
                                 />
                             </ImagePreview>
                         }
                         main={
-                            <div className={"alignCenter"} style={{height: "80px"}}>
+                            <div className={"alignCenter"} style={{height: "100px"}}>
                                 <Space vertical align="start">
                                     <Button theme={"borderless"} icon={<IconUserCircle />}
                                             style={{color: getFontColor(item.color), cursor: "default"}}
@@ -169,4 +220,4 @@ class HotImageComponent extends React.Component {
     }
 }
 
-export default HotImageComponent;
+export default TodayImageComponent;

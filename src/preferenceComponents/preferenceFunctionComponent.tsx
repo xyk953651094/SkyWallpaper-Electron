@@ -82,7 +82,7 @@ class preferenceFunctionComponent extends React.Component {
     render() {
         return (
             <List
-                header={<Title heading={3}>偏好设置</Title>}
+                header={<Title heading={3}>功能设置</Title>}
                 size="small"
                 bordered
             >

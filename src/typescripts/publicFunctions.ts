@@ -24,7 +24,7 @@ export function httpRequest(headers: object, url: string, data: object, method: 
 }
 
 // 判断字符串是否合规
-export function isEmptyString(param: string | null) {
+export function isEmpty(param: string | null) {
     return (param === null || param === undefined || param.length === 0);
 }
 
@@ -111,6 +111,18 @@ export function fixPreference(preference: Preference) {
     }
     if (!preference.colorMode) {
         preference.colorMode = defaultPreference.colorMode;
+        isFixed = true;
+    }
+    if (!preference.imageTopics) {
+        preference.imageTopics = defaultPreference.imageTopics;
+        isFixed = true;
+    }
+    if (!preference.customTopic) {
+        preference.customTopic = defaultPreference.customTopic;
+        isFixed = true;
+    }
+    if (!preference.switchTime) {
+        preference.switchTime = defaultPreference.switchTime;
         isFixed = true;
     }
 

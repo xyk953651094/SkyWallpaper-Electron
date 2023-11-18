@@ -15,7 +15,7 @@ import {
     btnMouseOut,
     btnMouseOver,
     getFontColor,
-    isEmptyString,
+    isEmpty,
     setWallpaper
 } from "../typescripts/publicFunctions";
 import {ImageData} from "../typescripts/publicInterface";
@@ -44,14 +44,6 @@ class HistoryComponent extends React.Component {
         };
     }
 
-    cleanHistoryButtonOnClick() {
-        localStorage.setItem("history", "[]");
-        this.setState({
-            history: [],
-            historyLength: 0,
-        })
-    }
-
     getHistory() {
         let tempHistory = localStorage.getItem("history");
         if (tempHistory !== null && tempHistory.length !== 0) {
@@ -63,7 +55,7 @@ class HistoryComponent extends React.Component {
     }
 
     homeButtonClick(item: any) {
-        if ( isEmptyString(item.imageUrl) ) {
+        if ( isEmpty(item.imageUrl) ) {
             Toast.error("无跳转链接");
         } else {
             window.open(item.imageUrl, "_blank");
@@ -73,8 +65,6 @@ class HistoryComponent extends React.Component {
     setWallpaperButtonClick(item: any) {
         setWallpaper(item);
     }
-
-    onPageChange( currentPage: number ) {}
 
     componentDidMount() {
         this.getHistory();
@@ -93,15 +83,15 @@ class HistoryComponent extends React.Component {
                     <List.Item
                         style={{backgroundColor: item.color, padding: "10px 10px 5px 10px"}}
                         header={
-                            <ImagePreview disableDownload={true}>
-                                <Image width={80} height={80} src={item.displayUrl} preview={true}
+                            <ImagePreview disableDownload={true} src={item.wallpaperUrl}>
+                                <Image width={100} height={100} src={item.displayUrl} preview={true}
                                        placeholder={<Spin />}
                                        className={"wallpaperFadeIn"}
                                 />
                             </ImagePreview>
                         }
                         main={
-                            <div className={"alignCenter"} style={{height: "80px"}}>
+                            <div className={"alignCenter"} style={{height: "100px"}}>
                                 <Space vertical align="start">
                                     <Button theme={"borderless"} icon={<IconUserCircle />}
                                             style={{color: getFontColor(item.color), cursor: "default"}}
