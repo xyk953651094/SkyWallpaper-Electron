@@ -7,7 +7,7 @@ const path = require('path')
 const url = require('url');
 const exeName = path.basename(process.execPath);
 
-const openAtLogin = JSON.parse(localStorage.getItem('preference')).openAtLogin;  // 自启动
+// const openAtLogin = JSON.parse(localStorage.getItem('preference')).openAtLogin;  // 自启动
 
 function createWindow () {
     // Create the browser window.
@@ -59,7 +59,7 @@ function createWindow () {
 app.allowRendererProcessReuse =true;
 
 app.setLoginItemSettings({
-    openAtLogin: openAtLogin,
+    openAtLogin: false,
     openAsHidden: true,
     path: process.execPath,
     args: [

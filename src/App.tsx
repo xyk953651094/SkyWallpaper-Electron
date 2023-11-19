@@ -84,7 +84,7 @@ class App extends React.Component {
                         defaultSelectedKeys={['Wallpaper']}
                         style={{ maxWidth: 220, height: '100%' }}
                         header={{
-                            logo: <img src="//lf1-cdn-tos.bytescm.com/obj/ttfe/ies/semi/webcast_logo.svg" />,
+                            logo: <img src={require("./assets/logo.png")}  alt={"Logo"}/>,
                             text: '云开壁纸',
                         }}
                         renderWrapper={({ itemElement, isSubNav, isInSubNav, props }) => {
