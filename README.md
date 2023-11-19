@@ -1,44 +1,48 @@
 # 云开壁纸 based React Electron
-## 声明
-* 博客：https://xyk953651094.blogspot.com
-* 捐赠：https://afdian.net/a/xyk953651094
-* 图片由第三方网站提供，图片内容不代表作者任何观点。  
-* 本作品由作者个人出于学习目的开发，由于成本原因，难以保证不同型号设备下的最终品质，后续尽量完善。
-* [JetBrains Open Source Support](https://jb.gg/OpenSourceSupport "跳转至 JetBrains Open Source Support")
-
 ## 简介
-* 适用于 Mac、~~Windows~~ 的新标签页插件。  
-* 基于 Html + Typescript + CSS + React + Webpack + Electron + Semi Design。   
-* 支持语言：中文  
-* 图片来源：
-  * https://cn.bing.com（第三方API） 
-  * https://unsplash.com 
-  * https://www.pexels.com 
-  * https://pixabay.com
-* 注意：由于图片网站策略，软件将不提供直接下载功能，需要跳转至相应网站进行下载。
+* 适用于 Windows、MacOS 的壁纸软件
+* 基于 Html + Typescript + CSS + React + Webpack + Electron + Semi Design
+* 支持语言：中文
+* 图片来源：https://unsplash.com（图片中的内容不代表作者任何观点）
+* 开发支持：[JetBrains Open Source Support](https://jb.gg/OpenSourceSupport "跳转至 JetBrains Open Source Support")
+* <img width="40" src="https://resources.jetbrains.com/storage/products/company/brand/logos/WebStorm_icon.png" alt="WebStorm logo.">
+* 使用须知：本作品由作者个人出于学习目的开发，由于成本原因，难以保证不同型号设备下的最终品质，后续尽量完善
+
+## 更新
+* 请前往 Releases 页面查看
 
 ## 安装
-* 正在开发中。
+* 正在开发中，敬请期待
+* ~~下载 [Releases](https://github.com/xyk953651094/SkyWallpaper-Electron/releases/) 页面提供的安装包自行安装~~
+
+## 指南
+* 新的主题刷新后可能不会立即生效，请耐心等待
+* 启用自定主题时不能使用图片主题
+* 禁用自定主题时才能使用图片主题
+* 软件出现任何异常可尝试“清除缓存”按钮
 
 ## 问题
-* Pexels 图片加载不出来：请尝试关闭桌面或浏览器的广告拦截程序。
+#### 软件会发布移动端吗？
+答：暂时没有发布移动端的计划
+#### 为什么打开软件后壁纸还是上一次的图片？
+答：本插件设置了请求时间间隔，只有超过该时间间隔，才会请求并显示新的图片，用户可以在菜单栏设置中自行调整切换间隔
+#### 为什么会出现获取图片失败的情况？
+答：Unsplash 是海外网站，访问速度受到地区和运营商的影响，可自行检查网络连接或稍等一会
+#### 如何下载图片？
+答：可点击图片列表右侧的“图片主页”按钮，在弹出窗口内免费下载
+
+## 链接
+* 博客：https://xyk953651094.blogspot.com
+* 支持：https://afdian.net/a/xyk953651094
 
 ## 效果展示（正在开发中，不代表最终效果）
-<img width="930" alt="截屏2023-03-20 20 51 32" src="https://user-images.githubusercontent.com/28004442/226344073-b00b63fb-5c99-40d6-a74a-d8758b3510d4.png">
+<img width="1000" alt="截屏2023-11-18 22 05 26" src="https://github.com/xyk953651094/SkyWallpaper-Electron/assets/28004442/22e3a319-0f18-474d-8ba3-f8a183b94e7d">
 
-<img width="930" alt="截屏2023-03-20 20 52 14" src="https://user-images.githubusercontent.com/28004442/226344226-62e0e05a-bd0b-4aea-a789-cca82c0e0fd0.png">
+<img width="1001" alt="截屏2023-11-18 22 06 05" src="https://github.com/xyk953651094/SkyWallpaper-Electron/assets/28004442/c1c08eb8-b33d-4af4-9ff4-b437b071b115">
 
-<img width="930" alt="截屏2023-03-20 20 52 52" src="https://user-images.githubusercontent.com/28004442/226344397-4520b96d-39e5-47a2-95de-14b05d195886.png">
+<img width="1000" alt="截屏2023-11-18 22 06 29" src="https://github.com/xyk953651094/SkyWallpaper-Electron/assets/28004442/c9cce7e6-3d87-484e-9283-07ec54d6a9e9">
 
-<img width="1047" alt="截屏2023-03-20 21 00 15" src="https://user-images.githubusercontent.com/28004442/226346160-8fb3dab0-3680-4657-b3e6-589bc3eab467.png">
+<img width="1001" alt="截屏2023-11-18 22 06 52" src="https://github.com/xyk953651094/SkyWallpaper-Electron/assets/28004442/091e05f2-2b9e-4674-9e9a-f11cca2fd510">
 
-<img width="932" alt="截屏2023-03-20 20 53 11" src="https://user-images.githubusercontent.com/28004442/226344461-2227d5b0-4593-4c49-80bf-5f722f405d97.png">
-
-<img width="1045" alt="截屏2023-03-20 20 59 39" src="https://user-images.githubusercontent.com/28004442/226346016-2bbc8d91-4e9c-45b2-8234-987a95c4ebe4.png">
-
-<img width="931" alt="截屏2023-03-20 20 53 30" src="https://user-images.githubusercontent.com/28004442/226344553-1259cec1-2307-4da7-8ab0-3d62f42f9111.png">
-
-<img width="1047" alt="截屏2023-03-20 21 01 12" src="https://user-images.githubusercontent.com/28004442/226346354-12ff70bb-cd29-4ba2-93fb-ad32277ade6a.png">
-
-<img width="932" alt="截屏2023-03-20 20 53 58" src="https://user-images.githubusercontent.com/28004442/226344656-2dbeffd1-6ca7-4b46-af65-104ad1db41ec.png">
+<img width="1001" alt="截屏2023-11-18 22 07 11" src="https://github.com/xyk953651094/SkyWallpaper-Electron/assets/28004442/4a8d42be-1e20-4cd7-8822-dd85b57d1ebb">
 

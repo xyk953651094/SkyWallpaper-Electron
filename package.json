@@ -1,7 +1,7 @@
 {
   "name": "sky-wallpaper",
   "version": "1.0.0",
-  "description":"sky-wallpaper",
+  "description": "sky-wallpaper",
   "private": true,
   "dependencies": {
     "@douyinfe/semi-ui": "^2.30.2",
@@ -16,6 +16,7 @@
     "jquery": "^3.6.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.18.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
@@ -57,5 +58,19 @@
     "@electron-forge/maker-squirrel": "^6.0.5",
     "@electron-forge/maker-zip": "^6.0.5",
     "electron": "^23.1.4"
+  },
+  "build": {
+    "productName": "云开壁纸",
+    "directories": {
+      "output": "dist"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "public/icons/icon.ico"
+    }
   }
 }

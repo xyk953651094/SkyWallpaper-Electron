@@ -1,13 +1,3 @@
-.listStyle {
-    width: 100%;
-    max-width: fit-content;
-    border-radius: var(--semi-border-radius-medium)
-}
-
-.listHeaderTitle {
-    width: 100px;
-    display: inline-block;
-}
 .listHeaderButtonGroup {
     display: inline-block;
 }

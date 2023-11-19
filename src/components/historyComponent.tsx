@@ -1,26 +1,29 @@
 import React from "react";
 import {
-    Row, Col,
     List,
     Typography,
     Toast,
     ImagePreview,
     Image,
-    ButtonGroup,
     Button,
-    Space,
+    Space, Spin,
 } from "@douyinfe/semi-ui";
-import {IconDelete, IconHomeStroked, IconDownloadStroked, IconLoading} from "@douyinfe/semi-icons";
+import {IconUserCircle, IconInfoCircle, IconHomeStroked, IconImage} from "@douyinfe/semi-icons";
 import "../stylesheets/searchComponent.css"
-import {historyMaxSize} from "../typescripts/publicConstants";
-import {getFontColor, isEmptyString, setWallpaper} from "../typescripts/publicFunctions";
+import {listPageSize} from "../typescripts/publicConstants";
+import {
+    btnMouseOut,
+    btnMouseOver,
+    getFontColor,
+    isEmpty,
+    setWallpaper
+} from "../typescripts/publicFunctions";
 import {ImageData} from "../typescripts/publicInterface";
+import "../stylesheets/publicStyles.css"
 
 const {Title, Text} = Typography;
 
-type propType = {
-    display: string,
-}
+type propType = {}
 
 type stateType = {
     history: ImageData[],
@@ -41,13 +44,6 @@ class HistoryComponent extends React.Component {
         };
     }
 
-    cleanHistoryButtonOnClick() {
-        localStorage.setItem("history", "[]");
-        this.setState({
-            history: [],
-        })
-    }
-
     getHistory() {
         let tempHistory = localStorage.getItem("history");
         if (tempHistory !== null && tempHistory.length !== 0) {
@@ -59,28 +55,15 @@ class HistoryComponent extends React.Component {
     }
 
     homeButtonClick(item: any) {
-        if ( isEmptyString(item.imageUrl) ) {
+        if ( isEmpty(item.imageUrl) ) {
             Toast.error("无跳转链接");
         } else {
-            window.open(item.imageUrl);
+            window.open(item.imageUrl, "_blank");
         }
     }
 
     setWallpaperButtonClick(item: any) {
         setWallpaper(item);
-    }
-
-    onPageChange( currentPage: number ) {}
-
-    componentWillReceiveProps(nextProps: any, prevProps: any) {
-        if (nextProps.display !== prevProps.display) {
-            this.setState({
-                display: nextProps.display,
-            });
-
-            // 每次进入时刷新列表
-            this.getHistory();
-        }
     }
 
     componentDidMount() {
@@ -90,60 +73,53 @@ class HistoryComponent extends React.Component {
     render() {
         return (
             <List
-                style={{display: this.props.display}}
                 size="small"
                 bordered
                 header={
-                    <Row>
-                        <Col span={12}>
-                            <Title heading={3}>历史记录</Title>
-                        </Col>
-                        <Col span={12} style={{textAlign: "right"}}>
-                            <Space spacing={"loose"}>
-                                <Button theme={"borderless"} icon={<IconDelete />}
-                                        style={{color: "rgba(var(--semi-grey-9), 1)"}}
-                                        onClick={this.cleanHistoryButtonOnClick.bind(this)}
-                                >
-                                    清空历史记录
-                                </Button>
-                                <Text>{this.state.historyLength + " / " + historyMaxSize}</Text>
-                            </Space>
-                        </Col>
-                    </Row>
+                    <Title heading={3}>{"历史记录（" + this.state.historyLength + " / " + listPageSize + "）"}</Title>
                 }
                 dataSource={this.state.history}
                 renderItem={item => (
                     <List.Item
                         style={{backgroundColor: item.color, padding: "10px 10px 5px 10px"}}
                         header={
-                            <ImagePreview>
-                                <Image width={80} height={80} src={item.displayUrl} preview={true}
-                                       // placeholder={<Image width={80} height={80}
-                                       //                     src={item.previewUrl} preview={false}/>}
-                                       placeholder={<IconLoading />}
+                            <ImagePreview disableDownload={true} src={item.wallpaperUrl}>
+                                <Image width={100} height={100} src={item.displayUrl} preview={true}
+                                       placeholder={<Spin />}
                                        className={"wallpaperFadeIn"}
                                 />
                             </ImagePreview>
                         }
                         main={
-                            <Space vertical align="start">
-                                <Title heading={5} className="searchTitleP"
-                                       style={{color: getFontColor(item.color)}}>
-                                    {"摄影师：" + item.userName}
-                                </Title>
-                                <Text className="searchDescriptionP" style={{color: getFontColor(item.color)}}>
-                                    {item.description == null ? "暂无图片描述" : "图片描述：" + item.description}
-                                </Text>
-                            </Space>
+                            <div className={"alignCenter"} style={{height: "100px"}}>
+                                <Space vertical align="start">
+                                    <Button theme={"borderless"} icon={<IconUserCircle />}
+                                            style={{color: getFontColor(item.color), cursor: "default"}}
+                                            onMouseOver={btnMouseOver.bind(this, item.color)}
+                                            onMouseOut={btnMouseOut.bind(this, item.color)}>
+                                        {"摄影师：" + item.userName}
+                                    </Button>
+                                    <Button theme={"borderless"} icon={<IconInfoCircle />}
+                                            style={{color: getFontColor(item.color), cursor: "default"}}
+                                            onMouseOver={btnMouseOver.bind(this, item.color)}
+                                            onMouseOut={btnMouseOut.bind(this, item.color)}>
+                                        {"图片描述：" + item.description === null ? "暂无图片描述" : item.description}
+                                    </Button>
+                                </Space>
+                            </div>
                         }
                         extra={
                             <Space vertical align={"start"}>
                                 <Button theme={"borderless"} icon={<IconHomeStroked/>}
                                         style={{color: getFontColor(item.color)}}
+                                        onMouseOver={btnMouseOver.bind(this, item.color)}
+                                        onMouseOut={btnMouseOut.bind(this, item.color)}
                                         onClick={this.homeButtonClick.bind(this, item)}>图片主页</Button>
-                                <Button theme={"borderless"} icon={<IconDownloadStroked/>}
+                                <Button theme={"borderless"} icon={<IconImage/>}
                                         style={{color: getFontColor(item.color)}}
-                                        onClick={this.setWallpaperButtonClick.bind(this, item)}>设置壁纸</Button>
+                                        onMouseOver={btnMouseOver.bind(this, item.color)}
+                                        onMouseOut={btnMouseOut.bind(this, item.color)}
+                                        onClick={this.setWallpaperButtonClick.bind(this, item)}>设为壁纸</Button>
                             </Space>
                         }
                     />

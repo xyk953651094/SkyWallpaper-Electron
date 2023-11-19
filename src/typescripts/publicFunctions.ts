@@ -1,6 +1,6 @@
-import {ImageData} from "./publicInterface";
+import {ImageData, Preference} from "./publicInterface";
 import {Toast} from "@douyinfe/semi-ui";
-import {historyMaxSize} from "./publicConstants";
+import {defaultPreference, listPageSize} from "./publicConstants";
 
 const $ = require("jquery");
 
@@ -24,7 +24,7 @@ export function httpRequest(headers: object, url: string, data: object, method: 
 }
 
 // 判断字符串是否合规
-export function isEmptyString(param: string | null) {
+export function isEmpty(param: string | null) {
     return (param === null || param === undefined || param.length === 0);
 }
 
@@ -36,12 +36,10 @@ export function setWallpaper(currentImage: ImageData) {
     let sameIndex: number = -1;
     if(tempLocalStorage) {
         tempHistory = JSON.parse(tempLocalStorage);
-        console.log(tempHistory);
 
         // 超过数量上限时删除最早记录
-        if(tempHistory.length === historyMaxSize) {
+        if(tempHistory.length === listPageSize) {
             tempHistory.shift();
-            console.log(tempHistory);
         }
 
         // 查重
@@ -49,23 +47,27 @@ export function setWallpaper(currentImage: ImageData) {
             if( currentImage.imageUrl === tempHistory[i].imageUrl){
                 hasSame = true;
                 sameIndex = Number(i);
-                // console.log(sameIndex);
             }
         }
 
         // 删除重复的数据然后重新 push 一个新的
         if(hasSame) {
             tempHistory.splice(sameIndex, 1);
-            // console.log(tempHistory);
         }
     }
 
     tempHistory.push(currentImage);
-    console.log(tempHistory);
     localStorage.setItem("history", JSON.stringify(tempHistory));
 
-    // TODO: 设置壁纸
+    // TODO：根据不同操作系统设置壁纸
     Toast.success("设置成功");
+}
+
+// 根据图片背景颜色获取元素反色效果
+export function getReverseColor(color: string) {
+    color = "0x" + color.replace("#", '');
+    let newColor = "000000" + (0xFFFFFF - parseInt(color)).toString(16);
+    return "#" + newColor.substring(newColor.length - 6, newColor.length);
 }
 
 // 根据图片背景颜色改变字体颜色效果
@@ -100,16 +102,67 @@ export function getJsonLength(jsonData: JSON) {
     return length;
 }
 
-// 自动切换亮暗色模式
+// 补全设置数据
+export function fixPreference(preference: Preference) {
+    let isFixed = false;
+    if (!preference.openAtLogin) {
+        preference.openAtLogin = defaultPreference.openAtLogin;
+        isFixed = true;
+    }
+    if (!preference.colorMode) {
+        preference.colorMode = defaultPreference.colorMode;
+        isFixed = true;
+    }
+    if (!preference.imageTopics) {
+        preference.imageTopics = defaultPreference.imageTopics;
+        isFixed = true;
+    }
+    if (!preference.customTopic) {
+        preference.customTopic = defaultPreference.customTopic;
+        isFixed = true;
+    }
+    if (!preference.switchTime) {
+        preference.switchTime = defaultPreference.switchTime;
+        isFixed = true;
+    }
+
+    if (isFixed) {
+        localStorage.setItem("preference", JSON.stringify(preference));  // 重新保存设置
+    }
+    return preference;
+}
+
+export function getPreferenceStorage() {
+    let tempPreference = localStorage.getItem("preference");
+    if (tempPreference === null || tempPreference.length === 0) {
+        localStorage.setItem("preference", JSON.stringify(defaultPreference));
+        return defaultPreference;
+    } else {
+        return fixPreference(JSON.parse(tempPreference));  // 检查是否缺少数据
+    }
+}
+
+// 自动亮暗模式
 export function matchMode(e: any) {
     const body = document.body;
     if (e.matches) {
-        if (!body.hasAttribute("theme-mode")) {
-            body.setAttribute("theme-mode", "dark");
+        if (!body.hasAttribute('theme-mode')) {
+            body.setAttribute('theme-mode', 'dark');
         }
     } else {
         if (body.hasAttribute('theme-mode')) {
             body.removeAttribute('theme-mode');
         }
     }
+}
+
+// 按钮
+export function btnMouseOver(color: string, e: any) {
+    e.currentTarget.style.backgroundColor = getReverseColor(color);
+    e.currentTarget.style.color = getFontColor(getReverseColor(color));
+}
+
+export function btnMouseOut(color: string, e: any) {
+    e.currentTarget.style.backgroundColor = "transparent";
+    e.currentTarget.style.color = getFontColor(color);
 }

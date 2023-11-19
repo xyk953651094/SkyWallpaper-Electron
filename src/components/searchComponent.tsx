@@ -9,34 +9,38 @@ import {
     Toast,
     ImagePreview,
     Image,
-    ButtonGroup,
     Button,
     Space,
-    Select
+    Spin
 } from "@douyinfe/semi-ui";
-import {IconSearch, IconHomeStroked, IconDownloadStroked, IconLoading} from "@douyinfe/semi-icons";
+import {
+    IconSearch,
+    IconHomeStroked,
+    IconImage,
+    IconUserCircle,
+    IconInfoCircle, IconMapPin
+} from "@douyinfe/semi-icons";
 import "../stylesheets/searchComponent.css"
 import {
     unsplashSearchRequestUrl,
     unsplashClientId,
-    pexelsSearchRequestUrl,
-    pexelsAuth,
-    pixabayRequestUrl,
-    pixabayKey,
-    listPageSize,
+    listPageSize, imageDescriptionMaxSize,
 } from "../typescripts/publicConstants";
-import {getFontColor, httpRequest, isEmptyString, setWallpaper} from "../typescripts/publicFunctions";
+import {
+    btnMouseOut, btnMouseOver,
+    getFontColor,
+    httpRequest,
+    isEmpty,
+    setWallpaper
+} from "../typescripts/publicFunctions";
 import {ImageData} from "../typescripts/publicInterface"
 
-const {Title, Text} = Typography;
+const {Title} = Typography;
 
-type propType = {
-    display: string,
-}
+type propType = {}
 
 type stateType = {
     searchValue: string,
-    searchSource: "Unspalsh" | "Pexels" | "Pixabay",
     currentPage: number,
     loading: boolean,
     searchResult: ImageData[],
@@ -54,7 +58,6 @@ class SearchComponent extends React.Component {
         super(props);
         this.state = {
             searchValue: "",
-            searchSource: "Unspalsh",
             currentPage: 1,
             loading: false,
             searchResult: [],
@@ -63,21 +66,21 @@ class SearchComponent extends React.Component {
         };
     }
 
-    // 获取 Unsplash 图片
-    getUnsplashImages() {
+    // 搜索图片
+    searchImages(url: string) {
         let tempThis = this;
         let data = {
             "client_id": unsplashClientId,
-            "query": this.state.searchValue,
-            "orientation": "landscape",
-            "content_filter": "high",
-            "page": this.state.currentPage,
-            "per_page": listPageSize
-        }
+                "query": this.state.searchValue,
+                "orientation": "landscape",
+                "content_filter": "high",
+                "page": this.state.currentPage,
+                "per_page": listPageSize
+        };
         this.setState({
             loading: true,
         },()=>{
-            httpRequest({}, unsplashSearchRequestUrl, data, "GET")
+            httpRequest({}, url, data, "GET")
                 .then(function(resultData: any){
                     if(resultData.total === 0) {
                         Toast.info("搜索结果数量为 0");
@@ -91,13 +94,14 @@ class SearchComponent extends React.Component {
                         let tempImageData = [];
                         for (let i in resultData.results) {
                             let tempData: ImageData = {
+                                wallpaperUrl: resultData.results[i].urls.full,
                                 displayUrl: resultData.results[i].urls.regular,
-                                previewUrl: resultData.results[i].urls.small,
                                 imageUrl: resultData.results[i].links.html,
                                 userName: resultData.results[i].user.name,
                                 userUrl: resultData.results[i].user.links.html,
                                 createTime: resultData.results[i].created_at.split("T")[0],
-                                description: resultData.results[i].description,
+                                description: (resultData.results[i].alt_description.length > imageDescriptionMaxSize ? resultData.results[i].alt_description.substring(0, imageDescriptionMaxSize) + "..." : resultData.results[i].alt_description),
+                                location: "暂无信息",
                                 color: resultData.results[i].color,
                             };
                             tempImageData.push(tempData);
@@ -112,131 +116,12 @@ class SearchComponent extends React.Component {
                     }
                 })
                 .catch(function(){
-                    Toast.error("搜索失败");
                     tempThis.setState({
                         loading: false,
                         searchResult: [],
                         paginationDisplay: "none",
-                    });
-                })
-        })
-    }
-
-    // 获取 Pexels 图片
-    getPexelsImages() {
-        let tempThis = this;
-        let headers = { "authorization": pexelsAuth}
-        let data = {
-            "query": this.state.searchValue,
-            "orientation": "landscape",
-            "page": this.state.currentPage,
-            "per_page":  listPageSize,
-        }
-        this.setState({
-            loading: true,
-        },()=>{
-            httpRequest(headers, pexelsSearchRequestUrl, data, "GET")
-                .then(function(resultData: any){
-                    if(resultData.total === 0) {
-                        Toast.info("搜索结果数量为 0");
-                        tempThis.setState({
-                            loading: false,
-                            searchResult: [],
-                            paginationDisplay: "none",
-                        });
-                    }
-                    else {
-                        let tempImageData = [];
-                        for (let i in resultData.photos) {
-                            let tempData: ImageData = {
-                                displayUrl: resultData.photos[i].src.landscape,
-                                previewUrl: resultData.photos[i].src.tiny,
-                                imageUrl: resultData.photos[i].url,
-                                userName: resultData.photos[i].photographer,
-                                userUrl: resultData.photos[i].photographer_url,
-                                createTime: "无拍摄时间",
-                                description: resultData.photos[i].alt,
-                                color: resultData.photos[i].avg_color,
-                            };
-                            tempImageData.push(tempData);
-                        }
-
-                        tempThis.setState({
-                            loading: false,
-                            totalCounts: resultData.total_results,
-                            searchResult: tempImageData,
-                            paginationDisplay: "flex",
-                        });
-                    }
-                })
-                .catch(function(){
-                    Toast.error("搜索失败");
-                    tempThis.setState({
-                        loading: false,
-                        searchResult: [],
-                        paginationDisplay: "none",
-                    });
-                })
-        })
-    }
-
-    // 获取 Pixabay 图片
-    getPixabayImages() {
-        let tempThis = this;
-        let data = {
-            "key": pixabayKey,
-            "q": this.state.searchValue,
-            "editors_choice": "true",
-            "image_type": "photo",
-            "orientation": "vertical",
-            "page": this.state.currentPage,
-            "per_page":  listPageSize,
-            "order": "latest",
-            "safesearch": "true",
-        }
-        this.setState({
-            loading: true,
-        },()=>{
-            httpRequest({}, pixabayRequestUrl, data, "GET")
-                .then(function(resultData: any){
-                    if(resultData.total === 0) {
-                        Toast.info("搜索结果数量为 0");
-                        tempThis.setState({
-                            loading: false,
-                            searchResult: [],
-                            paginationDisplay: "none",
-                        });
-                    }
-                    else {
-                        let tempImageData = [];
-                        for (let i in resultData.hits) {
-                            let tempData: ImageData = {
-                                displayUrl: resultData.hits[i].largeImageURL,
-                                previewUrl: resultData.hits[i].previewURL,
-                                imageUrl: resultData.hits[i].pageURL,
-                                userName: resultData.hits[i].user,
-                                userUrl: resultData.hits[i].pageURL,
-                                createTime: "无拍摄时间",
-                                description: resultData.hits[i].tags,
-                                color: "rgba(var(--semi-grey-0), 1)",
-                            };
-                            tempImageData.push(tempData);
-                        }
-
-                        tempThis.setState({
-                            loading: false,
-                            totalCounts: resultData.total,
-                            searchResult: tempImageData,
-                            paginationDisplay: "flex",
-                        });
-                    }
-                })
-                .catch(function(){
-                    Toast.error("搜索失败");
-                    tempThis.setState({
-                        loading: false,
-                        searchResult: [],
-                        paginationDisplay: "none",
+                    },()=>{
+                        Toast.error("搜索图片失败");
                     });
                 })
         })
@@ -244,37 +129,19 @@ class SearchComponent extends React.Component {
 
     inputOnEnterPress(e: any) {
         this.setState({
-            searchValue: e.target.value,        // 保存搜索内容，用于搜索和分页请求
+            searchValue: e.target.value,  // 保存搜索内容，用于搜索和分页请求
             searchResult: [],
             currentPage: 1,
         }, ()=>{
-            switch (this.state.searchSource) {
-                case "Unspalsh": {
-                    this.getUnsplashImages();
-                    break;
-                }
-                case "Pexels": {
-                    this.getPexelsImages();
-                    break;}
-                case "Pixabay": {
-                    this.getPixabayImages();
-                    break;
-                }
-            }
-        })
-    }
-
-    selectOnChange(value: any) {
-        this.setState({
-            searchSource: value,
+            this.searchImages(unsplashSearchRequestUrl);
         })
     }
 
     homeButtonClick(item: any) {
-        if ( isEmptyString(item.imageUrl) ) {
+        if ( isEmpty(item.imageUrl) ) {
             Toast.error("无跳转链接");
         } else {
-            window.open(item.imageUrl);
+            window.open(item.imageUrl, "_blank");
         }
     }
 
@@ -287,34 +154,13 @@ class SearchComponent extends React.Component {
             searchResult: [],
             currentPage: currentPage,   // 设置分页
         }, ()=>{
-            switch (this.state.searchSource) {
-                case "Unspalsh": {
-                    this.getUnsplashImages();
-                    break;
-                }
-                case "Pexels": {
-                    this.getPexelsImages();
-                    break;}
-                case "Pixabay": {
-                    this.getPixabayImages();
-                    break;
-                }
-            }
+            this.searchImages(unsplashSearchRequestUrl);
         })
-    }
-
-    componentWillReceiveProps(nextProps: any, prevProps: any) {
-        if (nextProps.display !== prevProps.display) {
-            this.setState({
-                display: nextProps.display,
-            });
-        }
     }
 
     render() {
         return (
             <List
-                style={{display: this.props.display}}
                 loading={this.state.loading}
                 size="small"
                 bordered
@@ -327,13 +173,6 @@ class SearchComponent extends React.Component {
                             <Input prefix={<IconSearch/>} placeholder="按下回车键进行搜索" showClear
                                    onEnterPress={this.inputOnEnterPress.bind(this)}></Input>
                         </Col>
-                        <Col span={5} style={{textAlign: "right"}}>
-                            <Select defaultValue="Unspalsh" value={this.state.searchSource} onChange={this.selectOnChange.bind(this)}>
-                                <Select.Option value="Unspalsh">Unspalsh</Select.Option>
-                                <Select.Option value="Pexels">Pexels</Select.Option>
-                                <Select.Option value="Pixabay">Pixabay</Select.Option>
-                            </Select>
-                        </Col>
                     </Row>
                 }
                 dataSource={this.state.searchResult}
@@ -341,34 +180,43 @@ class SearchComponent extends React.Component {
                     <List.Item
                         style={{backgroundColor: item.color, padding: "10px 10px 5px 10px"}}
                         header={
-                            <ImagePreview>
-                                <Image width={80} height={80} src={item.displayUrl} preview={true}
-                                       // placeholder={<Image width={80} height={80}
-                                       //                     src={item.previewUrl} preview={false}/>}
-                                       placeholder={<IconLoading />}
+                            <ImagePreview disableDownload={true} src={item.wallpaperUrl}>
+                                <Image width={100} height={100} src={item.displayUrl} preview={true}
+                                       placeholder={<Spin />}
                                        className={"wallpaperFadeIn"}
                                 />
                             </ImagePreview>
                         }
                         main={
-                            <Space vertical align={"start"}>
-                                <Title heading={5} className="searchTitleP"
-                                       style={{color: getFontColor(item.color)}}>
-                                    {"摄影师：" + item.userName}
-                                </Title>
-                                <Text className="searchDescriptionP" style={{color: getFontColor(item.color)}}>
-                                    {item.description == null ? "暂无图片描述" : "图片描述：" + item.description}
-                                </Text>
-                            </Space>
+                            <div className={"alignCenter"} style={{height: "100px"}}>
+                                <Space vertical align="start">
+                                    <Button theme={"borderless"} icon={<IconUserCircle />}
+                                            style={{color: getFontColor(item.color), cursor: "default"}}
+                                            onMouseOver={btnMouseOver.bind(this, item.color)}
+                                            onMouseOut={btnMouseOut.bind(this, item.color)}>
+                                        {"摄影师：" + item.userName}
+                                    </Button>
+                                    <Button theme={"borderless"} icon={<IconInfoCircle />}
+                                            style={{color: getFontColor(item.color), cursor: "default"}}
+                                            onMouseOver={btnMouseOver.bind(this, item.color)}
+                                            onMouseOut={btnMouseOut.bind(this, item.color)}>
+                                        {"图片描述：" + (item.description === null ? "暂无图片描述" : item.description)}
+                                    </Button>
+                                </Space>
+                            </div>
                         }
                         extra={
                             <Space vertical align={"start"}>
                                 <Button theme={"borderless"} icon={<IconHomeStroked/>}
                                         style={{color: getFontColor(item.color)}}
+                                        onMouseOver={btnMouseOver.bind(this, item.color)}
+                                        onMouseOut={btnMouseOut.bind(this, item.color)}
                                         onClick={this.homeButtonClick.bind(this, item)}>图片主页</Button>
-                                <Button theme={"borderless"} icon={<IconDownloadStroked/>}
+                                <Button theme={"borderless"} icon={<IconImage/>}
                                         style={{color: getFontColor(item.color)}}
-                                        onClick={this.setWallpaperButtonClick.bind(this, item)}>设为桌面壁纸</Button>
+                                        onMouseOver={btnMouseOver.bind(this, item.color)}
+                                        onMouseOut={btnMouseOut.bind(this, item.color)}
+                                        onClick={this.setWallpaperButtonClick.bind(this, item)}>设为壁纸</Button>
                             </Space>
                         }
                     />
