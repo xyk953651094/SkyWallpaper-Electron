@@ -88,7 +88,7 @@ class preferenceFunctionComponent extends React.Component {
             >
                 <List.Item
                     header={ <IconQuit className={"listItemIcon"}/> }
-                    main={ <Text className="listItemText">开机启动</Text> }
+                    main={ <Text className="listItemText">开机自启（开发中）</Text> }
                     extra={
                         <Space>
                             <Text>{this.state.preference.openAtLogin ? '已开启' : '已关闭'}</Text>

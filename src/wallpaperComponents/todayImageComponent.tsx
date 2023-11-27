@@ -159,7 +159,7 @@ class TodayImageComponent extends React.Component {
                 header={
                 <Row>
                     <Col span={12}>
-                        <Title heading={3}>推荐图片</Title>
+                        <Title heading={3}>推荐壁纸</Title>
                     </Col>
                     <Col span={12} style={{textAlign: "right"}}>
                         <RadioGroup type="button" defaultValue={this.state.orderBy} value={this.state.orderBy} onChange={this.orderRadioGroupOnChange.bind(this)}>
@@ -174,8 +174,9 @@ class TodayImageComponent extends React.Component {
                     <List.Item
                         style={{backgroundColor: item.color, padding: "10px 10px 5px 10px"}}
                         header={
-                            <ImagePreview disableDownload={true} src={item.wallpaperUrl}>
-                                <Image width={100} height={100} src={item.displayUrl} preview={true}
+                            <ImagePreview disableDownload={true}>
+                                <Image width={100} height={100} src={item.displayUrl}
+                                       preview={{src: item.wallpaperUrl}}
                                        placeholder={<Spin />}
                                        className={"wallpaperFadeIn"}
                                 />

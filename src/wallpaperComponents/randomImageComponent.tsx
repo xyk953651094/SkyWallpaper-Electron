@@ -148,8 +148,9 @@ class RandomImageComponent extends React.Component {
                 <List.Item
                     style={{backgroundColor: this.state.imageData.color, padding: "10px 10px 5px 10px"}}
                     header={
-                        <ImagePreview disableDownload={true} src={this.state.imageData.wallpaperUrl}>
-                            <Image width={150} height={150} src={this.state.imageData.displayUrl} preview={true}
+                        <ImagePreview disableDownload={true}>
+                            <Image width={150} height={150} src={this.state.imageData.displayUrl}
+                                   preview={{src: this.state.imageData.wallpaperUrl}}
                                    placeholder={<Spin />}
                                    className={"wallpaperFadeIn"}
                             />
@@ -188,12 +189,12 @@ class RandomImageComponent extends React.Component {
                                     onClick={this.homeButtonClick.bind(this, this.state.imageData.imageUrl)}>
                                 图片主页
                             </Button>
-                            <Button theme={"borderless"} icon={<IconImage/>} disabled
+                            <Button theme={"borderless"} icon={<IconImage/>}
                                     style={{color: getFontColor(this.state.imageData.color)}}
                                     onMouseOver={btnMouseOver.bind(this, this.state.imageData.color)}
                                     onMouseOut={btnMouseOut.bind(this, this.state.imageData.color)}
                                     onClick={this.setWallpaperButtonClick.bind(this, this.state.imageData)}>
-                                默认壁纸
+                                设为壁纸
                             </Button>
                         </Space>
                     }

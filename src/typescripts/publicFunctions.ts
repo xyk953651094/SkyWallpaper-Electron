@@ -60,7 +60,7 @@ export function setWallpaper(currentImage: ImageData) {
     localStorage.setItem("history", JSON.stringify(tempHistory));
 
     // TODO：根据不同操作系统设置壁纸
-    Toast.success("设置成功");
+    Toast.success("设置成功（开发中）");
 }
 
 // 根据图片背景颜色获取元素反色效果

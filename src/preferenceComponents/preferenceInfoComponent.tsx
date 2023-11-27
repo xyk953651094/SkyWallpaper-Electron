@@ -4,7 +4,7 @@ import {
     IconDislikeThumb,
     IconGithubLogo,
     IconGitlabLogo, IconImage, IconLikeHeart, IconLikeThumb, IconLink, IconMail,
-    IconRefresh, IconGift
+    IconRefresh, IconGift, IconBell
 } from "@douyinfe/semi-icons";
 
 const {Title, Text} = Typography;
@@ -79,6 +79,19 @@ class preferenceInfoComponent extends React.Component {
                                     style={{color: "var(--semi-color-text-0)"}}
                                     onClick={()=> {window.open("mailto:xyk953651094@qq.com?&subject=云开壁纸-问题反馈","_blank")}}>
                                 {"问题反馈"}
+                            </Button>
+                        </Space>
+                    }
+                />
+                <List.Item
+                    header={ <IconLink className={"listItemIcon"}/> }
+                    main={ <Text className="listItemText">其它链接</Text> }
+                    extra={
+                        <Space>
+                            <Button theme={"borderless"} icon={<IconBell />}
+                                    style={{color: "var(--semi-color-text-0)"}}
+                                    onClick={()=> {window.open("https://xyk953651094.blogspot.com/","_blank")}}>
+                                {"Blogger"}
                             </Button>
                             <Button theme={"borderless"} icon={<IconGift />}
                                     style={{color: "var(--semi-color-text-0)"}}
