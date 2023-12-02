@@ -4,7 +4,7 @@ import {
     IconDislikeThumb,
     IconGithubLogo,
     IconGitlabLogo, IconImage, IconLikeHeart, IconLikeThumb, IconLink, IconMail,
-    IconRefresh, IconGift, IconBell
+    IconRefresh, IconGift, IconHorn
 } from "@douyinfe/semi-icons";
 
 const {Title, Text} = Typography;
@@ -88,7 +88,7 @@ class preferenceInfoComponent extends React.Component {
                     main={ <Text className="listItemText">其它链接</Text> }
                     extra={
                         <Space>
-                            <Button theme={"borderless"} icon={<IconBell />}
+                            <Button theme={"borderless"} icon={<IconHorn />}
                                     style={{color: "var(--semi-color-text-0)"}}
                                     onClick={()=> {window.open("https://xyk953651094.blogspot.com/","_blank")}}>
                                 {"Blogger"}

@@ -61,6 +61,15 @@ module.exports = {
                     }
                 }
             },
+            {
+                test: /\.py$/,
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        outputPath: 'python/'
+                    }
+                }
+            },
         ]
     },
     plugins: [

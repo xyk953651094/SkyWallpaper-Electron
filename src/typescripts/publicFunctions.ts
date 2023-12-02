@@ -2,6 +2,8 @@ import {ImageData, Preference} from "./publicInterface";
 import {Toast} from "@douyinfe/semi-ui";
 import {defaultPreference, listPageSize} from "./publicConstants";
 
+const spawn = require('child_process').spawn;
+
 const $ = require("jquery");
 
 // 网络请求
@@ -59,8 +61,36 @@ export function setWallpaper(currentImage: ImageData) {
     tempHistory.push(currentImage);
     localStorage.setItem("history", JSON.stringify(tempHistory));
 
-    // TODO：根据不同操作系统设置壁纸
-    Toast.success("设置成功（开发中）");
+    // 根据不同操作系统设置壁纸，一次只能设置一个，防止不停点“设置壁纸”按钮
+    let settingStatus = localStorage.getItem("isSettingWallpaper");
+    if(settingStatus === null || settingStatus === "true") {
+        localStorage.setItem("isSettingWallpaper", "true");
+        spawn("python3", ["../python/setWallpaper.py", currentImage.wallpaperUrl]);
+        spawn.stdout.on("status", function(status: any){  // status => data
+            console.log(status);
+            switch (status) {
+                case "success":
+                    Toast.success("设置成功");
+                    break;
+                case "error":
+                    Toast.error("设置失败");
+                    break;
+            }
+        });
+        spawn.on('close', (code: any) => {
+            console.log(code);
+            localStorage.setItem("isSettingWallpaper", "false");
+        });
+    }
+}
+
+// 获取操作系统
+export function getUserAgent() {
+    let userAgent = window.navigator.userAgent;
+    if (userAgent.indexOf("Mac") !== -1) { return "MacOS"; }
+    if (userAgent.indexOf("Windows")!== -1) { return "Windows"; }
+    if (userAgent.indexOf("Linux")!== -1) { return "Linux"; }
+    return "Other";
 }
 
 // 根据图片背景颜色获取元素反色效果

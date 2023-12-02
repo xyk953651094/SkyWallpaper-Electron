@@ -118,23 +118,15 @@
       <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/tsconfig.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/webpack.config.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/electron.icns" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/logo.icns" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/python/setWallpaper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/SkyWallpaper-Electron.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SkyWallpaper-Electron.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forge.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/forge.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/historyComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/historyComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/searchComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/searchComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/preferenceComponents/preferenceFunctionComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/preferenceComponents/preferenceFunctionComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/preferenceComponents/preferenceImageComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/preferenceComponents/preferenceImageComponent.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/preferenceComponents/preferenceInfoComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/preferenceComponents/preferenceInfoComponent.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/typescripts/publicFunctions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/typescripts/publicFunctions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wallpaperComponents/randomImageComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallpaperComponents/randomImageComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wallpaperComponents/todayImageComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallpaperComponents/todayImageComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +177,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/Users/xiaoyunkai/Projects/WebStorm/SkyWallpaper-Electron/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -246,7 +238,15 @@
       <workItem from="1700477678598" duration="4937000" />
       <workItem from="1700485897587" duration="2887000" />
       <workItem from="1700489340945" duration="23000" />
-      <workItem from="1701078807724" duration="1403000" />
+      <workItem from="1701078807724" duration="1851000" />
+      <workItem from="1701084147137" duration="49000" />
+      <workItem from="1701157170668" duration="2016000" />
+      <workItem from="1701176408713" duration="1000" />
+      <workItem from="1701255554078" duration="48000" />
+      <workItem from="1701255611323" duration="368000" />
+      <workItem from="1701257871219" duration="1753000" />
+      <workItem from="1701260760646" duration="858000" />
+      <workItem from="1701404252152" duration="231000" />
     </task>
     <task id="LOCAL-00001" summary="修复已知问题，优化视觉效果">
       <option name="closed" value="true" />
@@ -288,7 +288,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700363133474</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="修复已知问题，优化视觉效果">
+      <option name="closed" value="true" />
+      <created>1701082007218</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1701082007218</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
