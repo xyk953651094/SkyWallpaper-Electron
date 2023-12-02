@@ -167,7 +167,7 @@ class SearchComponent extends React.Component {
                 header={
                     <Row>
                         <Col span={5} style={{textAlign: "left"}}>
-                            <Title heading={3}>搜索</Title>
+                            <Title heading={3}>搜索壁纸</Title>
                         </Col>
                         <Col span={14} style={{textAlign: "center"}}>
                             <Input prefix={<IconSearch/>} placeholder="按下回车键进行搜索" showClear
@@ -180,8 +180,9 @@ class SearchComponent extends React.Component {
                     <List.Item
                         style={{backgroundColor: item.color, padding: "10px 10px 5px 10px"}}
                         header={
-                            <ImagePreview disableDownload={true} src={item.wallpaperUrl}>
-                                <Image width={100} height={100} src={item.displayUrl} preview={true}
+                            <ImagePreview disableDownload={true}>
+                                <Image width={100} height={100} src={item.displayUrl}
+                                       preview={{src: item.wallpaperUrl}}
                                        placeholder={<Spin />}
                                        className={"wallpaperFadeIn"}
                                 />

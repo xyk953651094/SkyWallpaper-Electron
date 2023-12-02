@@ -10,9 +10,8 @@ import {
     Select,
     Button,
     Input,
-    Toast
 } from "@douyinfe/semi-ui";
-import {IconClock, IconGallery, IconCheckboxTick, IconClose} from "@douyinfe/semi-icons";
+import {IconClock, IconGallery, IconCheckboxTick, IconClose, IconEdit} from "@douyinfe/semi-icons";
 import {Preference} from "../typescripts/publicInterface";
 import {getPreferenceStorage, isEmpty} from "../typescripts/publicFunctions";
 
@@ -136,7 +135,7 @@ class preferenceInfoComponent extends React.Component {
                     }
                 />
                 <List.Item
-                    header={ <IconClock className={"listItemIcon"}/> }
+                    header={ <IconEdit className={"listItemIcon"}/> }
                     main={<Text className="listItemText">自定主题</Text>}
                     extra={
                         <Space>

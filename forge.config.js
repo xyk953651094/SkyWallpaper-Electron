@@ -1,5 +1,14 @@
 module.exports = {
-  packagerConfig: {},
+  packagerConfig: {
+    icon: './src/assets/logo',
+    appVersion: '1.0.0',
+    name: '云开壁纸',
+    win32metadata: {
+      'ProductName': '云开壁纸',
+      'CompanyName': '待看云开',
+      'FileDescription': '云开壁纸',
+    }
+  },
   rebuildConfig: {},
   makers: [
     {
@@ -8,7 +17,7 @@ module.exports = {
     },
     {
       name: '@electron-forge/maker-zip',
-      platforms: ['darwin'],
+      platforms: ['darwin', 'win32'],
     },
     {
       name: '@electron-forge/maker-deb',

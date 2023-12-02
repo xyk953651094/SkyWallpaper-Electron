@@ -11,6 +11,8 @@ import {Preference} from "./typescripts/publicInterface";
 import {defaultPreference} from "./typescripts/publicConstants";
 import {matchMode} from "./typescripts/publicFunctions";
 
+import logo from './assets/logo.png'
+
 const {Header, Sider, Content} = Layout;
 
 const $ = require("jquery");
@@ -84,7 +86,7 @@ class App extends React.Component {
                         defaultSelectedKeys={['Wallpaper']}
                         style={{ maxWidth: 220, height: '100%' }}
                         header={{
-                            logo: <img src={require("./assets/logo.png")}  alt={"Logo"}/>,
+                            logo: <img src={logo}  alt={"Logo"}/>,
                             text: '云开壁纸',
                         }}
                         renderWrapper={({ itemElement, isSubNav, isInSubNav, props }) => {

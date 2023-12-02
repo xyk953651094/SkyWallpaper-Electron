@@ -83,8 +83,9 @@ class HistoryComponent extends React.Component {
                     <List.Item
                         style={{backgroundColor: item.color, padding: "10px 10px 5px 10px"}}
                         header={
-                            <ImagePreview disableDownload={true} src={item.wallpaperUrl}>
-                                <Image width={100} height={100} src={item.displayUrl} preview={true}
+                            <ImagePreview disableDownload={true}>
+                                <Image width={100} height={100} src={item.displayUrl}
+                                       preview={{src: item.wallpaperUrl}}
                                        placeholder={<Spin />}
                                        className={"wallpaperFadeIn"}
                                 />
