@@ -2,7 +2,7 @@ import {ImageData, Preference} from "./publicInterface";
 import {Toast} from "@douyinfe/semi-ui";
 import {defaultPreference, listPageSize} from "./publicConstants";
 
-const spawn = require('child_process').spawn;
+// const spawn = require('child_process').spawn;
 
 const $ = require("jquery");
 
@@ -62,26 +62,28 @@ export function setWallpaper(currentImage: ImageData) {
     localStorage.setItem("history", JSON.stringify(tempHistory));
 
     // 根据不同操作系统设置壁纸，一次只能设置一个，防止不停点“设置壁纸”按钮
-    let settingStatus = localStorage.getItem("isSettingWallpaper");
-    if (settingStatus === null || settingStatus === "true") {
-        localStorage.setItem("isSettingWallpaper", "true");
-        spawn("python3", ["../python/setWallpaper.py", currentImage.wallpaperUrl]);
-        spawn.stdout.on("status", function (status: any) {  // status => data
-            console.log(status);
-            switch (status) {
-                case "success":
-                    Toast.success("设置成功");
-                    break;
-                case "error":
-                    Toast.error("设置失败");
-                    break;
-            }
-        });
-        spawn.on('close', (code: any) => {
-            console.log(code);
-            localStorage.setItem("isSettingWallpaper", "false");
-        });
-    }
+    Toast.success("设置成功（开发中）");
+
+    // let settingStatus = localStorage.getItem("isSettingWallpaper");
+    // if (settingStatus === null || settingStatus === "true") {
+    //     localStorage.setItem("isSettingWallpaper", "true");
+    //     spawn("python3", ["../python/setWallpaper.py", currentImage.wallpaperUrl]);
+    //     spawn.stdout.on("status", function (status: any) {  // status => data
+    //         console.log(status);
+    //         switch (status) {
+    //             case "success":
+    //                 Toast.success("设置成功");
+    //                 break;
+    //             case "error":
+    //                 Toast.error("设置失败");
+    //                 break;
+    //         }
+    //     });
+    //     spawn.on('close', (code: any) => {
+    //         console.log(code);
+    //         localStorage.setItem("isSettingWallpaper", "false");
+    //     });
+    // }
 }
 
 // 获取操作系统

@@ -32,7 +32,6 @@ import {ImageData} from "../typescripts/publicInterface"
 import {IconHomeStroked, IconImage, IconInfoCircle, IconUserCircle} from "@douyinfe/semi-icons";
 
 const {Title} = Typography;
-const $ = require("jquery");
 
 type propType = {}
 

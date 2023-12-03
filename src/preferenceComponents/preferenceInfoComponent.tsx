@@ -144,7 +144,7 @@ class preferenceInfoComponent extends React.Component {
                                     onClick={() => {
                                         window.open("https://xyk953651094.gitlab.io/SkyDocuments/", "_blank")
                                     }}>
-                                {"GitLab Pages（备用）"}
+                                {"GitLab Pages"}
                             </Button>
                         </Space>
                     }

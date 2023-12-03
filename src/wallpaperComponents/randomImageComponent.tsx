@@ -19,7 +19,6 @@ import {ImageData, Preference} from "../typescripts/publicInterface"
 import {IconHomeStroked, IconImage, IconInfoCircle, IconMapPin, IconUserCircle} from "@douyinfe/semi-icons";
 
 const {Title} = Typography;
-const $ = require("jquery");
 
 type propType = {
     preference: Preference,

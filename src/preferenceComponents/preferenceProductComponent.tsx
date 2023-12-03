@@ -34,12 +34,12 @@ class preferenceProductComponent extends React.Component {
                                     style={{color: "var(--semi-color-text-0)"}}
                                     onClick={() => {
                                         window.open("https://github.com/xyk953651094/SkyDocuments/", "_blank")
-                                    }}/>
+                                    }}>{"GitHub 主页"}</Button>
                             <Button theme={"borderless"} icon={<IconGitlabLogo/>}
                                     style={{color: "var(--semi-color-text-0)"}}
                                     onClick={() => {
                                         window.open("https://gitlab.com/xyk953651094/SkyDocument/", "_blank")
-                                    }}/>
+                                    }}>{"GitLab 主页"}</Button>
                         </Space>
                     }
                 />
@@ -52,12 +52,12 @@ class preferenceProductComponent extends React.Component {
                                     style={{color: "var(--semi-color-text-0)"}}
                                     onClick={() => {
                                         window.open("https://github.com/xyk953651094/SkyNewTab-React/", "_blank")
-                                    }}/>
+                                    }}>{"GitHub 主页"}</Button>
                             <Button theme={"borderless"} icon={<IconGitlabLogo/>}
                                     style={{color: "var(--semi-color-text-0)"}}
                                     onClick={() => {
                                         window.open("https://gitlab.com/xyk953651094/SkyNewTab-React/", "_blank")
-                                    }}/>
+                                    }}>{"GitLab 主页"}</Button>
                         </Space>
                     }
                 />
@@ -70,12 +70,12 @@ class preferenceProductComponent extends React.Component {
                                     style={{color: "var(--semi-color-text-0)"}}
                                     onClick={() => {
                                         window.open("https://github.com/xyk953651094/SkyNewTab-Vue/", "_blank")
-                                    }}/>
+                                    }}>{"GitHub 主页"}</Button>
                             <Button theme={"borderless"} icon={<IconGitlabLogo/>}
                                     style={{color: "var(--semi-color-text-0)"}}
                                     onClick={() => {
                                         window.open("https://gitlab.com/xyk953651094/SkyNewTab-Vue/", "_blank")
-                                    }}/>
+                                    }}>{"GitLab 主页"}</Button>
                         </Space>
                     }
                 />
@@ -88,12 +88,12 @@ class preferenceProductComponent extends React.Component {
                                     style={{color: "var(--semi-color-text-0)"}}
                                     onClick={() => {
                                         window.open("https://github.com/xyk953651094/SkyNewTab-Poem-React/", "_blank")
-                                    }}/>
+                                    }}>{"GitHub 主页"}</Button>
                             <Button theme={"borderless"} icon={<IconGitlabLogo/>}
                                     style={{color: "var(--semi-color-text-0)"}}
                                     onClick={() => {
                                         window.open("https://gitlab.com/xyk953651094/SkyNewTab-Poem-React/", "_blank")
-                                    }}/>
+                                    }}>{"GitLab 主页"}</Button>
                         </Space>
                     }
                 />
@@ -106,12 +106,12 @@ class preferenceProductComponent extends React.Component {
                                     style={{color: "var(--semi-color-text-0)"}}
                                     onClick={() => {
                                         window.open("https://github.com/xyk953651094/SkyNewTab-Poem-Angular/", "_blank")
-                                    }}/>
+                                    }}>{"GitHub 主页"}</Button>
                             <Button theme={"borderless"} icon={<IconGitlabLogo/>}
                                     style={{color: "var(--semi-color-text-0)"}}
                                     onClick={() => {
                                         window.open("https://gitlab.com/xyk953651094/SkyNewTab-Poem-Angular/", "_blank")
-                                    }}/>
+                                    }}>{"GitLab 主页"}</Button>
                         </Space>
                     }
                 />
