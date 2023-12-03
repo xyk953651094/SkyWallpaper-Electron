@@ -8,7 +8,7 @@ const $ = require("jquery");
 
 // 网络请求
 export function httpRequest(headers: object, url: string, data: object, method: "GET" | "POST") {
-    return new Promise(function(resolve,reject){
+    return new Promise(function (resolve, reject) {
         $.ajax({
             headers: headers,
             url: url,
@@ -36,24 +36,24 @@ export function setWallpaper(currentImage: ImageData) {
     let tempHistory: ImageData[] = [];
     let hasSame: boolean = false;
     let sameIndex: number = -1;
-    if(tempLocalStorage) {
+    if (tempLocalStorage) {
         tempHistory = JSON.parse(tempLocalStorage);
 
         // 超过数量上限时删除最早记录
-        if(tempHistory.length === listPageSize) {
+        if (tempHistory.length === listPageSize) {
             tempHistory.shift();
         }
 
         // 查重
         for (let i in tempHistory) {
-            if( currentImage.imageUrl === tempHistory[i].imageUrl){
+            if (currentImage.imageUrl === tempHistory[i].imageUrl) {
                 hasSame = true;
                 sameIndex = Number(i);
             }
         }
 
         // 删除重复的数据然后重新 push 一个新的
-        if(hasSame) {
+        if (hasSame) {
             tempHistory.splice(sameIndex, 1);
         }
     }
@@ -63,10 +63,10 @@ export function setWallpaper(currentImage: ImageData) {
 
     // 根据不同操作系统设置壁纸，一次只能设置一个，防止不停点“设置壁纸”按钮
     let settingStatus = localStorage.getItem("isSettingWallpaper");
-    if(settingStatus === null || settingStatus === "true") {
+    if (settingStatus === null || settingStatus === "true") {
         localStorage.setItem("isSettingWallpaper", "true");
         spawn("python3", ["../python/setWallpaper.py", currentImage.wallpaperUrl]);
-        spawn.stdout.on("status", function(status: any){  // status => data
+        spawn.stdout.on("status", function (status: any) {  // status => data
             console.log(status);
             switch (status) {
                 case "success":
@@ -87,9 +87,15 @@ export function setWallpaper(currentImage: ImageData) {
 // 获取操作系统
 export function getUserAgent() {
     let userAgent = window.navigator.userAgent;
-    if (userAgent.indexOf("Mac") !== -1) { return "MacOS"; }
-    if (userAgent.indexOf("Windows")!== -1) { return "Windows"; }
-    if (userAgent.indexOf("Linux")!== -1) { return "Linux"; }
+    if (userAgent.indexOf("Mac") !== -1) {
+        return "MacOS";
+    }
+    if (userAgent.indexOf("Windows") !== -1) {
+        return "Windows";
+    }
+    if (userAgent.indexOf("Linux") !== -1) {
+        return "Linux";
+    }
     return "Other";
 }
 
@@ -102,10 +108,9 @@ export function getReverseColor(color: string) {
 
 // 根据图片背景颜色改变字体颜色效果
 export function getFontColor(color: string) {
-    if(color === "rgba(var(--semi-grey-0), 1)") {
+    if (color === "rgba(var(--semi-grey-0), 1)") {
         return "rgba(var(--semi-grey-9), 1)"
-    }
-    else {
+    } else {
         let rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
         if (rgb) {
             let r = parseInt(rgb[1], 16);
@@ -117,8 +122,7 @@ export function getFontColor(color: string) {
             } else {
                 return "#ffffff";
             }
-        }
-        else {
+        } else {
             return "#ffffff";
         }
     }
@@ -127,7 +131,7 @@ export function getFontColor(color: string) {
 export function getJsonLength(jsonData: JSON) {
     let length: number = 0;
     for (let i in jsonData) {
-        length ++;
+        length++;
     }
     return length;
 }

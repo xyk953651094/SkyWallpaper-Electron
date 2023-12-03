@@ -1,18 +1,24 @@
 import React from "react";
 import {
-    List,
-    Toast,
-    Typography,
     Button,
-    Space,
+    Col,
+    Image,
     ImagePreview,
-    Image, Spin, Row, Col, RadioGroup, Radio
+    List,
+    Radio,
+    RadioGroup,
+    Row,
+    Space,
+    Spin,
+    Toast,
+    Typography
 } from "@douyinfe/semi-ui";
 import "../stylesheets/wallpaperComponent.css"
 import {
-    unsplashTodayRequestUrl,
+    imageDescriptionMaxSize,
+    listPageSize,
     unsplashClientId,
-    imageDescriptionMaxSize, listPageSize
+    unsplashTodayRequestUrl
 } from "../typescripts/publicConstants";
 import {
     btnMouseOut,
@@ -23,12 +29,7 @@ import {
     setWallpaper
 } from "../typescripts/publicFunctions";
 import {ImageData} from "../typescripts/publicInterface"
-import {
-    IconHomeStroked,
-    IconImage,
-    IconInfoCircle, IconMapPin,
-    IconUserCircle
-} from "@douyinfe/semi-icons";
+import {IconHomeStroked, IconImage, IconInfoCircle, IconUserCircle} from "@douyinfe/semi-icons";
 
 const {Title} = Typography;
 const $ = require("jquery");
@@ -67,7 +68,7 @@ class TodayImageComponent extends React.Component {
     }
 
     homeButtonClick(item: any) {
-        if ( isEmpty(item.imageUrl) ) {
+        if (isEmpty(item.imageUrl)) {
             Toast.error("无跳转链接");
         } else {
             window.open(item.imageUrl, "_blank");
@@ -118,7 +119,7 @@ class TodayImageComponent extends React.Component {
                 tempThis.setState({
                     loading: false,
                     imageData: [],
-                },()=>{
+                }, () => {
                     Toast.error("获取图片失败");
                 });
             })
@@ -143,7 +144,7 @@ class TodayImageComponent extends React.Component {
 
         // 初始化单选框
         let tempOrderBy = localStorage.getItem("orderBy");
-        if(!isEmpty(tempOrderBy)) {
+        if (!isEmpty(tempOrderBy)) {
             this.setState({
                 orderBy: tempOrderBy,
             })
@@ -157,17 +158,18 @@ class TodayImageComponent extends React.Component {
                 size="small"
                 bordered
                 header={
-                <Row>
-                    <Col span={12}>
-                        <Title heading={3}>推荐壁纸</Title>
-                    </Col>
-                    <Col span={12} style={{textAlign: "right"}}>
-                        <RadioGroup type="button" defaultValue={this.state.orderBy} value={this.state.orderBy} onChange={this.orderRadioGroupOnChange.bind(this)}>
-                            <Radio value={"popular"}>热门</Radio>
-                            <Radio value={"latest"}>最新</Radio>
-                        </RadioGroup>
-                    </Col>
-                </Row>
+                    <Row>
+                        <Col span={12}>
+                            <Title heading={3}>推荐壁纸</Title>
+                        </Col>
+                        <Col span={12} style={{textAlign: "right"}}>
+                            <RadioGroup type="button" defaultValue={this.state.orderBy} value={this.state.orderBy}
+                                        onChange={this.orderRadioGroupOnChange.bind(this)}>
+                                <Radio value={"popular"}>热门</Radio>
+                                <Radio value={"latest"}>最新</Radio>
+                            </RadioGroup>
+                        </Col>
+                    </Row>
                 }
                 dataSource={this.state.imageData}
                 renderItem={item => (
@@ -177,7 +179,7 @@ class TodayImageComponent extends React.Component {
                             <ImagePreview disableDownload={true}>
                                 <Image width={100} height={100} src={item.displayUrl}
                                        preview={{src: item.wallpaperUrl}}
-                                       placeholder={<Spin />}
+                                       placeholder={<Spin/>}
                                        className={"wallpaperFadeIn"}
                                 />
                             </ImagePreview>
@@ -185,13 +187,13 @@ class TodayImageComponent extends React.Component {
                         main={
                             <div className={"alignCenter"} style={{height: "100px"}}>
                                 <Space vertical align="start">
-                                    <Button theme={"borderless"} icon={<IconUserCircle />}
+                                    <Button theme={"borderless"} icon={<IconUserCircle/>}
                                             style={{color: getFontColor(item.color), cursor: "default"}}
                                             onMouseOver={btnMouseOver.bind(this, item.color)}
                                             onMouseOut={btnMouseOut.bind(this, item.color)}>
                                         {"摄影师：" + item.userName}
                                     </Button>
-                                    <Button theme={"borderless"} icon={<IconInfoCircle />}
+                                    <Button theme={"borderless"} icon={<IconInfoCircle/>}
                                             style={{color: getFontColor(item.color), cursor: "default"}}
                                             onMouseOver={btnMouseOver.bind(this, item.color)}
                                             onMouseOut={btnMouseOut.bind(this, item.color)}>

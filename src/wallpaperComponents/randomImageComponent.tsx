@@ -1,18 +1,11 @@
 import React from "react";
-import {
-    List,
-    Toast,
-    Typography,
-    Button,
-    Space,
-    ImagePreview,
-    Image, Spin
-} from "@douyinfe/semi-ui";
+import {Button, Image, ImagePreview, List, Space, Spin, Toast, Typography} from "@douyinfe/semi-ui";
 import "../stylesheets/wallpaperComponent.css"
 import {
-    unsplashTopicRequestUrl,
+    defaultImageData,
+    imageDescriptionMaxSize,
     unsplashClientId,
-    imageDescriptionMaxSize, defaultImageData,
+    unsplashTopicRequestUrl,
 } from "../typescripts/publicConstants";
 import {
     btnMouseOut,
@@ -23,12 +16,7 @@ import {
     setWallpaper
 } from "../typescripts/publicFunctions";
 import {ImageData, Preference} from "../typescripts/publicInterface"
-import {
-    IconHomeStroked,
-    IconImage,
-    IconInfoCircle,
-    IconUserCircle, IconMapPin
-} from "@douyinfe/semi-icons";
+import {IconHomeStroked, IconImage, IconInfoCircle, IconMapPin, IconUserCircle} from "@douyinfe/semi-icons";
 
 const {Title} = Typography;
 const $ = require("jquery");
@@ -55,7 +43,7 @@ class RandomImageComponent extends React.Component {
     }
 
     homeButtonClick(imageUrl: string) {
-        if ( isEmpty(imageUrl) ) {
+        if (isEmpty(imageUrl)) {
             Toast.error("无跳转链接");
         } else {
             window.open(imageUrl, "_blank");
@@ -102,7 +90,7 @@ class RandomImageComponent extends React.Component {
 
                 tempThis.setState({
                     imageData: tempImageData,
-                }, ()=>{
+                }, () => {
                     // 保存请求时间，防抖节流
                     localStorage.setItem("lastRandomImageRequestTime", String(new Date().getTime()));
                     localStorage.setItem("lastRandomImage", JSON.stringify(tempThis.state.imageData));
@@ -114,7 +102,7 @@ class RandomImageComponent extends React.Component {
             .catch(function () {
                 tempThis.setState({
                     imageData: {},
-                },()=>{
+                }, () => {
                     Toast.error("获取图片失败");
                 });
             })
@@ -151,7 +139,7 @@ class RandomImageComponent extends React.Component {
                         <ImagePreview disableDownload={true}>
                             <Image width={150} height={150} src={this.state.imageData.displayUrl}
                                    preview={{src: this.state.imageData.wallpaperUrl}}
-                                   placeholder={<Spin />}
+                                   placeholder={<Spin/>}
                                    className={"wallpaperFadeIn"}
                             />
                         </ImagePreview>
@@ -159,19 +147,19 @@ class RandomImageComponent extends React.Component {
                     main={
                         <div className={"alignCenter"} style={{height: "150px"}}>
                             <Space vertical align="start">
-                                <Button theme={"borderless"} icon={<IconUserCircle />}
+                                <Button theme={"borderless"} icon={<IconUserCircle/>}
                                         style={{color: getFontColor(this.state.imageData.color), cursor: "default"}}
                                         onMouseOver={btnMouseOver.bind(this, this.state.imageData.color)}
                                         onMouseOut={btnMouseOut.bind(this, this.state.imageData.color)}>
                                     {"摄影师：" + this.state.imageData.userName}
                                 </Button>
-                                <Button theme={"borderless"} icon={<IconMapPin />}
+                                <Button theme={"borderless"} icon={<IconMapPin/>}
                                         style={{color: getFontColor(this.state.imageData.color), cursor: "default"}}
                                         onMouseOver={btnMouseOver.bind(this, this.state.imageData.color)}
                                         onMouseOut={btnMouseOut.bind(this, this.state.imageData.color)}>
                                     {"拍摄地点：" + this.state.imageData.location}
                                 </Button>
-                                <Button theme={"borderless"} icon={<IconInfoCircle />}
+                                <Button theme={"borderless"} icon={<IconInfoCircle/>}
                                         style={{color: getFontColor(this.state.imageData.color), cursor: "default"}}
                                         onMouseOver={btnMouseOver.bind(this, this.state.imageData.color)}
                                         onMouseOut={btnMouseOut.bind(this, this.state.imageData.color)}>

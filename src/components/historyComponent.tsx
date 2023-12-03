@@ -1,23 +1,9 @@
 import React from "react";
-import {
-    List,
-    Typography,
-    Toast,
-    ImagePreview,
-    Image,
-    Button,
-    Space, Spin,
-} from "@douyinfe/semi-ui";
-import {IconUserCircle, IconInfoCircle, IconHomeStroked, IconImage} from "@douyinfe/semi-icons";
+import {Button, Image, ImagePreview, List, Space, Spin, Toast, Typography,} from "@douyinfe/semi-ui";
+import {IconHomeStroked, IconImage, IconInfoCircle, IconUserCircle} from "@douyinfe/semi-icons";
 import "../stylesheets/searchComponent.css"
 import {listPageSize} from "../typescripts/publicConstants";
-import {
-    btnMouseOut,
-    btnMouseOver,
-    getFontColor,
-    isEmpty,
-    setWallpaper
-} from "../typescripts/publicFunctions";
+import {btnMouseOut, btnMouseOver, getFontColor, isEmpty, setWallpaper} from "../typescripts/publicFunctions";
 import {ImageData} from "../typescripts/publicInterface";
 import "../stylesheets/publicStyles.css"
 
@@ -55,7 +41,7 @@ class HistoryComponent extends React.Component {
     }
 
     homeButtonClick(item: any) {
-        if ( isEmpty(item.imageUrl) ) {
+        if (isEmpty(item.imageUrl)) {
             Toast.error("无跳转链接");
         } else {
             window.open(item.imageUrl, "_blank");
@@ -86,7 +72,7 @@ class HistoryComponent extends React.Component {
                             <ImagePreview disableDownload={true}>
                                 <Image width={100} height={100} src={item.displayUrl}
                                        preview={{src: item.wallpaperUrl}}
-                                       placeholder={<Spin />}
+                                       placeholder={<Spin/>}
                                        className={"wallpaperFadeIn"}
                                 />
                             </ImagePreview>
@@ -94,13 +80,13 @@ class HistoryComponent extends React.Component {
                         main={
                             <div className={"alignCenter"} style={{height: "100px"}}>
                                 <Space vertical align="start">
-                                    <Button theme={"borderless"} icon={<IconUserCircle />}
+                                    <Button theme={"borderless"} icon={<IconUserCircle/>}
                                             style={{color: getFontColor(item.color), cursor: "default"}}
                                             onMouseOver={btnMouseOver.bind(this, item.color)}
                                             onMouseOut={btnMouseOut.bind(this, item.color)}>
                                         {"摄影师：" + item.userName}
                                     </Button>
-                                    <Button theme={"borderless"} icon={<IconInfoCircle />}
+                                    <Button theme={"borderless"} icon={<IconInfoCircle/>}
                                             style={{color: getFontColor(item.color), cursor: "default"}}
                                             onMouseOver={btnMouseOver.bind(this, item.color)}
                                             onMouseOut={btnMouseOut.bind(this, item.color)}>

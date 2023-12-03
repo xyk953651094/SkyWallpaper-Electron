@@ -29,7 +29,7 @@ class WallpaperComponent extends React.Component {
                     <RandomImageComponent preference={this.props.preference}/>
                 </Col>
                 <Col span={24}>
-                    <TodayImageComponent />
+                    <TodayImageComponent/>
                 </Col>
             </Row>
         )

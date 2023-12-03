@@ -118,15 +118,27 @@
       <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/tsconfig.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/webpack.config.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/electron.icns" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/python/setWallpaper.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/SkyWallpaper-Electron.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SkyWallpaper-Electron.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/historyComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/historyComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/preferenceComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/preferenceComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/searchComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/searchComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/wallpaperComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/wallpaperComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/logo.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/preferenceComponents/preferenceFunctionComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/preferenceComponents/preferenceFunctionComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/preferenceComponents/preferenceImageComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/preferenceComponents/preferenceImageComponent.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/preferenceComponents/preferenceInfoComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/preferenceComponents/preferenceInfoComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/preferenceComponents/preferenceProductComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/preferenceComponents/preferenceProductComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reportWebVitals.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reportWebVitals.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stylesheets/wallpaperComponent.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/stylesheets/wallpaperComponent.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/typescripts/publicFunctions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/typescripts/publicFunctions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallpaperComponents/randomImageComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallpaperComponents/randomImageComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallpaperComponents/todayImageComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallpaperComponents/todayImageComponent.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -247,6 +259,8 @@
       <workItem from="1701257871219" duration="1753000" />
       <workItem from="1701260760646" duration="858000" />
       <workItem from="1701404252152" duration="231000" />
+      <workItem from="1701509127290" duration="242000" />
+      <workItem from="1701568769264" duration="493000" />
     </task>
     <task id="LOCAL-00001" summary="修复已知问题，优化视觉效果">
       <option name="closed" value="true" />
@@ -296,7 +310,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701082007218</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="修复已知问题，优化视觉效果">
+      <option name="closed" value="true" />
+      <created>1701509289052</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1701509289052</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

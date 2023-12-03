@@ -1,33 +1,29 @@
 import React from "react";
 import {
-    Row,
+    Button,
     Col,
+    Image,
+    ImagePreview,
+    Input,
     List,
     Pagination,
-    Input,
-    Typography,
-    Toast,
-    ImagePreview,
-    Image,
-    Button,
+    Row,
     Space,
-    Spin
+    Spin,
+    Toast,
+    Typography
 } from "@douyinfe/semi-ui";
-import {
-    IconSearch,
-    IconHomeStroked,
-    IconImage,
-    IconUserCircle,
-    IconInfoCircle, IconMapPin
-} from "@douyinfe/semi-icons";
+import {IconHomeStroked, IconImage, IconInfoCircle, IconSearch, IconUserCircle} from "@douyinfe/semi-icons";
 import "../stylesheets/searchComponent.css"
 import {
-    unsplashSearchRequestUrl,
+    imageDescriptionMaxSize,
+    listPageSize,
     unsplashClientId,
-    listPageSize, imageDescriptionMaxSize,
+    unsplashSearchRequestUrl,
 } from "../typescripts/publicConstants";
 import {
-    btnMouseOut, btnMouseOver,
+    btnMouseOut,
+    btnMouseOver,
     getFontColor,
     httpRequest,
     isEmpty,
@@ -71,26 +67,25 @@ class SearchComponent extends React.Component {
         let tempThis = this;
         let data = {
             "client_id": unsplashClientId,
-                "query": this.state.searchValue,
-                "orientation": "landscape",
-                "content_filter": "high",
-                "page": this.state.currentPage,
-                "per_page": listPageSize
+            "query": this.state.searchValue,
+            "orientation": "landscape",
+            "content_filter": "high",
+            "page": this.state.currentPage,
+            "per_page": listPageSize
         };
         this.setState({
             loading: true,
-        },()=>{
+        }, () => {
             httpRequest({}, url, data, "GET")
-                .then(function(resultData: any){
-                    if(resultData.total === 0) {
+                .then(function (resultData: any) {
+                    if (resultData.total === 0) {
                         Toast.info("搜索结果数量为 0");
                         tempThis.setState({
                             loading: false,
                             searchResult: [],
                             paginationDisplay: "none",
                         });
-                    }
-                    else {
+                    } else {
                         let tempImageData = [];
                         for (let i in resultData.results) {
                             let tempData: ImageData = {
@@ -115,12 +110,12 @@ class SearchComponent extends React.Component {
                         });
                     }
                 })
-                .catch(function(){
+                .catch(function () {
                     tempThis.setState({
                         loading: false,
                         searchResult: [],
                         paginationDisplay: "none",
-                    },()=>{
+                    }, () => {
                         Toast.error("搜索图片失败");
                     });
                 })
@@ -132,13 +127,13 @@ class SearchComponent extends React.Component {
             searchValue: e.target.value,  // 保存搜索内容，用于搜索和分页请求
             searchResult: [],
             currentPage: 1,
-        }, ()=>{
+        }, () => {
             this.searchImages(unsplashSearchRequestUrl);
         })
     }
 
     homeButtonClick(item: any) {
-        if ( isEmpty(item.imageUrl) ) {
+        if (isEmpty(item.imageUrl)) {
             Toast.error("无跳转链接");
         } else {
             window.open(item.imageUrl, "_blank");
@@ -149,11 +144,11 @@ class SearchComponent extends React.Component {
         setWallpaper(item);
     }
 
-    onPageChange( currentPage: number ) {
+    onPageChange(currentPage: number) {
         this.setState({
             searchResult: [],
             currentPage: currentPage,   // 设置分页
-        }, ()=>{
+        }, () => {
             this.searchImages(unsplashSearchRequestUrl);
         })
     }
@@ -183,7 +178,7 @@ class SearchComponent extends React.Component {
                             <ImagePreview disableDownload={true}>
                                 <Image width={100} height={100} src={item.displayUrl}
                                        preview={{src: item.wallpaperUrl}}
-                                       placeholder={<Spin />}
+                                       placeholder={<Spin/>}
                                        className={"wallpaperFadeIn"}
                                 />
                             </ImagePreview>
@@ -191,13 +186,13 @@ class SearchComponent extends React.Component {
                         main={
                             <div className={"alignCenter"} style={{height: "100px"}}>
                                 <Space vertical align="start">
-                                    <Button theme={"borderless"} icon={<IconUserCircle />}
+                                    <Button theme={"borderless"} icon={<IconUserCircle/>}
                                             style={{color: getFontColor(item.color), cursor: "default"}}
                                             onMouseOver={btnMouseOver.bind(this, item.color)}
                                             onMouseOut={btnMouseOut.bind(this, item.color)}>
                                         {"摄影师：" + item.userName}
                                     </Button>
-                                    <Button theme={"borderless"} icon={<IconInfoCircle />}
+                                    <Button theme={"borderless"} icon={<IconInfoCircle/>}
                                             style={{color: getFontColor(item.color), cursor: "default"}}
                                             onMouseOver={btnMouseOver.bind(this, item.color)}
                                             onMouseOut={btnMouseOut.bind(this, item.color)}>
@@ -223,8 +218,10 @@ class SearchComponent extends React.Component {
                     />
                 )}
                 footer={
-                    <Pagination size="default" className={"searchPagination"} style={{display: this.state.paginationDisplay}}
-                                pageSize={listPageSize} total={this.state.totalCounts} currentPage={this.state.currentPage}
+                    <Pagination size="default" className={"searchPagination"}
+                                style={{display: this.state.paginationDisplay}}
+                                pageSize={listPageSize} total={this.state.totalCounts}
+                                currentPage={this.state.currentPage}
                                 onChange={currentPage => this.onPageChange(currentPage)}
                     />
                 }

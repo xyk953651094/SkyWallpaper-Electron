@@ -25,7 +25,8 @@ class PreferenceComponent extends React.Component {
         this.state = {};
     }
 
-    componentDidMount() {}
+    componentDidMount() {
+    }
 
     render() {
         return (
@@ -37,13 +38,14 @@ class PreferenceComponent extends React.Component {
                     <PreferenceFunctionComponent getPreference={this.props.getPreference}/>
                 </Col>
                 <Col span={24}>
-                    <PreferenceInfoComponent />
+                    <PreferenceInfoComponent/>
                 </Col>
                 <Col span={24}>
-                    <PreferenceProductComponent />
+                    <PreferenceProductComponent/>
                 </Col>
             </Row>
         );
     }
 }
+
 export default PreferenceComponent;

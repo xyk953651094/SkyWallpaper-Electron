@@ -1,10 +1,6 @@
 import React from "react";
-import {Space, Button, List, Typography, Switch, Select, Toast} from "@douyinfe/semi-ui";
-import {
-    IconAlertCircle,
-    IconContrast, IconDelete,
-    IconQuit
-} from "@douyinfe/semi-icons";
+import {Button, List, Select, Space, Switch, Toast, Typography} from "@douyinfe/semi-ui";
+import {IconAlertCircle, IconContrast, IconDelete, IconQuit} from "@douyinfe/semi-icons";
 import {getPreferenceStorage} from "../typescripts/publicFunctions";
 import {Preference} from "../typescripts/publicInterface";
 
@@ -31,7 +27,7 @@ class preferenceFunctionComponent extends React.Component {
         };
     }
 
-    openAtLoginSwitchOnChange(checked:boolean) {
+    openAtLoginSwitchOnChange(checked: boolean) {
         this.setState({
             preference: this.setPreference({openAtLogin: checked}),
         }, () => {
@@ -46,8 +42,7 @@ class preferenceFunctionComponent extends React.Component {
             if (body.hasAttribute('theme-mode')) {
                 body.removeAttribute('theme-mode');
             }
-        }
-        else if (value === "darkMode") {
+        } else if (value === "darkMode") {
             if (!body.hasAttribute('theme-mode')) {
                 body.setAttribute('theme-mode', 'dark');
             }
@@ -77,7 +72,8 @@ class preferenceFunctionComponent extends React.Component {
         return Object.assign({}, this.state.preference, data);
     }
 
-    componentDidMount() {}
+    componentDidMount() {
+    }
 
     render() {
         return (
@@ -87,21 +83,22 @@ class preferenceFunctionComponent extends React.Component {
                 bordered
             >
                 <List.Item
-                    header={ <IconQuit className={"listItemIcon"}/> }
-                    main={ <Text className="listItemText">开机自启（开发中）</Text> }
+                    header={<IconQuit className={"listItemIcon"}/>}
+                    main={<Text className="listItemText">开机自启（开发中）</Text>}
                     extra={
                         <Space>
                             <Text>{this.state.preference.openAtLogin ? '已开启' : '已关闭'}</Text>
                             <Switch checked={this.state.preference.openAtLogin}
-                                    onChange={this.openAtLoginSwitchOnChange.bind(this)} />
+                                    onChange={this.openAtLoginSwitchOnChange.bind(this)}/>
                         </Space>
                     }
                 />
                 <List.Item
-                    header={ <IconContrast className={"listItemIcon"}/> }
-                    main={ <Text className="listItemText">颜色模式</Text> }
+                    header={<IconContrast className={"listItemIcon"}/>}
+                    main={<Text className="listItemText">颜色模式</Text>}
                     extra={
-                        <Select value={this.state.preference.colorMode} onChange={this.colorModeSelectOnChange.bind(this)}>
+                        <Select value={this.state.preference.colorMode}
+                                onChange={this.colorModeSelectOnChange.bind(this)}>
                             <Select.Option value="autoSwitch">跟随系统</Select.Option>
                             <Select.Option value="lightMode">浅色模式</Select.Option>
                             <Select.Option value="darkMode">深色模式</Select.Option>
@@ -109,9 +106,10 @@ class preferenceFunctionComponent extends React.Component {
                     }
                 />
                 <List.Item
-                    header={ <IconAlertCircle className={"listItemIcon"}/> }
-                    main={ <Text className="listItemText">危险设置</Text> }
-                    extra={ <Button type="danger" icon={<IconDelete />} onClick={this.clearStorage.bind(this)}>清空缓存</Button> }
+                    header={<IconAlertCircle className={"listItemIcon"}/>}
+                    main={<Text className="listItemText">危险设置</Text>}
+                    extra={<Button type="danger" icon={<IconDelete/>}
+                                   onClick={this.clearStorage.bind(this)}>清空缓存</Button>}
                 />
             </List>
         )
