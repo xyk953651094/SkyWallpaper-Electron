@@ -62,7 +62,7 @@ export function setWallpaper(currentImage: ImageData) {
     localStorage.setItem("history", JSON.stringify(tempHistory));
 
     // 根据不同操作系统设置壁纸，一次只能设置一个，防止不停点“设置壁纸”按钮
-    Toast.success("设置成功（开发中）");
+    Toast.success("壁纸设置成功（开发中）");
 
     // let settingStatus = localStorage.getItem("isSettingWallpaper");
     // if (settingStatus === null || settingStatus === "true") {

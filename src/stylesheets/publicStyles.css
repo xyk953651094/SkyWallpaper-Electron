@@ -5,3 +5,9 @@
     align-items: center !important;
     text-align: center !important;
 }
+
+.listPagination {
+    width: 100%;
+    /*flex-basis: 100%;*/
+    justify-content: center;
+}

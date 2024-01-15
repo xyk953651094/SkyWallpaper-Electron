@@ -1,5 +1,11 @@
 import React from "react";
-import {Button, Image, ImagePreview, List, Space, Spin, Toast, Typography} from "@douyinfe/semi-ui";
+import {
+    Button,
+    Col,
+    Row,
+    Toast,
+    Typography
+} from "@douyinfe/semi-ui";
 import "../stylesheets/wallpaperComponent.css"
 import {
     defaultImageData,
@@ -8,15 +14,13 @@ import {
     unsplashTopicRequestUrl,
 } from "../typescripts/publicConstants";
 import {
-    btnMouseOut,
-    btnMouseOver,
-    getFontColor,
     httpRequest,
     isEmpty,
     setWallpaper
 } from "../typescripts/publicFunctions";
 import {ImageData, Preference} from "../typescripts/publicInterface"
-import {IconHomeStroked, IconImage, IconInfoCircle, IconMapPin, IconUserCircle} from "@douyinfe/semi-icons";
+import {IconRefresh} from "@douyinfe/semi-icons";
+import ListComponent from "../publicComponents/listComponent";
 
 const {Title} = Typography;
 
@@ -25,6 +29,7 @@ type propType = {
 }
 
 type stateType = {
+    loading: boolean,
     imageData: ImageData,
 }
 
@@ -37,20 +42,13 @@ class RandomImageComponent extends React.Component {
     constructor(props: any) {
         super(props);
         this.state = {
+            loading: false,
             imageData: defaultImageData,
         };
     }
 
-    homeButtonClick(imageUrl: string) {
-        if (isEmpty(imageUrl)) {
-            Toast.error("无跳转链接");
-        } else {
-            window.open(imageUrl, "_blank");
-        }
-    }
-
-    setWallpaperButtonClick(item: any) {
-        setWallpaper(item);
+    getImageBtnOnClick() {
+        this.getImage();
     }
 
     // 获取图片
@@ -73,38 +71,51 @@ class RandomImageComponent extends React.Component {
             "query": imageQuery,
             "content_filter": "high",
         }
-        httpRequest({}, unsplashTopicRequestUrl, data, "GET")
-            .then(function (resultData: any) {
-                let tempImageData: ImageData = {
-                    wallpaperUrl: resultData.urls.full,
-                    displayUrl: resultData.urls.regular,
-                    imageUrl: resultData.links.html,
-                    userName: resultData.user.name,
-                    userUrl: resultData.user.links.html,
-                    createTime: resultData.created_at.split("T")[0],
-                    description: (resultData.alt_description.length > imageDescriptionMaxSize ? resultData.alt_description.substring(0, imageDescriptionMaxSize) + "..." : resultData.alt_description),
-                    location: resultData.location.name,
-                    color: resultData.color,
-                }
+        this.setState({
+            loading: true,
+        }, () => {
+            httpRequest({}, unsplashTopicRequestUrl, data, "GET")
+                .then(function (resultData: any) {
+                    let tempImageData: ImageData = {
+                        wallpaperUrl: resultData.urls.full,
+                        displayUrl: resultData.urls.regular,
+                        imageUrl: resultData.links.html,
+                        userName: resultData.user.name,
+                        userUrl: resultData.user.links.html,
+                        createTime: resultData.created_at.split("T")[0],
+                        description: (resultData.alt_description.length > imageDescriptionMaxSize ? resultData.alt_description.substring(0, imageDescriptionMaxSize) + "..." : resultData.alt_description),
+                        location: resultData.location.name ? resultData.location.name : "暂无位置信息",
+                        color: resultData.color,
+                    }
 
-                tempThis.setState({
-                    imageData: tempImageData,
-                }, () => {
-                    // 保存请求时间，防抖节流
-                    localStorage.setItem("lastRandomImageRequestTime", String(new Date().getTime()));
-                    localStorage.setItem("lastRandomImage", JSON.stringify(tempThis.state.imageData));
+                    tempThis.setState({
+                        loading: false,
+                        imageData: tempImageData,
+                    }, () => {
+                        // 保存请求时间，防抖节流
+                        localStorage.setItem("lastRandomImageRequestTime", String(new Date().getTime()));
+                        localStorage.setItem("lastRandomImage", JSON.stringify(tempThis.state.imageData));
 
-                    // 自动设为壁纸
-                    setWallpaper(tempThis.state.imageData);
-                });
-            })
-            .catch(function () {
-                tempThis.setState({
-                    imageData: {},
-                }, () => {
-                    Toast.error("获取图片失败");
-                });
-            })
+                        // 自动设为壁纸
+                        setWallpaper(tempThis.state.imageData);
+                    });
+                })
+                .catch(function () {
+                    // 请求失败时使用上一次请求结果
+                    let lastRandomImage: any = localStorage.getItem("lastRandomImage");
+                    if (lastRandomImage) {
+                        lastRandomImage = JSON.parse(lastRandomImage);
+                        setWallpaper(lastRandomImage);
+                    } else {
+                        tempThis.setState({
+                            loading: false,
+                            imageData: {},
+                        }, () => {
+                            Toast.error("获取图片失败，请检查网络连接");
+                        });
+                    }
+                })
+        });
     }
 
     componentDidMount() {
@@ -121,72 +132,33 @@ class RandomImageComponent extends React.Component {
                 this.setState({
                     imageData: JSON.parse(lastImage),
                 });
+            } else {
+
             }
         }
     }
 
     render() {
+        const listHeader = (
+            <Row>
+                <Col span={12} style={{textAlign: "left"}}>
+                    <Title heading={3}>轮换壁纸</Title>
+                </Col>
+                <Col span={12} style={{textAlign: "right"}}>
+                    <Button theme={"borderless"} icon={<IconRefresh />}
+                            style={{color: "var(--semi-color-text-0)"}} onClick={this.getImageBtnOnClick.bind(this)}>
+                        {"刷新"}
+                    </Button>
+                </Col>
+            </Row>
+        )
+
         return (
-            <List
-                size="small"
-                bordered
-                header={<Title heading={3}>精选壁纸</Title>}
-            >
-                <List.Item
-                    style={{backgroundColor: this.state.imageData.color, padding: "10px 10px 5px 10px"}}
-                    header={
-                        <ImagePreview disableDownload={true}>
-                            <Image width={150} height={150} src={this.state.imageData.displayUrl}
-                                   preview={{src: this.state.imageData.wallpaperUrl}}
-                                   placeholder={<Spin/>}
-                                   className={"wallpaperFadeIn"}
-                            />
-                        </ImagePreview>
-                    }
-                    main={
-                        <div className={"alignCenter"} style={{height: "150px"}}>
-                            <Space vertical align="start">
-                                <Button theme={"borderless"} icon={<IconUserCircle/>}
-                                        style={{color: getFontColor(this.state.imageData.color), cursor: "default"}}
-                                        onMouseOver={btnMouseOver.bind(this, this.state.imageData.color)}
-                                        onMouseOut={btnMouseOut.bind(this, this.state.imageData.color)}>
-                                    {"摄影师：" + this.state.imageData.userName}
-                                </Button>
-                                <Button theme={"borderless"} icon={<IconMapPin/>}
-                                        style={{color: getFontColor(this.state.imageData.color), cursor: "default"}}
-                                        onMouseOver={btnMouseOver.bind(this, this.state.imageData.color)}
-                                        onMouseOut={btnMouseOut.bind(this, this.state.imageData.color)}>
-                                    {"拍摄地点：" + this.state.imageData.location}
-                                </Button>
-                                <Button theme={"borderless"} icon={<IconInfoCircle/>}
-                                        style={{color: getFontColor(this.state.imageData.color), cursor: "default"}}
-                                        onMouseOver={btnMouseOver.bind(this, this.state.imageData.color)}
-                                        onMouseOut={btnMouseOut.bind(this, this.state.imageData.color)}>
-                                    {"图片描述：" + this.state.imageData.description}
-                                </Button>
-                            </Space>
-                        </div>
-                    }
-                    extra={
-                        <Space vertical align={"start"}>
-                            <Button theme={"borderless"} icon={<IconHomeStroked/>}
-                                    style={{color: getFontColor(this.state.imageData.color)}}
-                                    onMouseOver={btnMouseOver.bind(this, this.state.imageData.color)}
-                                    onMouseOut={btnMouseOut.bind(this, this.state.imageData.color)}
-                                    onClick={this.homeButtonClick.bind(this, this.state.imageData.imageUrl)}>
-                                图片主页
-                            </Button>
-                            <Button theme={"borderless"} icon={<IconImage/>}
-                                    style={{color: getFontColor(this.state.imageData.color)}}
-                                    onMouseOver={btnMouseOver.bind(this, this.state.imageData.color)}
-                                    onMouseOut={btnMouseOut.bind(this, this.state.imageData.color)}
-                                    onClick={this.setWallpaperButtonClick.bind(this, this.state.imageData)}>
-                                设为壁纸
-                            </Button>
-                        </Space>
-                    }
-                />
-            </List>
+            <ListComponent listHeader={listHeader}
+                           listData={ new Array(this.state.imageData) }
+                           listFooter={null}
+                           listLoading={this.state.loading}
+            />
         )
     }
 }

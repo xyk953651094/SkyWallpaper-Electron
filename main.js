@@ -28,10 +28,10 @@ function createWindow () {
     })
 
     // 加载应用 --打包阶段
-    mainWindow.loadFile(path.join(__dirname, './dist/mainPage.html'));
+    // mainWindow.loadFile(path.join(__dirname, './dist/mainPage.html'));
 
-    // 加载应用 --开发阶段  需要运行 npm run start
-    // mainWindow.loadURL('http://localhost:3000');
+    // 加载应用 --开发阶段  需要运行 npm run react-script-start
+    mainWindow.loadURL('http://localhost:3000');
 
     // 解决应用启动白屏问题
     mainWindow.on('ready-to-show', () => {

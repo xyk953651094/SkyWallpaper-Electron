@@ -2,34 +2,23 @@ import React from "react";
 import {
     Button,
     Col,
-    Image,
-    ImagePreview,
-    List,
     Radio,
     RadioGroup,
     Row,
     Space,
-    Spin,
     Toast,
     Typography
 } from "@douyinfe/semi-ui";
 import "../stylesheets/wallpaperComponent.css"
 import {
     imageDescriptionMaxSize,
-    listPageSize,
     unsplashClientId,
     unsplashTodayRequestUrl
 } from "../typescripts/publicConstants";
-import {
-    btnMouseOut,
-    btnMouseOver,
-    getFontColor,
-    httpRequest,
-    isEmpty,
-    setWallpaper
-} from "../typescripts/publicFunctions";
+import {httpRequest, isEmpty} from "../typescripts/publicFunctions";
 import {ImageData} from "../typescripts/publicInterface"
-import {IconHomeStroked, IconImage, IconInfoCircle, IconUserCircle} from "@douyinfe/semi-icons";
+import {IconRefresh} from "@douyinfe/semi-icons";
+import ListComponent from "../publicComponents/listComponent";
 
 const {Title} = Typography;
 
@@ -66,16 +55,8 @@ class TodayImageComponent extends React.Component {
         })
     }
 
-    homeButtonClick(item: any) {
-        if (isEmpty(item.imageUrl)) {
-            Toast.error("无跳转链接");
-        } else {
-            window.open(item.imageUrl, "_blank");
-        }
-    }
-
-    setWallpaperButtonClick(item: any) {
-        setWallpaper(item);
+    getImageBtnOnClick() {
+        this.getImages();
     }
 
     // 获取图片
@@ -83,45 +64,47 @@ class TodayImageComponent extends React.Component {
         let tempThis = this;
         let data = {
             "client_id": unsplashClientId,
-            "per_page": listPageSize,
             "order_by": this.state.orderBy,
         }
+        this.setState({
+            loading: true,
+        }, () => {
+            httpRequest({}, unsplashTodayRequestUrl, data, "GET")
+                .then(function (resultData: any) {
+                    let tempImageData = [];
+                    for (let i in resultData) {
+                        let tempData: ImageData = {
+                            wallpaperUrl: resultData[i].urls.full,
+                            displayUrl: resultData[i].urls.regular,
+                            imageUrl: resultData[i].links.html,
+                            userName: resultData[i].user.name,
+                            userUrl: resultData[i].user.links.html,
+                            createTime: resultData[i].created_at.split("T")[0],
+                            description: (resultData[i].alt_description.length > imageDescriptionMaxSize ? resultData[i].alt_description.substring(0, imageDescriptionMaxSize) + "..." : resultData[i].alt_description),
+                            location: "暂无位置信息",
+                            color: resultData[i].color,
+                        };
+                        tempImageData.push(tempData);
+                    }
 
-        httpRequest({}, unsplashTodayRequestUrl, data, "GET")
-            .then(function (resultData: any) {
-                let tempImageData = [];
-                for (let i in resultData) {
-                    let tempData: ImageData = {
-                        wallpaperUrl: resultData[i].urls.full,
-                        displayUrl: resultData[i].urls.regular,
-                        imageUrl: resultData[i].links.html,
-                        userName: resultData[i].user.name,
-                        userUrl: resultData[i].user.links.html,
-                        createTime: resultData[i].created_at.split("T")[0],
-                        description: (resultData[i].alt_description.length > imageDescriptionMaxSize ? resultData[i].alt_description.substring(0, imageDescriptionMaxSize) + "..." : resultData[i].alt_description),
-                        location: "暂无信息",
-                        color: resultData[i].color,
-                    };
-                    tempImageData.push(tempData);
-                }
-
-                tempThis.setState({
-                    loading: false,
-                    imageData: tempImageData,
-                }, () => {
-                    // 保存请求时间，防抖节流
-                    localStorage.setItem("lastTodayImagesRequestTime", String(new Date().getTime()));
-                    localStorage.setItem("lastTodayImages", JSON.stringify(tempThis.state.imageData));
-                });
-            })
-            .catch(function () {
-                tempThis.setState({
-                    loading: false,
-                    imageData: [],
-                }, () => {
-                    Toast.error("获取图片失败");
-                });
-            })
+                    tempThis.setState({
+                        loading: false,
+                        imageData: tempImageData,
+                    }, () => {
+                        // 保存请求时间，防抖节流
+                        localStorage.setItem("lastTodayImagesRequestTime", String(new Date().getTime()));
+                        localStorage.setItem("lastTodayImages", JSON.stringify(tempThis.state.imageData));
+                    });
+                })
+                .catch(function () {
+                    tempThis.setState({
+                        loading: false,
+                        imageData: [],
+                    }, () => {
+                        Toast.error("获取图片失败");
+                    });
+                })
+        });
     }
 
     componentDidMount() {
@@ -151,72 +134,32 @@ class TodayImageComponent extends React.Component {
     }
 
     render() {
+        const listHeader = (
+            <Row>
+                <Col span={12}>
+                    <Title heading={3}>今日推荐</Title>
+                </Col>
+                <Col span={12} style={{textAlign: "right"}}>
+                    <Space>
+                        <RadioGroup type="button" defaultValue={this.state.orderBy} value={this.state.orderBy}
+                                    onChange={this.orderRadioGroupOnChange.bind(this)}>
+                            <Radio value={"popular"}>热门</Radio>
+                            <Radio value={"latest"}>最新</Radio>
+                        </RadioGroup>
+                        <Button theme={"borderless"} icon={<IconRefresh />}
+                                style={{color: "var(--semi-color-text-0)"}} onClick={this.getImageBtnOnClick.bind(this)}>
+                            {"刷新"}
+                        </Button>
+                    </Space>
+                </Col>
+            </Row>
+        )
+
         return (
-            <List
-                loading={this.state.loading}
-                size="small"
-                bordered
-                header={
-                    <Row>
-                        <Col span={12}>
-                            <Title heading={3}>推荐壁纸</Title>
-                        </Col>
-                        <Col span={12} style={{textAlign: "right"}}>
-                            <RadioGroup type="button" defaultValue={this.state.orderBy} value={this.state.orderBy}
-                                        onChange={this.orderRadioGroupOnChange.bind(this)}>
-                                <Radio value={"popular"}>热门</Radio>
-                                <Radio value={"latest"}>最新</Radio>
-                            </RadioGroup>
-                        </Col>
-                    </Row>
-                }
-                dataSource={this.state.imageData}
-                renderItem={item => (
-                    <List.Item
-                        style={{backgroundColor: item.color, padding: "10px 10px 5px 10px"}}
-                        header={
-                            <ImagePreview disableDownload={true}>
-                                <Image width={100} height={100} src={item.displayUrl}
-                                       preview={{src: item.wallpaperUrl}}
-                                       placeholder={<Spin/>}
-                                       className={"wallpaperFadeIn"}
-                                />
-                            </ImagePreview>
-                        }
-                        main={
-                            <div className={"alignCenter"} style={{height: "100px"}}>
-                                <Space vertical align="start">
-                                    <Button theme={"borderless"} icon={<IconUserCircle/>}
-                                            style={{color: getFontColor(item.color), cursor: "default"}}
-                                            onMouseOver={btnMouseOver.bind(this, item.color)}
-                                            onMouseOut={btnMouseOut.bind(this, item.color)}>
-                                        {"摄影师：" + item.userName}
-                                    </Button>
-                                    <Button theme={"borderless"} icon={<IconInfoCircle/>}
-                                            style={{color: getFontColor(item.color), cursor: "default"}}
-                                            onMouseOver={btnMouseOver.bind(this, item.color)}
-                                            onMouseOut={btnMouseOut.bind(this, item.color)}>
-                                        {"图片描述：" + (item.description === null ? "暂无图片描述" : item.description)}
-                                    </Button>
-                                </Space>
-                            </div>
-                        }
-                        extra={
-                            <Space vertical align={"start"}>
-                                <Button theme={"borderless"} icon={<IconHomeStroked/>}
-                                        style={{color: getFontColor(item.color)}}
-                                        onMouseOver={btnMouseOver.bind(this, item.color)}
-                                        onMouseOut={btnMouseOut.bind(this, item.color)}
-                                        onClick={this.homeButtonClick.bind(this, item)}>图片主页</Button>
-                                <Button theme={"borderless"} icon={<IconImage/>}
-                                        style={{color: getFontColor(item.color)}}
-                                        onMouseOver={btnMouseOver.bind(this, item.color)}
-                                        onMouseOut={btnMouseOut.bind(this, item.color)}
-                                        onClick={this.setWallpaperButtonClick.bind(this, item)}>设为壁纸</Button>
-                            </Space>
-                        }
-                    />
-                )}
+            <ListComponent listHeader={listHeader}
+                           listData={this.state.imageData}
+                           listFooter={null}
+                           listLoading={this.state.loading}
             />
         )
     }

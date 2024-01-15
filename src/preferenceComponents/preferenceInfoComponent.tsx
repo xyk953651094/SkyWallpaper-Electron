@@ -48,12 +48,38 @@ class preferenceInfoComponent extends React.Component {
                                     style={{color: "var(--semi-color-text-0)"}}
                                     onClick={() => {
                                         window.open("https://github.com/xyk953651094/SkyWallpaper-Electron/releases", "_blank")
-                                    }}/>
+                                    }}>
+                                {"GitHub 发布"}
+                            </Button>
                             <Button theme={"borderless"} icon={<IconGitlabLogo/>}
                                     style={{color: "var(--semi-color-text-0)"}}
                                     onClick={() => {
                                         window.open("https://gitlab.com/xyk953651094/SkyWallpaper-Electron/-/releases/", "_blank")
-                                    }}/>
+                                    }}>
+                                {"GitLab 发布"}
+                            </Button>
+                        </Space>
+                    }
+                />
+                <List.Item
+                    header={<IconHelpCircle className={"listItemIcon"}/>}
+                    main={<Text className="listItemText">帮助文档</Text>}
+                    extra={
+                        <Space>
+                            <Button theme={"borderless"} icon={<IconGithubLogo/>}
+                                    style={{color: "var(--semi-color-text-0)"}}
+                                    onClick={() => {
+                                        window.open("https://xyk953651094.github.io/SkyDocuments/", "_blank")
+                                    }}>
+                                {"GitHub 文档"}
+                            </Button>
+                            <Button theme={"borderless"} icon={<IconGitlabLogo/>}
+                                    style={{color: "var(--semi-color-text-0)"}}
+                                    onClick={() => {
+                                        window.open("https://xyk953651094.gitlab.io/SkyDocuments/", "_blank")
+                                    }}>
+                                {"GitLab 文档"}
+                            </Button>
                         </Space>
                     }
                 />
@@ -123,28 +149,6 @@ class preferenceInfoComponent extends React.Component {
                                         window.open("https://afdian.net/a/xyk953651094/", "_blank")
                                     }}>
                                 {"支持作者"}
-                            </Button>
-                        </Space>
-                    }
-                />
-                <List.Item
-                    header={<IconHelpCircle className={"listItemIcon"}/>}
-                    main={<Text className="listItemText">帮助文档</Text>}
-                    extra={
-                        <Space>
-                            <Button theme={"borderless"} icon={<IconGithubLogo/>}
-                                    style={{color: "var(--semi-color-text-0)"}}
-                                    onClick={() => {
-                                        window.open("https://xyk953651094.github.io/SkyDocuments/", "_blank")
-                                    }}>
-                                {"GitHub Pages"}
-                            </Button>
-                            <Button theme={"borderless"} icon={<IconGitlabLogo/>}
-                                    style={{color: "var(--semi-color-text-0)"}}
-                                    onClick={() => {
-                                        window.open("https://xyk953651094.gitlab.io/SkyDocuments/", "_blank")
-                                    }}>
-                                {"GitLab Pages"}
                             </Button>
                         </Space>
                     }

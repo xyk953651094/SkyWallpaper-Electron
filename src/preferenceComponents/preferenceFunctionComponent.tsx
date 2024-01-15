@@ -1,8 +1,9 @@
 import React from "react";
-import {Button, List, Select, Space, Switch, Toast, Typography} from "@douyinfe/semi-ui";
+import {Button, List, Popconfirm, Select, Space, Switch, Toast, Typography} from "@douyinfe/semi-ui";
 import {IconAlertCircle, IconContrast, IconDelete, IconQuit} from "@douyinfe/semi-icons";
 import {getPreferenceStorage} from "../typescripts/publicFunctions";
 import {Preference} from "../typescripts/publicInterface";
+import {defaultPreference} from "../typescripts/publicConstants";
 
 const {Title, Text} = Typography;
 
@@ -56,9 +57,15 @@ class preferenceFunctionComponent extends React.Component {
         });
     }
 
-    clearStorage() {
+    resetPreferenceBtnOnClick() {
+        localStorage.setItem("preferenceData", JSON.stringify(defaultPreference));
+        Toast.success("已重置设置，一秒后刷新");
+        this.refreshWindow();
+    }
+
+    clearStorageBtnOnClick() {
         localStorage.clear();
-        Toast.success("已清空缓存，一秒后刷新");
+        Toast.success("已重置软件，一秒后刷新");
         this.refreshWindow();
     }
 
@@ -108,8 +115,24 @@ class preferenceFunctionComponent extends React.Component {
                 <List.Item
                     header={<IconAlertCircle className={"listItemIcon"}/>}
                     main={<Text className="listItemText">危险设置</Text>}
-                    extra={<Button type="danger" icon={<IconDelete/>}
-                                   onClick={this.clearStorage.bind(this)}>清空缓存</Button>}
+                    extra={
+                        <Space>
+                            <Popconfirm
+                                title="确定重置设置？"
+                                content="所有设置项将被重置为默认值"
+                                onConfirm={this.resetPreferenceBtnOnClick.bind(this)}
+                            >
+                                <Button type="danger" icon={<IconDelete/>}>重置设置</Button>
+                            </Popconfirm>
+                            <Popconfirm
+                                title="确定重置软件？"
+                                content="本地存储的所有数据将被清空"
+                                onConfirm={this.clearStorageBtnOnClick.bind(this)}
+                            >
+                                <Button type="danger" icon={<IconDelete/>}>重置软件</Button>
+                            </Popconfirm>
+                        </Space>
+                        }
                 />
             </List>
         )

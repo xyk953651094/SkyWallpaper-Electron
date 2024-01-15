@@ -24,6 +24,7 @@ class WallpaperComponent extends React.Component {
 
     render() {
         return (
+            // <RandomImageComponent preference={this.props.preference}/>
             <Row gutter={[0, 16]}>
                 <Col span={24}>
                     <RandomImageComponent preference={this.props.preference}/>

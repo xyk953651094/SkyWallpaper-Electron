@@ -13,9 +13,3 @@
 .searchDescriptionP {
     color: var(--semi-color-text-2);
 }
-
-.searchPagination {
-    width: 100%;
-    /*flex-basis: 100%;*/
-    justify-content: center;
-}

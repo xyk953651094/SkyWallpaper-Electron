@@ -5,121 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="762362d4-97e4-4757-a2fe-94552437f98c" name="更改" comment="新增帮助文档链接">
-      <change afterPath="$PROJECT_DIR$/dist/131.bundle.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/8a6b31acaa538afa430d.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/assets/logo.icns" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/assets/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/mainPage.bundle.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/mainPage.bundle.js.LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/mainPage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/make/zip/darwin/x64/云开壁纸-darwin-x64-1.0.0.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/LICENSES.chromium.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/version" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Electron Framework.framework/Electron Framework" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Electron Framework.framework/Helpers" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Electron Framework.framework/Libraries" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Electron Framework.framework/Resources" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Electron Framework" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Helpers/chrome_crashpad_handler" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Libraries/libEGL.dylib" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Libraries/libGLESv2.dylib" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Libraries/libffmpeg.dylib" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Libraries/libvk_swiftshader.dylib" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Libraries/vk_swiftshader_icd.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/Info.plist" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/MainMenu.nib" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/chrome_100_percent.pak" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/chrome_200_percent.pak" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/en.lproj/locale.pak" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/en_GB.lproj/locale.pak" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/icudtl.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/resources.pak" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/v8_context_snapshot.x86_64.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/zh_CN.lproj/locale.pak" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/zh_TW.lproj/locale.pak" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Electron Framework.framework/Versions/Current" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Mantle.framework/Mantle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Mantle.framework/Resources" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Mantle.framework/Versions/A/Mantle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Mantle.framework/Versions/A/Resources/Info.plist" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Mantle.framework/Versions/Current" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/ReactiveObjC.framework/ReactiveObjC" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/ReactiveObjC.framework/Resources" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/ReactiveObjC.framework/Versions/A/ReactiveObjC" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/ReactiveObjC.framework/Versions/A/Resources/Info.plist" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/ReactiveObjC.framework/Versions/Current" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Squirrel.framework/Resources" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Squirrel.framework/Squirrel" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Squirrel.framework/Versions/A/Resources/Info.plist" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Squirrel.framework/Versions/A/Resources/ShipIt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Squirrel.framework/Versions/A/Squirrel" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/Squirrel.framework/Versions/Current" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/云开壁纸 Helper (GPU).app/Contents/Info.plist" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/云开壁纸 Helper (GPU).app/Contents/MacOS/云开壁纸 Helper (GPU)" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/云开壁纸 Helper (GPU).app/Contents/PkgInfo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/云开壁纸 Helper (Plugin).app/Contents/Info.plist" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/云开壁纸 Helper (Plugin).app/Contents/MacOS/云开壁纸 Helper (Plugin)" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/云开壁纸 Helper (Plugin).app/Contents/PkgInfo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/云开壁纸 Helper (Renderer).app/Contents/Info.plist" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/云开壁纸 Helper (Renderer).app/Contents/MacOS/云开壁纸 Helper (Renderer)" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/云开壁纸 Helper (Renderer).app/Contents/PkgInfo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/云开壁纸 Helper.app/Contents/Info.plist" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/云开壁纸 Helper.app/Contents/MacOS/云开壁纸 Helper" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Frameworks/云开壁纸 Helper.app/Contents/PkgInfo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Info.plist" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/MacOS/云开壁纸" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/PkgInfo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/.idea/SkyWallpaper-Electron.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/forge.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/preload.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/public/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/public/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/public/logo192.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/public/logo512.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/public/manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/public/robots.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/src/App.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/src/App.test.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/src/App.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/src/assets/logo.icns" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/src/assets/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/src/components/historyComponent.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/src/components/preferenceComponent.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/src/components/searchComponent.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/src/components/wallpaperComponent.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/src/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/src/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/src/logo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/src/preferenceComponents/preferenceFunctionComponent.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/src/preferenceComponents/preferenceImageComponent.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/src/preferenceComponents/preferenceInfoComponent.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/src/preferenceComponents/preferenceProductComponent.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/src/react-app-env.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/src/reportWebVitals.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/src/setupTests.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/src/stylesheets/preferenceComponent.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/src/stylesheets/publicStyles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/src/stylesheets/searchComponent.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/src/stylesheets/wallpaperComponent.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/src/typescripts/publicConstants.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/src/typescripts/publicFunctions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/src/typescripts/publicInterface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/src/wallpaperComponents/randomImageComponent.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/src/wallpaperComponents/todayImageComponent.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/app/webpack.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/云开壁纸-darwin-x64/云开壁纸.app/Contents/Resources/electron.icns" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/publicComponents/listComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/historyComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/historyComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/searchComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/searchComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/wallpaperComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/wallpaperComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/preferenceComponents/preferenceFunctionComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/preferenceComponents/preferenceFunctionComponent.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/preferenceComponents/preferenceInfoComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/preferenceComponents/preferenceInfoComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/preferenceComponents/preferenceProductComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/preferenceComponents/preferenceProductComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stylesheets/publicStyles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/stylesheets/publicStyles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stylesheets/searchComponent.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/stylesheets/searchComponent.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/typescripts/publicConstants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/typescripts/publicConstants.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/typescripts/publicFunctions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/typescripts/publicFunctions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/wallpaperComponents/randomImageComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallpaperComponents/randomImageComponent.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/wallpaperComponents/todayImageComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallpaperComponents/todayImageComponent.tsx" afterDir="false" />
@@ -173,6 +69,8 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.react-scripts-start.executor&quot;: &quot;Run&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/Users/xiaoyunkai/Projects/WebStorm/SkyWallpaper-Electron/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
@@ -187,7 +85,7 @@
       <recent name="$PROJECT_DIR$/src/wallpaperComponents" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.react-scripts-start">
+  <component name="RunManager" selected="npm.start">
     <configuration name="react-scripts-start" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -245,7 +143,12 @@
       <workItem from="1701404252152" duration="231000" />
       <workItem from="1701509127290" duration="242000" />
       <workItem from="1701568769264" duration="493000" />
-      <workItem from="1701569702024" duration="524000" />
+      <workItem from="1701569702024" duration="1478000" />
+      <workItem from="1701919918168" duration="45000" />
+      <workItem from="1701929922032" duration="335000" />
+      <workItem from="1702380832440" duration="47000" />
+      <workItem from="1705232049072" duration="8253000" />
+      <workItem from="1705306934450" duration="7755000" />
     </task>
     <task id="LOCAL-00001" summary="修复已知问题，优化视觉效果">
       <option name="closed" value="true" />
@@ -311,7 +214,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701569804717</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="新增帮助文档链接">
+      <option name="closed" value="true" />
+      <created>1701570276289</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1701570276289</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

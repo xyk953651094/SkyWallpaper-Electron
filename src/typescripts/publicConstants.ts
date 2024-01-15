@@ -7,7 +7,7 @@ export const unsplashClientId: string = "ntHZZmwZUkhiLBMvwqqzmOG29nyXSCXlX7x_i-q
 
 export const listPageSize: number = 10;
 
-export const imageDescriptionMaxSize: number = 40;
+export const imageDescriptionMaxSize: number = 50;
 
 export const defaultPreference: Preference = {
     openAtLogin: false,
@@ -21,10 +21,10 @@ export const defaultImageData: ImageData = {
     wallpaperUrl: "",
     displayUrl: "",
     imageUrl: "",
-    userName: "暂无信息",
+    userName: "暂无摄影师信息",
     userUrl: "",
-    createTime: "暂无信息",
-    description: "暂无信息",
-    location: "暂无信息",
+    createTime: "暂无拍摄时间",
+    description: "暂无图片描述",
+    location: "暂无位置信息",
     color: "",
 }
