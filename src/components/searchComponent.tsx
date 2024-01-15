@@ -9,7 +9,6 @@ import {
 } from "@douyinfe/semi-ui";
 import {IconSearch} from "@douyinfe/semi-icons";
 import "../stylesheets/searchComponent.css"
-import "../stylesheets/publicStyles.css"
 import {
     imageDescriptionMaxSize,
     unsplashClientId,
@@ -166,7 +165,7 @@ class SearchComponent extends React.Component {
         )
 
         const listFooter = (
-            <Pagination size="default" className={"listPagination"}
+            <Pagination size="default" className={"searchPagination"}
                         style={{display: this.state.paginationDisplay}}
                         pageSize={this.state.pageSize} total={this.state.totalCounts} showTotal
                         currentPage={this.state.currentPage} showQuickJumper
