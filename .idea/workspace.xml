@@ -4,21 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="762362d4-97e4-4757-a2fe-94552437f98c" name="更改" comment="新增帮助文档链接">
-      <change afterPath="$PROJECT_DIR$/src/publicComponents/listComponent.tsx" afterDir="false" />
+    <list default="true" id="762362d4-97e4-4757-a2fe-94552437f98c" name="更改" comment="完善代码质量，优化视觉效果，提升使用体验">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/historyComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/historyComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/searchComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/searchComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/wallpaperComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/wallpaperComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/preferenceComponents/preferenceFunctionComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/preferenceComponents/preferenceFunctionComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/preferenceComponents/preferenceInfoComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/preferenceComponents/preferenceInfoComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stylesheets/publicStyles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/stylesheets/publicStyles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stylesheets/searchComponent.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/stylesheets/searchComponent.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/typescripts/publicConstants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/typescripts/publicConstants.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/setWallpaper.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/setWallpaper.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/typescripts/publicFunctions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/typescripts/publicFunctions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wallpaperComponents/randomImageComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallpaperComponents/randomImageComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wallpaperComponents/todayImageComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallpaperComponents/todayImageComponent.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +49,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python.setWallpaper.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
@@ -85,7 +77,31 @@
       <recent name="$PROJECT_DIR$/src/wallpaperComponents" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="npm.react-scripts-start">
+    <configuration name="setWallpaper" type="PythonConfigurationType" factoryName="Python">
+      <module name="SkyWallpaper-Electron" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.7" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/python/setWallpaper.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="react-scripts-start" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -148,7 +164,10 @@
       <workItem from="1701929922032" duration="335000" />
       <workItem from="1702380832440" duration="47000" />
       <workItem from="1705232049072" duration="8253000" />
-      <workItem from="1705306934450" duration="7755000" />
+      <workItem from="1705306934450" duration="8201000" />
+      <workItem from="1705325798055" duration="1884000" />
+      <workItem from="1705456006068" duration="4640000" />
+      <workItem from="1705462364794" duration="3241000" />
     </task>
     <task id="LOCAL-00001" summary="修复已知问题，优化视觉效果">
       <option name="closed" value="true" />
@@ -222,7 +241,23 @@
       <option name="project" value="LOCAL" />
       <updated>1701570276289</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="完善代码质量，优化视觉效果">
+      <option name="closed" value="true" />
+      <created>1705321345734</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1705321345734</updated>
+    </task>
+    <task id="LOCAL-00011" summary="完善代码质量，优化视觉效果，提升使用体验">
+      <option name="closed" value="true" />
+      <created>1705321741481</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1705321741481</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,6 +267,11 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="修复已知问题，优化视觉效果" />
     <MESSAGE value="新增帮助文档链接" />
-    <option name="LAST_COMMIT_MESSAGE" value="新增帮助文档链接" />
+    <MESSAGE value="完善代码质量，优化视觉效果" />
+    <MESSAGE value="完善代码质量，优化视觉效果，提升使用体验" />
+    <option name="LAST_COMMIT_MESSAGE" value="完善代码质量，优化视觉效果，提升使用体验" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/SkyWallpaper_Electron$setWallpaper.coverage" NAME="setWallpaper 覆盖结果" MODIFIED="1705461940733" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

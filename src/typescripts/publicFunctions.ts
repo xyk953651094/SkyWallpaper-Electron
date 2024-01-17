@@ -2,8 +2,6 @@ import {ImageData, Preference} from "./publicInterface";
 import {Toast} from "@douyinfe/semi-ui";
 import {defaultPreference, listPageSize} from "./publicConstants";
 
-// const spawn = require('child_process').spawn;
-
 const $ = require("jquery");
 
 // 网络请求
@@ -67,8 +65,9 @@ export function setWallpaper(currentImage: ImageData) {
     // let settingStatus = localStorage.getItem("isSettingWallpaper");
     // if (settingStatus === null || settingStatus === "true") {
     //     localStorage.setItem("isSettingWallpaper", "true");
-    //     spawn("python3", ["../python/setWallpaper.py", currentImage.wallpaperUrl]);
-    //     spawn.stdout.on("status", function (status: any) {  // status => data
+    //     const spawn = require('child_process').spawn;
+    //     let temp = spawn("python3", ["../python/setWallpaper.py", currentImage.wallpaperUrl]);
+    //     temp.stdout.on("status", function (status: any) {  // status => data
     //         console.log(status);
     //         switch (status) {
     //             case "success":
