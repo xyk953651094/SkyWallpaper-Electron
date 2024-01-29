@@ -24,13 +24,16 @@
 * 支持：https://afdian.net/a/xyk953651094
 
 ## 效果展示（正在开发中，不代表最终效果）
-<img width="1000" alt="截屏2023-11-18 22 05 26" src="https://github.com/xyk953651094/SkyWallpaper-Electron/assets/28004442/22e3a319-0f18-474d-8ba3-f8a183b94e7d">
+### MacOS
+<img width="1000" alt="截屏2024-01-29 22 02 04" src="https://github.com/xyk953651094/SkyWallpaper-Electron/assets/28004442/bf379dbe-4753-400f-b321-45e705ff2aaa">
 
-<img width="1001" alt="截屏2023-11-18 22 06 05" src="https://github.com/xyk953651094/SkyWallpaper-Electron/assets/28004442/c1c08eb8-b33d-4af4-9ff4-b437b071b115">
+<img width="1000" alt="截屏2024-01-29 22 04 10" src="https://github.com/xyk953651094/SkyWallpaper-Electron/assets/28004442/f45bdbdd-064d-41fd-9922-2520d7c532e8">
 
-<img width="1000" alt="截屏2023-11-18 22 06 29" src="https://github.com/xyk953651094/SkyWallpaper-Electron/assets/28004442/c9cce7e6-3d87-484e-9283-07ec54d6a9e9">
+<img width="1000" alt="截屏2024-01-29 22 02 59" src="https://github.com/xyk953651094/SkyWallpaper-Electron/assets/28004442/67f37a2d-6c8c-455e-b8e4-fab9d28ac24a">
 
-<img width="1001" alt="截屏2023-11-18 22 06 52" src="https://github.com/xyk953651094/SkyWallpaper-Electron/assets/28004442/091e05f2-2b9e-4674-9e9a-f11cca2fd510">
+<img width="1000" alt="截屏2024-01-29 22 03 21" src="https://github.com/xyk953651094/SkyWallpaper-Electron/assets/28004442/decc4fdb-7ebc-45fa-954e-57b7f449061f">
 
-<img width="1001" alt="截屏2023-11-18 22 07 11" src="https://github.com/xyk953651094/SkyWallpaper-Electron/assets/28004442/4a8d42be-1e20-4cd7-8822-dd85b57d1ebb">
+<img width="1001" alt="截屏2024-01-29 22 03 43" src="https://github.com/xyk953651094/SkyWallpaper-Electron/assets/28004442/b552ae14-538a-4cd9-828a-4b73a88d65c7">
 
+### Windows
+* 敬请期待
