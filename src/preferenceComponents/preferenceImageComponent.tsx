@@ -1,17 +1,6 @@
 import React from "react";
-import {
-    Space,
-    List,
-    Typography,
-    CheckboxGroup,
-    Row,
-    Col,
-    Checkbox,
-    Select,
-    Button,
-    Input,
-} from "@douyinfe/semi-ui";
-import {IconClock, IconGallery, IconCheckboxTick, IconClose, IconEdit} from "@douyinfe/semi-icons";
+import {Button, Checkbox, CheckboxGroup, Col, Input, List, Row, Select, Space, Typography,} from "@douyinfe/semi-ui";
+import {IconCheckboxTick, IconClock, IconClose, IconEdit, IconGallery} from "@douyinfe/semi-icons";
 import {Preference} from "../typescripts/publicInterface";
 import {getPreferenceStorage, isEmpty} from "../typescripts/publicFunctions";
 
@@ -52,7 +41,7 @@ class preferenceInfoComponent extends React.Component {
         });
     }
 
-    customTopicInputOnChange(value:string) {
+    customTopicInputOnChange(value: string) {
         this.setState({
             customTopicInputValue: value
         });
@@ -105,11 +94,12 @@ class preferenceInfoComponent extends React.Component {
         return (
             <List header={<Title heading={3}>图片设置</Title>} size="small" bordered>
                 <List.Item
-                    header={ <IconGallery className={"listItemIcon"}/> }
+                    header={<IconGallery className={"listItemIcon"}/>}
                     main={<Text className="listItemText">图片主题</Text>}
                     extra={
-                        <CheckboxGroup disabled={this.state.disableImageTopic} value={this.state.preference.imageTopics} onChange={this.checkboxGroupOnChange.bind(this)}>
-                            <Row gutter={[0,8]} style={{width: "400px"}}>
+                        <CheckboxGroup disabled={this.state.disableImageTopic} value={this.state.preference.imageTopics}
+                                       onChange={this.checkboxGroupOnChange.bind(this)}>
+                            <Row gutter={[0, 8]} style={{width: "400px"}}>
                                 <Col span={6}><Checkbox value="Fzo3zuOHN6w">旅游</Checkbox></Col>
                                 <Col span={6}><Checkbox value="bo8jQKTaE0Y">壁纸</Checkbox></Col>
                                 <Col span={6}><Checkbox value="CDwuwXJAbEw">三维</Checkbox></Col>
@@ -135,17 +125,19 @@ class preferenceInfoComponent extends React.Component {
                     }
                 />
                 <List.Item
-                    header={ <IconEdit className={"listItemIcon"}/> }
+                    header={<IconEdit className={"listItemIcon"}/>}
                     main={<Text className="listItemText">自定主题</Text>}
                     extra={
                         <Space>
-                            <Input value={this.state.customTopicInputValue} onChange={this.customTopicInputOnChange.bind(this)} placeholder="请输入自定主题" showClear></Input>
-                            <Button theme={"borderless"} icon={<IconCheckboxTick />}
+                            <Input value={this.state.customTopicInputValue}
+                                   onChange={this.customTopicInputOnChange.bind(this)} placeholder="请输入自定主题"
+                                   showClear></Input>
+                            <Button theme={"borderless"} icon={<IconCheckboxTick/>}
                                     style={{color: "var(--semi-color-text-0)"}}
                                     onClick={this.submitCustomTopicBtnOnClick.bind(this)}>
                                 {"启用自定"}
                             </Button>
-                            <Button theme={"borderless"} icon={<IconClose />}
+                            <Button theme={"borderless"} icon={<IconClose/>}
                                     style={{color: "var(--semi-color-text-0)"}}
                                     onClick={this.clearCustomTopicBtnOnClick.bind(this)}>
                                 {"禁用自定"}
@@ -154,10 +146,11 @@ class preferenceInfoComponent extends React.Component {
                     }
                 />
                 <List.Item
-                    header={ <IconClock className={"listItemIcon"}/> }
-                    main={ <Text className="listItemText">切换间隔</Text> }
+                    header={<IconClock className={"listItemIcon"}/>}
+                    main={<Text className="listItemText">切换间隔</Text>}
                     extra={
-                        <Select value={this.state.preference.switchTime} onChange={this.switchTimeSelectOnChange.bind(this)}>
+                        <Select value={this.state.preference.switchTime}
+                                onChange={this.switchTimeSelectOnChange.bind(this)}>
                             <Select.Option value="900000">每刻钟</Select.Option>
                             <Select.Option value="3600000">每小时</Select.Option>
                             <Select.Option value="86400000">每天</Select.Option>

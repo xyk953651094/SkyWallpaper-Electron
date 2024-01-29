@@ -1,39 +1,22 @@
 import React from "react";
 import {
-    Row,
     Col,
-    List,
-    Pagination,
     Input,
-    Typography,
+    Pagination,
+    Row,
     Toast,
-    ImagePreview,
-    Image,
-    Button,
-    Space,
-    Spin
+    Typography
 } from "@douyinfe/semi-ui";
-import {
-    IconSearch,
-    IconHomeStroked,
-    IconImage,
-    IconUserCircle,
-    IconInfoCircle, IconMapPin
-} from "@douyinfe/semi-icons";
+import {IconSearch} from "@douyinfe/semi-icons";
 import "../stylesheets/searchComponent.css"
 import {
-    unsplashSearchRequestUrl,
+    imageDescriptionMaxSize,
     unsplashClientId,
-    listPageSize, imageDescriptionMaxSize,
+    unsplashSearchRequestUrl,
 } from "../typescripts/publicConstants";
-import {
-    btnMouseOut, btnMouseOver,
-    getFontColor,
-    httpRequest,
-    isEmpty,
-    setWallpaper
-} from "../typescripts/publicFunctions";
+import {httpRequest} from "../typescripts/publicFunctions";
 import {ImageData} from "../typescripts/publicInterface"
+import ListComponent from "../publicComponents/listComponent";
 
 const {Title} = Typography;
 
@@ -41,11 +24,12 @@ type propType = {}
 
 type stateType = {
     searchValue: string,
-    currentPage: number,
     loading: boolean,
     searchResult: ImageData[],
-    totalCounts: number,
     paginationDisplay: "flex" | "none",
+    currentPage: number,
+    pageSize: number,
+    totalCounts: number,
 }
 
 interface SearchComponent {
@@ -63,34 +47,34 @@ class SearchComponent extends React.Component {
             searchResult: [],
             totalCounts: 0,
             paginationDisplay: "none",
+            pageSize: 10,
         };
     }
 
     // 搜索图片
-    searchImages(url: string) {
+    searchImages() {
         let tempThis = this;
         let data = {
             "client_id": unsplashClientId,
-                "query": this.state.searchValue,
-                "orientation": "landscape",
-                "content_filter": "high",
-                "page": this.state.currentPage,
-                "per_page": listPageSize
+            "query": this.state.searchValue,
+            "orientation": "landscape",
+            "content_filter": "high",
+            "page": this.state.currentPage,
+            "per_page": this.state.pageSize
         };
         this.setState({
             loading: true,
-        },()=>{
-            httpRequest({}, url, data, "GET")
-                .then(function(resultData: any){
-                    if(resultData.total === 0) {
+        }, () => {
+            httpRequest({}, unsplashSearchRequestUrl, data, "GET")
+                .then(function (resultData: any) {
+                    if (resultData.total === 0) {
                         Toast.info("搜索结果数量为 0");
                         tempThis.setState({
                             loading: false,
                             searchResult: [],
                             paginationDisplay: "none",
                         });
-                    }
-                    else {
+                    } else {
                         let tempImageData = [];
                         for (let i in resultData.results) {
                             let tempData: ImageData = {
@@ -115,15 +99,25 @@ class SearchComponent extends React.Component {
                         });
                     }
                 })
-                .catch(function(){
+                .catch(function () {
                     tempThis.setState({
                         loading: false,
                         searchResult: [],
                         paginationDisplay: "none",
-                    },()=>{
+                    }, () => {
                         Toast.error("搜索图片失败");
                     });
                 })
+        })
+    }
+
+    inputOnClear() {
+        this.setState({
+            searchValue: "",
+            searchResult: [],
+            currentPage: 1,
+            totalCounts: 0,
+            paginationDisplay: "none",
         })
     }
 
@@ -132,102 +126,60 @@ class SearchComponent extends React.Component {
             searchValue: e.target.value,  // 保存搜索内容，用于搜索和分页请求
             searchResult: [],
             currentPage: 1,
-        }, ()=>{
-            this.searchImages(unsplashSearchRequestUrl);
+            totalCounts: 0,
+            paginationDisplay: "none",
+        }, () => {
+            this.searchImages();
         })
     }
 
-    homeButtonClick(item: any) {
-        if ( isEmpty(item.imageUrl) ) {
-            Toast.error("无跳转链接");
-        } else {
-            window.open(item.imageUrl, "_blank");
-        }
-    }
-
-    setWallpaperButtonClick(item: any) {
-        setWallpaper(item);
-    }
-
-    onPageChange( currentPage: number ) {
+    onPageChange(currentPage: number) {
         this.setState({
             searchResult: [],
             currentPage: currentPage,   // 设置分页
-        }, ()=>{
-            this.searchImages(unsplashSearchRequestUrl);
+        }, () => {
+            this.searchImages();
+        })
+    }
+
+    onPageSizeChange(pageSize: number) {
+        this.setState({
+            pageSize: pageSize,
+        }, () => {
+            this.searchImages();
         })
     }
 
     render() {
+        const listHeader = (
+            <Row>
+                <Col span={5} style={{textAlign: "left"}}>
+                    <Title heading={3}>搜索壁纸</Title>
+                </Col>
+                <Col span={14} style={{textAlign: "center"}}>
+                    <Input prefix={<IconSearch/>} placeholder="按下回车键搜索 Unsplash"
+                           showClear onClear={this.inputOnClear.bind(this)}
+                           onEnterPress={this.inputOnEnterPress.bind(this)}></Input>
+                </Col>
+            </Row>
+        )
+
+        const listFooter = (
+            <Pagination size="default" className={"searchPagination"}
+                        style={{display: this.state.paginationDisplay}}
+                        pageSize={this.state.pageSize} total={this.state.totalCounts} showTotal
+                        currentPage={this.state.currentPage} showQuickJumper
+                        onChange={currentPage => this.onPageChange(currentPage)}
+                        showSizeChanger pageSizeOpts={[10, 20, 30]}
+                        onPageSizeChange={pageSize => this.onPageSizeChange(pageSize)}
+            />
+        )
+
         return (
-            <List
-                loading={this.state.loading}
-                size="small"
-                bordered
-                header={
-                    <Row>
-                        <Col span={5} style={{textAlign: "left"}}>
-                            <Title heading={3}>搜索壁纸</Title>
-                        </Col>
-                        <Col span={14} style={{textAlign: "center"}}>
-                            <Input prefix={<IconSearch/>} placeholder="按下回车键进行搜索" showClear
-                                   onEnterPress={this.inputOnEnterPress.bind(this)}></Input>
-                        </Col>
-                    </Row>
-                }
-                dataSource={this.state.searchResult}
-                renderItem={item => (
-                    <List.Item
-                        style={{backgroundColor: item.color, padding: "10px 10px 5px 10px"}}
-                        header={
-                            <ImagePreview disableDownload={true}>
-                                <Image width={100} height={100} src={item.displayUrl}
-                                       preview={{src: item.wallpaperUrl}}
-                                       placeholder={<Spin />}
-                                       className={"wallpaperFadeIn"}
-                                />
-                            </ImagePreview>
-                        }
-                        main={
-                            <div className={"alignCenter"} style={{height: "100px"}}>
-                                <Space vertical align="start">
-                                    <Button theme={"borderless"} icon={<IconUserCircle />}
-                                            style={{color: getFontColor(item.color), cursor: "default"}}
-                                            onMouseOver={btnMouseOver.bind(this, item.color)}
-                                            onMouseOut={btnMouseOut.bind(this, item.color)}>
-                                        {"摄影师：" + item.userName}
-                                    </Button>
-                                    <Button theme={"borderless"} icon={<IconInfoCircle />}
-                                            style={{color: getFontColor(item.color), cursor: "default"}}
-                                            onMouseOver={btnMouseOver.bind(this, item.color)}
-                                            onMouseOut={btnMouseOut.bind(this, item.color)}>
-                                        {"图片描述：" + (item.description === null ? "暂无图片描述" : item.description)}
-                                    </Button>
-                                </Space>
-                            </div>
-                        }
-                        extra={
-                            <Space vertical align={"start"}>
-                                <Button theme={"borderless"} icon={<IconHomeStroked/>}
-                                        style={{color: getFontColor(item.color)}}
-                                        onMouseOver={btnMouseOver.bind(this, item.color)}
-                                        onMouseOut={btnMouseOut.bind(this, item.color)}
-                                        onClick={this.homeButtonClick.bind(this, item)}>图片主页</Button>
-                                <Button theme={"borderless"} icon={<IconImage/>}
-                                        style={{color: getFontColor(item.color)}}
-                                        onMouseOver={btnMouseOver.bind(this, item.color)}
-                                        onMouseOut={btnMouseOut.bind(this, item.color)}
-                                        onClick={this.setWallpaperButtonClick.bind(this, item)}>设为壁纸</Button>
-                            </Space>
-                        }
-                    />
-                )}
-                footer={
-                    <Pagination size="default" className={"searchPagination"} style={{display: this.state.paginationDisplay}}
-                                pageSize={listPageSize} total={this.state.totalCounts} currentPage={this.state.currentPage}
-                                onChange={currentPage => this.onPageChange(currentPage)}
-                    />
-                }
+            <ListComponent listHeader={listHeader}
+                           listData={this.state.searchResult}
+                           listFooter={listFooter}
+                           listLoading={this.state.loading}
             />
         )
     }
