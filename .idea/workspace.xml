@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="762362d4-97e4-4757-a2fe-94552437f98c" name="更改" comment="完善代码质量，优化视觉效果，提升使用体验">
+    <list default="true" id="762362d4-97e4-4757-a2fe-94552437f98c" name="更改" comment="修复已知问题">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/python/setWallpaper.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/setWallpaper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/typescripts/publicFunctions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/typescripts/publicFunctions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/preferenceComponents/preferenceInfoComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/preferenceComponents/preferenceInfoComponent.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +167,8 @@
       <workItem from="1705306934450" duration="8201000" />
       <workItem from="1705325798055" duration="1884000" />
       <workItem from="1705456006068" duration="4640000" />
-      <workItem from="1705462364794" duration="3241000" />
+      <workItem from="1705462364794" duration="3391000" />
+      <workItem from="1705561485216" duration="2591000" />
     </task>
     <task id="LOCAL-00001" summary="修复已知问题，优化视觉效果">
       <option name="closed" value="true" />
@@ -257,7 +258,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705321741481</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="修复已知问题">
+      <option name="closed" value="true" />
+      <created>1705481727306</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1705481727306</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -269,7 +278,8 @@
     <MESSAGE value="新增帮助文档链接" />
     <MESSAGE value="完善代码质量，优化视觉效果" />
     <MESSAGE value="完善代码质量，优化视觉效果，提升使用体验" />
-    <option name="LAST_COMMIT_MESSAGE" value="完善代码质量，优化视觉效果，提升使用体验" />
+    <MESSAGE value="修复已知问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复已知问题" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SkyWallpaper_Electron$setWallpaper.coverage" NAME="setWallpaper 覆盖结果" MODIFIED="1705461940733" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />

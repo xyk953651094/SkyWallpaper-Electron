@@ -12,7 +12,8 @@ import {
     IconLikeThumb,
     IconLink,
     IconMail,
-    IconRefresh
+    IconRefresh,
+    IconFolderOpen
 } from "@douyinfe/semi-icons";
 
 const {Title, Text} = Typography;
@@ -84,6 +85,26 @@ class preferenceInfoComponent extends React.Component {
                     }
                 />
                 <List.Item
+                    header={<IconFolderOpen className={"listItemIcon"}/>}
+                    main={<Text className="listItemText">存放路径（开发中）</Text>}
+                    extra={
+                        <Space vertical align={"start"}>
+                            <Button theme={"borderless"} icon={<i className="bi bi-apple"></i>}
+                                    style={{color: "var(--semi-color-text-0)", cursor: "default"}}>
+                                {" /Users/用户名/Pictures/云开壁纸/"}
+                            </Button>
+                            <Button theme={"borderless"} icon={<i className="bi bi-windows"></i>}
+                                    style={{color: "var(--semi-color-text-0)", cursor: "default"}}>
+                                {" C:\\Users\\用户名\\Pictures\\云开壁纸\\"}
+                            </Button>
+                            <Button theme={"borderless"} icon={<i className="bi bi-ubuntu"></i>}
+                                    style={{color: "var(--semi-color-text-0)", cursor: "default"}}>
+                                {" 敬请期待"}
+                            </Button>
+                        </Space>
+                    }
+                />
+                <List.Item
                     header={<IconImage className={"listItemIcon"}/>}
                     main={<Text className="listItemText">图片来源</Text>}
                     extra={
@@ -92,7 +113,7 @@ class preferenceInfoComponent extends React.Component {
                                 onClick={() => {
                                     window.open("https://unsplash.com/", "_blank")
                                 }}>
-                            {"Unsplash.com"}
+                            {"https://unsplash.com"}
                         </Button>
                     }
                 />
