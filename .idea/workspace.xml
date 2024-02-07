@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="762362d4-97e4-4757-a2fe-94552437f98c" name="更改" comment="修复已知问题">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/preferenceComponents/preferenceInfoComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/preferenceComponents/preferenceInfoComponent.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="762362d4-97e4-4757-a2fe-94552437f98c" name="更改" comment="修复已知问题" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -77,7 +71,7 @@
       <recent name="$PROJECT_DIR$/src/wallpaperComponents" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.react-scripts-start">
+  <component name="RunManager" selected="npm.start">
     <configuration name="setWallpaper" type="PythonConfigurationType" factoryName="Python">
       <module name="SkyWallpaper-Electron" />
       <option name="ENV_FILES" value="" />
@@ -169,6 +163,9 @@
       <workItem from="1705456006068" duration="4640000" />
       <workItem from="1705462364794" duration="3391000" />
       <workItem from="1705561485216" duration="2591000" />
+      <workItem from="1706536543161" duration="762000" />
+      <workItem from="1707209538042" duration="3000" />
+      <workItem from="1707274053455" duration="408000" />
     </task>
     <task id="LOCAL-00001" summary="修复已知问题，优化视觉效果">
       <option name="closed" value="true" />
@@ -266,7 +263,31 @@
       <option name="project" value="LOCAL" />
       <updated>1705481727306</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="修复已知问题">
+      <option name="closed" value="true" />
+      <created>1706536716049</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1706536716049</updated>
+    </task>
+    <task id="LOCAL-00014" summary="修复已知问题">
+      <option name="closed" value="true" />
+      <created>1706537422438</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1706537422438</updated>
+    </task>
+    <task id="LOCAL-00015" summary="修复已知问题">
+      <option name="closed" value="true" />
+      <created>1707274612223</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1707274612223</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
