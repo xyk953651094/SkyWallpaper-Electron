@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="762362d4-97e4-4757-a2fe-94552437f98c" name="更改" comment="修复已知问题" />
+    <list default="true" id="762362d4-97e4-4757-a2fe-94552437f98c" name="更改" comment="修复已知问题">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/preferenceComponents/preferenceInfoComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/preferenceComponents/preferenceInfoComponent.tsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -166,6 +169,8 @@
       <workItem from="1706536543161" duration="762000" />
       <workItem from="1707209538042" duration="3000" />
       <workItem from="1707274053455" duration="408000" />
+      <workItem from="1707276617196" duration="308000" />
+      <workItem from="1707461930541" duration="306000" />
     </task>
     <task id="LOCAL-00001" summary="修复已知问题，优化视觉效果">
       <option name="closed" value="true" />
@@ -287,7 +292,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707274612223</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="修复已知问题">
+      <option name="closed" value="true" />
+      <created>1707276909926</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1707276909926</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
