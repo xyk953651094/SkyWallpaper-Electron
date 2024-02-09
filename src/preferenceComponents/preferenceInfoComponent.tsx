@@ -13,7 +13,8 @@ import {
     IconLink,
     IconMail,
     IconRefresh,
-    IconFolderOpen
+    IconFolderOpen,
+    IconStar
 } from "@douyinfe/semi-icons";
 
 const {Title, Text} = Typography;
@@ -172,6 +173,15 @@ class preferenceInfoComponent extends React.Component {
                                 {"支持作者"}
                             </Button>
                         </Space>
+                    }
+                />
+                <List.Item
+                    header={<IconLink className={"listItemIcon"}/>}
+                    main={<Text className="listItemText">支持作者</Text>}
+                    extra={
+                        <Button theme={"borderless"} icon={<IconStar />} style={{color: "var(--semi-color-text-0)"}}>
+                            {"如果喜欢这款插件，请在商店五星好评，也可在 Github、GitLab 添加星标支持一下"}
+                        </Button>
                     }
                 />
             </List>
