@@ -71,14 +71,14 @@ class preferenceInfoComponent extends React.Component {
                                     onClick={() => {
                                         window.open("https://github.com/xyk953651094/SkyWallpaper-Electron/releases/", "_blank")
                                     }}>
-                                {"发布页面"}
+                                {"更新日志"}
                             </Button>
                             <Button theme={"borderless"} icon={<IconGitlabLogo/>}
                                     style={{color: "var(--semi-color-text-0)"}}
                                     onClick={() => {
                                         window.open("https://gitlab.com/xyk953651094/SkyWallpaper-Electron/-/releases/", "_blank")
                                     }}>
-                                {"发布页面"}
+                                {"更新日志"}
                             </Button>
                         </Space>
                     }
@@ -106,24 +106,6 @@ class preferenceInfoComponent extends React.Component {
                     }
                 />
                 <List.Item
-                    header={<IconApps className={"listItemIcon"}/>}
-                    main={<Text className="listItemText">{"其它产品"}</Text>}
-                    extra={
-                        <Space>
-                            <Button theme={"borderless"} icon={<IconGithubLogo/>}
-                                    style={{color: "var(--semi-color-text-0)"}}
-                                    onClick={() => {window.open("https://github.com/xyk953651094/", "_blank")}}>
-                                {"作者主页"}
-                            </Button>
-                            <Button theme={"borderless"} icon={<IconGitlabLogo/>}
-                                    style={{color: "var(--semi-color-text-0)"}}
-                                    onClick={() => {window.open("https://gitlab.com/xyk953651094/", "_blank")}}>
-                                {"作者主页"}
-                            </Button>
-                        </Space>
-                    }
-                />
-                <List.Item
                     header={<IconMail className={"listItemIcon"}/>}
                     main={<Text className="listItemText">联系作者</Text>}
                     extra={
@@ -141,6 +123,24 @@ class preferenceInfoComponent extends React.Component {
                                         window.open("mailto:xyk953651094@qq.com?&subject=云开壁纸-问题反馈", "_blank")
                                     }}>
                                 {"问题反馈"}
+                            </Button>
+                        </Space>
+                    }
+                />
+                <List.Item
+                    header={<IconApps className={"listItemIcon"}/>}
+                    main={<Text className="listItemText">{"其它产品"}</Text>}
+                    extra={
+                        <Space>
+                            <Button theme={"borderless"} icon={<IconGithubLogo/>}
+                                    style={{color: "var(--semi-color-text-0)"}}
+                                    onClick={() => {window.open("https://github.com/xyk953651094/", "_blank")}}>
+                                {"作者主页"}
+                            </Button>
+                            <Button theme={"borderless"} icon={<IconGitlabLogo/>}
+                                    style={{color: "var(--semi-color-text-0)"}}
+                                    onClick={() => {window.open("https://gitlab.com/xyk953651094/", "_blank")}}>
+                                {"作者主页"}
                             </Button>
                         </Space>
                     }

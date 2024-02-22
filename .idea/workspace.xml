@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="762362d4-97e4-4757-a2fe-94552437f98c" name="更改" comment="修复已知问题">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/preferenceComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/preferenceComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/preferenceComponents/preferenceFunctionComponent.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/preferenceComponents/preferenceImageComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/preferenceComponents/preferenceSettingComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/preferenceComponents/preferenceInfoComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/preferenceComponents/preferenceInfoComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/preferenceComponents/preferenceProductComponent.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/publicComponents/listComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/publicComponents/listComponent.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="762362d4-97e4-4757-a2fe-94552437f98c" name="更改" comment="优化设置界面" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -179,7 +171,7 @@
       <workItem from="1707653945712" duration="552000" />
       <workItem from="1707659891016" duration="462000" />
       <workItem from="1707729496088" duration="1040000" />
-      <workItem from="1708575265685" duration="1827000" />
+      <workItem from="1708575265685" duration="1853000" />
     </task>
     <task id="LOCAL-00001" summary="修复已知问题，优化视觉效果">
       <option name="closed" value="true" />
@@ -317,7 +309,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707462319974</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="优化设置界面">
+      <option name="closed" value="true" />
+      <created>1708582012993</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1708582012993</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,7 +330,8 @@
     <MESSAGE value="完善代码质量，优化视觉效果" />
     <MESSAGE value="完善代码质量，优化视觉效果，提升使用体验" />
     <MESSAGE value="修复已知问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复已知问题" />
+    <MESSAGE value="优化设置界面" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化设置界面" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SkyWallpaper_Electron$setWallpaper.coverage" NAME="setWallpaper 覆盖结果" MODIFIED="1705461940733" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
