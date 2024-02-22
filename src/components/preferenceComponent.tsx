@@ -2,9 +2,7 @@ import React from "react";
 import {Col, Row} from "@douyinfe/semi-ui";
 import "../stylesheets/preferenceComponent.css"
 import PreferenceInfoComponent from "../preferenceComponents/preferenceInfoComponent";
-import PreferenceProductComponent from "../preferenceComponents/preferenceProductComponent";
-import PreferenceFunctionComponent from "../preferenceComponents/preferenceFunctionComponent";
-import PreferenceImageComponent from "../preferenceComponents/preferenceImageComponent";
+import PreferenceSettingComponent from "../preferenceComponents/preferenceSettingComponent";
 
 const $ = require("jquery");
 
@@ -32,16 +30,10 @@ class PreferenceComponent extends React.Component {
         return (
             <Row align={"middle"} justify={"center"} gutter={[0, 16]}>
                 <Col span={24}>
-                    <PreferenceImageComponent getPreference={this.props.getPreference}/>
-                </Col>
-                <Col span={24}>
-                    <PreferenceFunctionComponent getPreference={this.props.getPreference}/>
+                    <PreferenceSettingComponent getPreference={this.props.getPreference}/>
                 </Col>
                 <Col span={24}>
                     <PreferenceInfoComponent/>
-                </Col>
-                <Col span={24}>
-                    <PreferenceProductComponent/>
                 </Col>
             </Row>
         );

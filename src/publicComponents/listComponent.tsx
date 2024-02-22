@@ -73,7 +73,7 @@ class ListComponent extends React.Component {
                                             style={{color: getFontColor(item.color), cursor: "default"}}
                                             onMouseOver={btnMouseOver.bind(this, item.color)}
                                             onMouseOut={btnMouseOut.bind(this, item.color)}>
-                                        {item.userName}
+                                        {"Photoed by " + item.userName + " On Unsplash"}
                                     </Button>
                                     <Button theme={"borderless"} icon={<IconInfoCircle/>}
                                             style={{color: getFontColor(item.color), cursor: "default"}}
