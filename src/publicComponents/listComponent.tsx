@@ -69,18 +69,18 @@ class ListComponent extends React.Component {
                         main={
                             <div className={"alignCenter"} style={{height: "100px"}}>
                                 <Space vertical align="start">
-                                    <Button theme={"borderless"} icon={<IconUserCircle/>}
-                                            style={{color: getFontColor(item.color), cursor: "default"}}
-                                            onMouseOver={btnMouseOver.bind(this, item.color)}
-                                            onMouseOut={btnMouseOut.bind(this, item.color)}>
-                                        {"Photoed by " + item.userName + " On Unsplash"}
-                                    </Button>
                                     <Button theme={"borderless"} icon={<IconInfoCircle/>}
                                             style={{color: getFontColor(item.color), cursor: "default"}}
                                             onMouseOver={btnMouseOver.bind(this, item.color)}
                                             onMouseOut={btnMouseOut.bind(this, item.color)}>
                                         {/*{"abcdeabcdeabcdeabcdeabcdeabcdeabcde"}*/}
                                         {item.description === null ? "暂无图片描述" : item.description}
+                                    </Button>
+                                    <Button theme={"borderless"} icon={<IconUserCircle/>}
+                                            style={{color: getFontColor(item.color), cursor: "default"}}
+                                            onMouseOver={btnMouseOver.bind(this, item.color)}
+                                            onMouseOut={btnMouseOut.bind(this, item.color)}>
+                                        {"由 Unsplash 的 " + item.userName + " 拍摄"}
                                     </Button>
                                 </Space>
                             </div>
