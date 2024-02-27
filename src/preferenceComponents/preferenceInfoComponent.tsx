@@ -113,14 +113,14 @@ class preferenceInfoComponent extends React.Component {
                             <Button theme={"borderless"} icon={<IconLikeThumb/>}
                                     style={{color: "var(--semi-color-text-0)"}}
                                     onClick={() => {
-                                        window.open("mailto:xyk953651094@qq.com?&subject=云开壁纸-功能建议", "_blank")
+                                        window.open("mailto:xyk953651094@qq.com?&subject=云开壁纸-功能建议&body=提示：功能建议前请优先查阅帮助文档", "_blank")
                                     }}>
                                 {"功能建议"}
                             </Button>
                             <Button theme={"borderless"} icon={<IconDislikeThumb/>}
                                     style={{color: "var(--semi-color-text-0)"}}
                                     onClick={() => {
-                                        window.open("mailto:xyk953651094@qq.com?&subject=云开壁纸-问题反馈", "_blank")
+                                        window.open("mailto:xyk953651094@qq.com?&subject=云开壁纸-问题反馈&body=提示：问题反馈前请优先查阅帮助文档", "_blank")
                                     }}>
                                 {"问题反馈"}
                             </Button>

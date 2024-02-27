@@ -131,15 +131,27 @@ class PreferenceSettingComponent extends React.Component {
     }
 
     resetPreferenceBtnOnClick() {
-        localStorage.setItem("preferenceData", JSON.stringify(defaultPreference));
-        Toast.success("已重置设置，一秒后刷新");
-        this.refreshWindow();
+        let resetTimeStampStorage = localStorage.getItem("resetTimeStamp");
+        if (resetTimeStampStorage && new Date().getTime() - parseInt(resetTimeStampStorage) < 60 * 1000) {
+            Toast.error("操作过于频繁，请稍后再试");
+        } else {
+            localStorage.setItem("preferenceData", JSON.stringify(defaultPreference));
+            localStorage.setItem("resetTimeStamp", JSON.stringify(new Date().getTime()));
+            Toast.success("已重置设置，一秒后刷新");
+            this.refreshWindow();
+        }
     }
 
     clearStorageBtnOnClick() {
-        localStorage.clear();
-        Toast.success("已重置软件，一秒后刷新");
-        this.refreshWindow();
+        let resetTimeStampStorage = localStorage.getItem("resetTimeStamp");
+        if (resetTimeStampStorage && new Date().getTime() - parseInt(resetTimeStampStorage) < 60 * 1000) {
+            Toast.error("操作过于频繁，请稍后再试");
+        } else {
+            localStorage.clear();
+            localStorage.setItem("resetTimeStamp", JSON.stringify(new Date().getTime()));
+            Toast.success("已重置软件，一秒后刷新");
+            this.refreshWindow();
+        }
     }
 
     refreshWindow() {
@@ -220,9 +232,12 @@ class PreferenceSettingComponent extends React.Component {
                     extra={
                         <Select value={this.state.preference.switchTime}
                                 onChange={this.switchTimeSelectOnChange.bind(this)}>
-                            <Select.Option value="900000">每 15 分钟</Select.Option>
-                            <Select.Option value="3600000">每 60 分钟</Select.Option>
-                            <Select.Option value="86400000">每 24 小时</Select.Option>
+                            <Select.Option value="900000">每隔 15 分钟</Select.Option>
+                            <Select.Option value="1800000">每隔 30 分钟</Select.Option>
+                            <Select.Option value="3600000">每隔 1 小时</Select.Option>
+                            <Select.Option value="21600000">每隔 6 小时</Select.Option>
+                            <Select.Option value="43200000">每隔 12 小时</Select.Option>
+                            <Select.Option value="86400000">每隔 1 天</Select.Option>
                         </Select>
                     }
                 />
