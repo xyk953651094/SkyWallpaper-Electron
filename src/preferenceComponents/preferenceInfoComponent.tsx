@@ -148,7 +148,7 @@ class preferenceInfoComponent extends React.Component {
                 <List.Item
                     header={<IconStar className={"listItemIcon"}/>}
                     main={
-                        <Text className="listItemText">{"如果喜欢这款软件，请在商店五星好评，或者在 Github、GitLab 添加星标"}</Text>
+                        <Text className="listItemText">{"如果喜欢这款软件，请考虑捐助或者在 Github、GitLab 添加星标"}</Text>
                     }
                     extra={
                         <Space>
