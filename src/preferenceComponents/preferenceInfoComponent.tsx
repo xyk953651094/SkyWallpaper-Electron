@@ -1,20 +1,19 @@
 import React from "react";
 import {Button, List, Space, Typography} from "@douyinfe/semi-ui";
 import {
+    IconInfoCircle,
     IconDislikeThumb,
     IconGift,
     IconGithubLogo,
     IconGitlabLogo,
     IconHelpCircle,
     IconHorn,
-    IconImage,
-    IconLikeHeart,
+    IconApps,
     IconLikeThumb,
-    IconLink,
     IconMail,
     IconRefresh,
-    IconFolderOpen,
-    IconStar
+    IconStar,
+    IconHome
 } from "@douyinfe/semi-icons";
 
 const {Title, Text} = Typography;
@@ -41,6 +40,28 @@ class preferenceInfoComponent extends React.Component {
         return (
             <List header={<Title heading={3}>产品信息</Title>} size="small" bordered>
                 <List.Item
+                    header={<IconInfoCircle className={"listItemIcon"}/>}
+                    main={<Text className="listItemText">{"产品信息"}</Text>}
+                    extra={
+                        <Space>
+                            <Button theme={"borderless"} icon={<IconGithubLogo/>}
+                                    style={{color: "var(--semi-color-text-0)"}}
+                                    onClick={() => {
+                                        window.open("https://github.com/xyk953651094/SkyWallpaper-Electron/releases/", "_blank")
+                                    }}>
+                                {"产品主页"}
+                            </Button>
+                            <Button theme={"borderless"} icon={<IconGitlabLogo/>}
+                                    style={{color: "var(--semi-color-text-0)"}}
+                                    onClick={() => {
+                                        window.open("https://gitlab.com/xyk953651094/SkyWallpaper-Electron/-/releases/", "_blank")
+                                    }}>
+                                {"产品主页"}
+                            </Button>
+                        </Space>
+                    }
+                />
+                <List.Item
                     header={<IconRefresh className={"listItemIcon"}/>}
                     main={<Text
                         className="listItemText">{"检查更新（当前版本：V" + require('../../package.json').version + "）"}</Text>}
@@ -49,16 +70,16 @@ class preferenceInfoComponent extends React.Component {
                             <Button theme={"borderless"} icon={<IconGithubLogo/>}
                                     style={{color: "var(--semi-color-text-0)"}}
                                     onClick={() => {
-                                        window.open("https://github.com/xyk953651094/SkyWallpaper-Electron/releases", "_blank")
+                                        window.open("https://github.com/xyk953651094/SkyWallpaper-Electron/releases/", "_blank")
                                     }}>
-                                {"GitHub 发布"}
+                                {"更新日志"}
                             </Button>
                             <Button theme={"borderless"} icon={<IconGitlabLogo/>}
                                     style={{color: "var(--semi-color-text-0)"}}
                                     onClick={() => {
                                         window.open("https://gitlab.com/xyk953651094/SkyWallpaper-Electron/-/releases/", "_blank")
                                     }}>
-                                {"GitLab 发布"}
+                                {"更新日志"}
                             </Button>
                         </Space>
                     }
@@ -73,62 +94,52 @@ class preferenceInfoComponent extends React.Component {
                                     onClick={() => {
                                         window.open("https://xyk953651094.github.io/SkyDocuments/", "_blank")
                                     }}>
-                                {"GitHub 文档"}
+                                {"帮助文档"}
                             </Button>
                             <Button theme={"borderless"} icon={<IconGitlabLogo/>}
                                     style={{color: "var(--semi-color-text-0)"}}
                                     onClick={() => {
                                         window.open("https://xyk953651094.gitlab.io/SkyDocuments/", "_blank")
                                     }}>
-                                {"GitLab 文档"}
+                                {"帮助文档"}
                             </Button>
                         </Space>
                     }
                 />
                 <List.Item
-                    header={<IconFolderOpen className={"listItemIcon"}/>}
-                    main={<Text className="listItemText">存放路径（开发中）</Text>}
+                    header={<IconHome className={"listItemIcon"}/>}
+                    main={<Text className="listItemText">{"作者主页"}</Text>}
                     extra={
-                        <Space vertical align={"start"}>
-                            <Button theme={"borderless"} icon={<i className="bi bi-apple"></i>}
-                                    style={{color: "var(--semi-color-text-0)", cursor: "default"}}>
-                                {" /Users/用户名/Pictures/云开壁纸/"}
+                        <Space>
+                            <Button theme={"borderless"} icon={<IconGithubLogo/>}
+                                    style={{color: "var(--semi-color-text-0)"}}
+                                    onClick={() => {window.open("https://github.com/xyk953651094/", "_blank")}}>
+                                {"作者主页"}
                             </Button>
-                            <Button theme={"borderless"} icon={<i className="bi bi-windows"></i>}
-                                    style={{color: "var(--semi-color-text-0)", cursor: "default"}}>
-                                {" C:\\Users\\用户名\\Pictures\\云开壁纸\\"}
-                            </Button>
-                            <Button theme={"borderless"} icon={<i className="bi bi-ubuntu"></i>}
-                                    style={{color: "var(--semi-color-text-0)", cursor: "default"}}>
-                                {" 敬请期待"}
+                            <Button theme={"borderless"} icon={<IconGitlabLogo/>}
+                                    style={{color: "var(--semi-color-text-0)"}}
+                                    onClick={() => {window.open("https://gitlab.com/xyk953651094/", "_blank")}}>
+                                {"作者主页"}
                             </Button>
                         </Space>
                     }
                 />
                 <List.Item
-                    header={<IconImage className={"listItemIcon"}/>}
-                    main={<Text className="listItemText">图片来源</Text>}
+                    header={<IconApps className={"listItemIcon"}/>}
+                    main={<Text className="listItemText">{"更多产品"}</Text>}
                     extra={
-                        <Button theme={"borderless"} icon={<IconLink/>}
-                                style={{color: "var(--semi-color-text-0)"}}
-                                onClick={() => {
-                                    window.open("https://unsplash.com/", "_blank")
-                                }}>
-                            {"https://unsplash.com"}
-                        </Button>
-                    }
-                />
-                <List.Item
-                    header={<IconLikeHeart className={"listItemIcon"}/>}
-                    main={<Text className="listItemText">开发支持</Text>}
-                    extra={
-                        <Button theme={"borderless"} icon={<IconLink/>}
-                                style={{color: "var(--semi-color-text-0)"}}
-                                onClick={() => {
-                                    window.open("https://www.jetbrains.com.cn/community/opensource/#support/", "_blank")
-                                }}>
-                            {"JetBrains 免费许可证计划"}
-                        </Button>
+                        <Space>
+                            <Button theme={"borderless"} icon={<IconGithubLogo/>}
+                                    style={{color: "var(--semi-color-text-0)"}}
+                                    onClick={() => {window.open("https://github.com/xyk953651094?tab=repositories", "_blank")}}>
+                                {"更多产品"}
+                            </Button>
+                            <Button theme={"borderless"} icon={<IconGitlabLogo/>}
+                                    style={{color: "var(--semi-color-text-0)"}}
+                                    onClick={() => {window.open("https://gitlab.com/users/xyk953651094/projects/", "_blank")}}>
+                                {"更多产品"}
+                            </Button>
+                        </Space>
                     }
                 />
                 <List.Item
@@ -139,14 +150,14 @@ class preferenceInfoComponent extends React.Component {
                             <Button theme={"borderless"} icon={<IconLikeThumb/>}
                                     style={{color: "var(--semi-color-text-0)"}}
                                     onClick={() => {
-                                        window.open("mailto:xyk953651094@qq.com?&subject=云开壁纸-功能建议", "_blank")
+                                        window.open("mailto:xyk953651094@qq.com?&subject=云开壁纸-功能建议&body=提示：功能建议前请优先查阅帮助文档", "_blank")
                                     }}>
                                 {"功能建议"}
                             </Button>
                             <Button theme={"borderless"} icon={<IconDislikeThumb/>}
                                     style={{color: "var(--semi-color-text-0)"}}
                                     onClick={() => {
-                                        window.open("mailto:xyk953651094@qq.com?&subject=云开壁纸-问题反馈", "_blank")
+                                        window.open("mailto:xyk953651094@qq.com?&subject=云开壁纸-问题反馈&body=提示：问题反馈前请优先查阅帮助文档", "_blank")
                                     }}>
                                 {"问题反馈"}
                             </Button>
@@ -154,8 +165,10 @@ class preferenceInfoComponent extends React.Component {
                     }
                 />
                 <List.Item
-                    header={<IconLink className={"listItemIcon"}/>}
-                    main={<Text className="listItemText">其它链接</Text>}
+                    header={<IconStar className={"listItemIcon"}/>}
+                    main={
+                        <Text className="listItemText">{"如果喜欢这款软件，请考虑捐助或者在 Github、GitLab 添加星标"}</Text>
+                    }
                     extra={
                         <Space>
                             <Button theme={"borderless"} icon={<IconHorn/>}
@@ -163,25 +176,16 @@ class preferenceInfoComponent extends React.Component {
                                     onClick={() => {
                                         window.open("https://xyk953651094.blogspot.com/", "_blank")
                                     }}>
-                                {"Blogger"}
+                                {"个人博客"}
                             </Button>
                             <Button theme={"borderless"} icon={<IconGift/>}
                                     style={{color: "var(--semi-color-text-0)"}}
                                     onClick={() => {
                                         window.open("https://afdian.net/a/xyk953651094/", "_blank")
                                     }}>
-                                {"支持作者"}
+                                {"捐助作者"}
                             </Button>
                         </Space>
-                    }
-                />
-                <List.Item
-                    header={<IconLink className={"listItemIcon"}/>}
-                    main={<Text className="listItemText">支持作者</Text>}
-                    extra={
-                        <Button theme={"borderless"} icon={<IconStar />} style={{color: "var(--semi-color-text-0)"}}>
-                            {"如果喜欢这款插件，请在商店五星好评，也可在 Github、GitLab 添加星标支持一下"}
-                        </Button>
                     }
                 />
             </List>
