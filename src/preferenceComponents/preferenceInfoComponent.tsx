@@ -171,7 +171,7 @@ class preferenceInfoComponent extends React.Component {
                     }
                     extra={
                         <Space>
-                            <Button theme={"borderless"} icon={<IconHorn/>}
+                            <Button theme={"borderless"} icon={<i className="bi bi-rss-fill"></i>}
                                     style={{color: "var(--semi-color-text-0)"}}
                                     onClick={() => {
                                         window.open("https://xyk953651094.blogspot.com/", "_blank")
