@@ -15,12 +15,14 @@ import {
     unsplashSearchRequestUrl,
 } from "../typescripts/publicConstants";
 import {httpRequest} from "../typescripts/publicFunctions";
-import {ImageData} from "../typescripts/publicInterface"
+import {ImageData, Preference} from "../typescripts/publicInterface"
 import ListComponent from "../publicComponents/listComponent";
 
 const {Title} = Typography;
 
-type propType = {}
+type propType = {
+    preference: Preference,
+}
 
 type stateType = {
     searchValue: string,
@@ -55,7 +57,7 @@ class SearchComponent extends React.Component {
     searchImages() {
         let tempThis = this;
         let data = {
-            "client_id": unsplashClientId,
+            "client_id": this.props.preference.accessKey === "" ? unsplashClientId : this.props.preference.accessKey,
             "query": this.state.searchValue,
             "orientation": "landscape",
             "content_filter": "high",

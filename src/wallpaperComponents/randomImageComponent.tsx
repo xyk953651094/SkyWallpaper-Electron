@@ -65,7 +65,7 @@ class RandomImageComponent extends React.Component {
 
         let tempThis = this;
         let data = {
-            "client_id": unsplashClientId,
+            "client_id": this.props.preference.accessKey === "" ? unsplashClientId : this.props.preference.accessKey,
             "orientation": "landscape",
             "topics": isEmpty(imageQuery) ? tempImageTopics : "",
             "query": imageQuery,

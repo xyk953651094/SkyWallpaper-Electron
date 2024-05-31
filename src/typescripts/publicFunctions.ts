@@ -160,6 +160,10 @@ export function fixPreference(preference: Preference) {
         preference.switchTime = defaultPreference.switchTime;
         isFixed = true;
     }
+    if (!preference.accessKey) {
+        preference.accessKey = defaultPreference.accessKey;
+        isFixed = true;
+    }
 
     if (isFixed) {
         localStorage.setItem("preference", JSON.stringify(preference));  // 重新保存设置

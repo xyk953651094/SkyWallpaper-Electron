@@ -10,11 +10,12 @@ export const listPageSize: number = 10;
 export const imageDescriptionMaxSize: number = 40;
 
 export const defaultPreference: Preference = {
-    openAtLogin: false,
-    colorMode: "autoSwitch",
     imageTopics: ["bo8jQKTaE0Y"],
     customTopic: "",
-    switchTime: "86400000"
+    switchTime: "86400000",
+    openAtLogin: false,
+    colorMode: "autoSwitch",
+    accessKey: "",
 }
 
 export const defaultImageData: ImageData = {

@@ -11,9 +11,10 @@ export interface ImageData {
 }
 
 export interface Preference {
-    openAtLogin: boolean,
-    colorMode: "autoSwitch" | "lightMode" | "darkMode",
     imageTopics: string[],
     customTopic: string,
-    switchTime: string
+    switchTime: string,
+    openAtLogin: boolean,
+    colorMode: "autoSwitch" | "lightMode" | "darkMode",
+    accessKey: string,
 }

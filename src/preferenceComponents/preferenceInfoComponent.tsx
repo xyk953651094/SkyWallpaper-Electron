@@ -171,6 +171,13 @@ class preferenceInfoComponent extends React.Component {
                     }
                     extra={
                         <Space>
+                            <Button theme={"borderless"} icon={<i className="bi bi-wechat"></i>}
+                                    style={{color: "var(--semi-color-text-0)"}}
+                                    onClick={() => {
+                                        window.open("https://github.com/xyk953651094/xyk953651094/assets/28004442/fd605f5c-d2ca-43eb-ae16-86d17d5f6fb1/", "_blank")
+                                    }}>
+                                {"公众号"}
+                            </Button>
                             <Button theme={"borderless"} icon={<i className="bi bi-rss-fill"></i>}
                                     style={{color: "var(--semi-color-text-0)"}}
                                     onClick={() => {
