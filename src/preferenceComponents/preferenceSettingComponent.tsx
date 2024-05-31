@@ -21,7 +21,7 @@ import {
     IconEdit,
     IconGallery,
     IconQuit,
-    IconKey
+    IconIdCard
 } from "@douyinfe/semi-icons";
 import {Preference} from "../typescripts/publicInterface";
 import {getPreferenceStorage, isEmpty} from "../typescripts/publicFunctions";
@@ -291,7 +291,7 @@ class PreferenceSettingComponent extends React.Component {
                     }
                 />
                 <List.Item
-                    header={<IconKey className={"listItemIcon"}/>}
+                    header={<IconIdCard className={"listItemIcon"}/>}
                     main={<Text className="listItemText">Unsplash Access Key</Text>}
                     extra={
                         <Space>
