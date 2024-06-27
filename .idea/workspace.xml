@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="762362d4-97e4-4757-a2fe-94552437f98c" name="更改" comment="优化设置界面">
+    <list default="true" id="762362d4-97e4-4757-a2fe-94552437f98c" name="更改" comment="新增自定 unsplash access key">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/preferenceComponents/preferenceInfoComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/preferenceComponents/preferenceInfoComponent.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +30,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;xyk953651094&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/xyk953651094/SkyWallpaper-Electron.git&quot;,
+    &quot;accountId&quot;: &quot;6a15a04a-b9ae-427c-8db6-a16afb20c209&quot;
+  }
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -51,7 +64,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;xyk&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/xiaoyunkai/Projects/WebStorm/SkyWallpaper-Electron&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/xiaoyunkai/Projects/WebStorm/SkyWallpaper-Electron/src&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -124,6 +137,13 @@
       <item itemvalue="npm.start" />
     </list>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-WS-241.18034.50" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
@@ -183,6 +203,11 @@
       <workItem from="1710210395479" duration="204000" />
       <workItem from="1710744815126" duration="135000" />
       <workItem from="1712140438840" duration="334000" />
+      <workItem from="1712319868171" duration="36000" />
+      <workItem from="1717127288436" duration="2319000" />
+      <workItem from="1717137509789" duration="14000" />
+      <workItem from="1717150491377" duration="77000" />
+      <workItem from="1719497614700" duration="217000" />
     </task>
     <task id="LOCAL-00001" summary="修复已知问题，优化视觉效果">
       <option name="closed" value="true" />
@@ -376,7 +401,31 @@
       <option name="project" value="LOCAL" />
       <updated>1710744828893</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="完善部分表述">
+      <option name="closed" value="true" />
+      <created>1712319884937</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1712319884937</updated>
+    </task>
+    <task id="LOCAL-00026" summary="新增自定 unsplash access key">
+      <option name="closed" value="true" />
+      <created>1717129753031</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1717129753031</updated>
+    </task>
+    <task id="LOCAL-00027" summary="新增自定 unsplash access key">
+      <option name="closed" value="true" />
+      <created>1717150553968</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1717150553968</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -390,7 +439,9 @@
     <MESSAGE value="完善代码质量，优化视觉效果，提升使用体验" />
     <MESSAGE value="修复已知问题" />
     <MESSAGE value="优化设置界面" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化设置界面" />
+    <MESSAGE value="完善部分表述" />
+    <MESSAGE value="新增自定 unsplash access key" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增自定 unsplash access key" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SkyWallpaper_Electron$setWallpaper.coverage" NAME="setWallpaper 覆盖结果" MODIFIED="1705461940733" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />

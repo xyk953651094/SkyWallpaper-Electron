@@ -16,13 +16,15 @@ import {
     unsplashTodayRequestUrl
 } from "../typescripts/publicConstants";
 import {httpRequest, isEmpty} from "../typescripts/publicFunctions";
-import {ImageData} from "../typescripts/publicInterface"
+import {ImageData, Preference} from "../typescripts/publicInterface"
 import {IconRefresh} from "@douyinfe/semi-icons";
 import ListComponent from "../publicComponents/listComponent";
 
 const {Title} = Typography;
 
-type propType = {}
+type propType = {
+    preference: Preference,
+}
 
 type stateType = {
     loading: boolean,
@@ -63,7 +65,7 @@ class TodayImageComponent extends React.Component {
     getImages() {
         let tempThis = this;
         let data = {
-            "client_id": unsplashClientId,
+            "client_id": this.props.preference.accessKey === "" ? unsplashClientId : this.props.preference.accessKey,
             "order_by": this.state.orderBy,
         }
         this.setState({

@@ -17,10 +17,11 @@ import {
     IconCheckboxTick,
     IconClock,
     IconClose,
-    IconContrast, IconDelete,
+    IconContrast, IconRefresh,
     IconEdit,
     IconGallery,
-    IconQuit
+    IconQuit,
+    IconIdCard
 } from "@douyinfe/semi-icons";
 import {Preference} from "../typescripts/publicInterface";
 import {getPreferenceStorage, isEmpty} from "../typescripts/publicFunctions";
@@ -36,7 +37,8 @@ type propType = {
 type stateType = {
     preference: Preference,
     disableImageTopic: boolean,
-    customTopicInputValue: string
+    customTopicInputValue: string,
+    accessKeyInputValue: string,
 }
 
 interface PreferenceSettingComponent {
@@ -50,7 +52,8 @@ class PreferenceSettingComponent extends React.Component {
         this.state = {
             preference: getPreferenceStorage(),
             disableImageTopic: false,
-            customTopicInputValue: ""
+            customTopicInputValue: "",
+            accessKeyInputValue: ""
         };
     }
 
@@ -76,7 +79,6 @@ class PreferenceSettingComponent extends React.Component {
         }, () => {
             this.props.getPreference(this.state.preference);
             localStorage.setItem("preference", JSON.stringify(this.state.preference));
-            console.log(this.state.preference.customTopic);
         })
     }
 
@@ -88,7 +90,6 @@ class PreferenceSettingComponent extends React.Component {
         }, () => {
             this.props.getPreference(this.state.preference);
             localStorage.setItem("preference", JSON.stringify(this.state.preference));
-            console.log(this.state.preference.customTopic);
         })
     }
 
@@ -128,6 +129,31 @@ class PreferenceSettingComponent extends React.Component {
             this.props.getPreference(this.state.preference);
             localStorage.setItem("preference", JSON.stringify(this.state.preference));
         });
+    }
+
+    accessKeyInputOnChange(value: string) {
+        this.setState({
+            accessKeyInputValue: value
+        });
+    }
+
+    submitAccessKeyBtnOnClick() {
+        this.setState({
+            preference: this.setPreference({accessKey: this.state.accessKeyInputValue}),
+        }, () => {
+            this.props.getPreference(this.state.preference);
+            localStorage.setItem("preference", JSON.stringify(this.state.preference));
+        })
+    }
+
+    clearAccessKeyBtnOnClick() {
+        this.setState({
+            preference: this.setPreference({accessKey: ""}),
+            accessKeyInputValue: "",
+        }, () => {
+            this.props.getPreference(this.state.preference);
+            localStorage.setItem("preference", JSON.stringify(this.state.preference));
+        })
     }
 
     resetPreferenceBtnOnClick() {
@@ -265,6 +291,27 @@ class PreferenceSettingComponent extends React.Component {
                     }
                 />
                 <List.Item
+                    header={<IconIdCard className={"listItemIcon"}/>}
+                    main={<Text className="listItemText">Unsplash Access Key</Text>}
+                    extra={
+                        <Space>
+                            <Input value={this.state.accessKeyInputValue}
+                                   onChange={this.accessKeyInputOnChange.bind(this)} placeholder="请输入访问密钥"
+                                   showClear></Input>
+                            <Button theme={"borderless"} icon={<IconCheckboxTick/>}
+                                    style={{color: "var(--semi-color-text-0)"}}
+                                    onClick={this.submitAccessKeyBtnOnClick.bind(this)}>
+                                {"启用密钥"}
+                            </Button>
+                            <Button theme={"borderless"} icon={<IconClose/>}
+                                    style={{color: "var(--semi-color-text-0)"}}
+                                    onClick={this.clearAccessKeyBtnOnClick.bind(this)}>
+                                {"禁用密钥"}
+                            </Button>
+                        </Space>
+                    }
+                />
+                <List.Item
                     header={<IconAlertCircle className={"listItemIcon"}/>}
                     main={<Text className="listItemText">危险设置</Text>}
                     extra={
@@ -274,14 +321,14 @@ class PreferenceSettingComponent extends React.Component {
                                 content="所有设置项将被重置为默认值"
                                 onConfirm={this.resetPreferenceBtnOnClick.bind(this)}
                             >
-                                <Button type="danger" icon={<IconDelete/>}>重置设置</Button>
+                                <Button type="danger" icon={<IconRefresh />}>重置设置</Button>
                             </Popconfirm>
                             <Popconfirm
                                 title="确定重置软件？"
                                 content="本地存储的所有数据将被清空"
                                 onConfirm={this.clearStorageBtnOnClick.bind(this)}
                             >
-                                <Button type="danger" icon={<IconDelete/>}>重置软件</Button>
+                                <Button type="danger" icon={<IconRefresh />}>重置软件</Button>
                             </Popconfirm>
                         </Space>
                     }

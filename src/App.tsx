@@ -121,7 +121,7 @@ class App extends React.Component {
                             <Route path="/" element={<WallpaperComponent preference={this.state.preference}/>}/>
                             <Route path="/wallpaper"
                                    element={<WallpaperComponent preference={this.state.preference}/>}/>
-                            <Route path="/search" element={<SearchComponent/>}/>
+                            <Route path="/search" element={<SearchComponent preference={this.state.preference}/>}/>
                             <Route path="/history" element={<HistoryComponent/>}/>
                             <Route path="/preference"
                                    element={<PreferenceComponent getPreference={this.getPreference.bind(this)}/>}/>
