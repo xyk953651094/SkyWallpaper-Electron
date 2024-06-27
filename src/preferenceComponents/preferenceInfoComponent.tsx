@@ -167,7 +167,7 @@ class preferenceInfoComponent extends React.Component {
                 <List.Item
                     header={<IconStar className={"listItemIcon"}/>}
                     main={
-                        <Text className="listItemText">{"如果喜欢这款软件，请考虑捐助或者在 Github、GitLab 添加星标"}</Text>
+                        <Text className="listItemText">{"如果喜欢这款软件，请考虑在 Github、GitLab 添加星标"}</Text>
                     }
                     extra={
                         <Space>
@@ -184,13 +184,6 @@ class preferenceInfoComponent extends React.Component {
                                         window.open("https://xyk953651094.blogspot.com/", "_blank")
                                     }}>
                                 {"个人博客"}
-                            </Button>
-                            <Button theme={"borderless"} icon={<IconGift/>}
-                                    style={{color: "var(--semi-color-text-0)"}}
-                                    onClick={() => {
-                                        window.open("https://afdian.net/a/xyk953651094/", "_blank")
-                                    }}>
-                                {"捐助作者"}
                             </Button>
                         </Space>
                     }
