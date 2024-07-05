@@ -167,25 +167,13 @@ class preferenceInfoComponent extends React.Component {
                 <List.Item
                     header={<IconStar className={"listItemIcon"}/>}
                     main={
-                        <Text className="listItemText">{"如果喜欢这款软件，请考虑在 Github、GitLab 添加星标"}</Text>
+                        <Text className="listItemText">{"支持作者"}</Text>
                     }
                     extra={
-                        <Space>
-                            <Button theme={"borderless"} icon={<i className="bi bi-wechat"></i>}
-                                    style={{color: "var(--semi-color-text-0)"}}
-                                    onClick={() => {
-                                        window.open("https://github.com/xyk953651094/xyk953651094/assets/28004442/fd605f5c-d2ca-43eb-ae16-86d17d5f6fb1/", "_blank")
-                                    }}>
-                                {"公众号"}
-                            </Button>
-                            <Button theme={"borderless"} icon={<i className="bi bi-rss-fill"></i>}
-                                    style={{color: "var(--semi-color-text-0)"}}
-                                    onClick={() => {
-                                        window.open("https://xyk953651094.blogspot.com/", "_blank")
-                                    }}>
-                                {"个人博客"}
-                            </Button>
-                        </Space>
+                        <Button theme={"borderless"} icon={<i className="bi bi-wechat"></i>}
+                                style={{color: "var(--semi-color-text-0)", cursor: "default"}}>
+                            {"如果喜欢这款软件，请考虑在 Github 与 GitLab 添加星标"}
+                        </Button>
                     }
                 />
             </List>
